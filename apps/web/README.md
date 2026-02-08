@@ -48,6 +48,12 @@ From `apps/web`:
 npm run test:e2e
 ```
 
+Current flow coverage:
+- root redirect + primary navigation
+- dashboard login success/failure states (mocked API responses)
+- dashboard URL-driven search form state
+- review/graph empty and populated states
+
 If browser binaries are not installed yet:
 
 ```bash
