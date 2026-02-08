@@ -1,0 +1,27 @@
+---
+message_id: "19980616_001"
+date: "16 June 1998"
+title: "16 June 1998 – [To two individuals]"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/19980616_001/1"
+content_sha256: "ae2f5b820278b96c3ce7c4063c0b0cfbac7da52d5104a43a89faae0b28e21b37"
+scraped_at: "2026-02-08T03:37:18.108641+00:00"
+---
+The Universal House of Justice
+
+Department of the Secretariat
+
+16 June 1998
+
+[To two individuals]
+
+The Universal House of Justice has received your email message of 5 April 1998 regarding the responsibility of parents for their children’s behavior, and we have been asked to convey the following.
+
+While some opportunities for service in the Administrative Order are clearly reserved for those who are over twenty-one years of age, at age fifteen the individual has the privilege of affirming, in his own name, his faith in Bahá’u’lláh. The importance of attaining spiritual maturity at the age of fifteen is that it marks that point in life at which the believer takes into his own hands the responsibility for his spiritual destiny.
+
+The following extract from a Tablet of ‘Abdu’l‑Bahá links the attainment of maturity with the deepening of one’s understanding and comprehension of the realities of life, and the enhancement of one’s very capacity for understanding:
+
+Know thou that before maturity man liveth from day to day and comprehendeth only such matters as are superficial and outwardly obvious. However, when he cometh of age he understandeth the realities of things and the inner truths. Indeed, in his comprehension, his feelings, his deductions and his discoveries, every day of his life after maturity is equal to a year before it.
+
+While parents may grieve at some of the choices their children make, at the age of maturity a son or daughter is then essentially responsible for the decisions he or she takes and becomes answerable to God accordingly. Parents should continue in every way possible to help, encourage, and guide their children, but they should recognize clearly the basic change in accountability that has occurred.
+
+Department of the Secretariat

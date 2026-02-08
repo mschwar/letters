@@ -1,0 +1,43 @@
+---
+message_id: "19920625_001"
+date: "25 June 1992"
+title: "25 June 1992 – To selected National Spiritual Assemblies"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/19920625_001/1"
+content_sha256: "993cd8c57f5a16aecda83aa8e62be6ccbcd522172eede9cfdee48ae23f294eb0"
+scraped_at: "2026-02-08T03:38:11.132075+00:00"
+---
+The Universal House of Justice
+
+Department of the Secretariat
+
+25 June 1992
+
+To selected National Spiritual Assemblies
+
+Dear Bahá’í Friends,
+
+The Universal House of Justice deeply regrets to inform you that, following earlier reports received from members of the Ghedami family residing in Canada and the United States, the friends in Iran have now confirmed that Mr. Rúḥu’lláh Ghedami, a staunch member of their community, has become the victim of a brutal murder at the hands of two members of the Iranian Disciplinary Forces.
+
+The following details are reported by the friends in Iran:
+
+Mr. Rúḥu’lláh Ghedami was 65 years of age. He used to be employed by the Iranian Railway Company and was dismissed from work. He was a farmer in the village of Muẓaffaríyyih near Islám-
+
+Sh
+
+ahr for about 20 years. His wife and five of his children are living outside of Iran.
+
+Mr. Ghedami had a great love for the Faith and would often talk about it to non-Bahá’ís. Towards the end of 1370 (1991), he started associating with a member of the Disciplinary Forces of the Government of Iran and began talking to him about the Faith. These conversations continued for a while until he was officially asked, in that same year, to report to one of the police stations in the town of Rayy. He was then given a questionnaire with 40 items which were all answered by him. Mr. Ghedami later explained to one of his friends that all the questions related to Bahá’í subjects.
+
+On 25/3/71 (15 June 1992), at 11:00 p.m., a man in uniform came to Mr. Ghedami’s house in a car without a license plate, and told Mr. Ghedami that he had come to arrest him. The neighbors insisted that the uniformed man should come back on the following day, but he paid no attention and took Mr. Ghedami with him. There were two other individuals sitting in the car. Following this event, there was no news of Mr. Ghedami for several days and all the police stations claimed that they knew nothing about him.
+
+On 27/3/71 (17 June 1992), a man by the name of Sulaymán ‘Aynu’lláhí, who used to live in Muẓaffaríyyih a few years ago, entered Mr. Ghedami’s house with a key that he had in his possession. He claimed that he had purchased the house from Mr. Ghedami and told the tenant to vacate it.
+
+The tenant reported the matter to the police who then summoned Sulaymán ‘Aynu’lláhí and his brother, Raḥmán ‘Aynu’lláhí, both guards in the Disciplinary Forces. After the interrogations and investigations carried out by the Office of Criminal Investigation, it was determined that these two brothers had forced Mr. Ghedami to give them a letter attesting to the sale of his property, following which they strangled him, and then drove the body 60 kilometers outside Tehran on the Qum Highway, where they set fire to it, using gasoline.
+
+The body was found several days later by the Ḥasanábád Police Station and was transferred to the coroner’s office to be examined by a doctor. It was identified with great difficulty because it was so badly burnt. The body is still in the coroner’s office and is supposed to be transferred to the Bahá’í Cemetery on 4/4/71 (25 June 1992).
+
+The friends in Iran conclude by reporting that the murderers are now in custody, but that the facts about this case have been only partially registered in the official records. They are certain that the murder took place as a result of religious prejudice and because of Mr. Ghedami’s teaching activities. Whether the authorities had any previous knowledge of this murder is not known.…
+
+With loving Bahá’í greetings,
+
+Department of the Secretariat

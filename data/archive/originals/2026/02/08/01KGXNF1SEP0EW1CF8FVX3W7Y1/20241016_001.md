@@ -1,0 +1,41 @@
+---
+message_id: "20241016_001"
+date: "16 October 2024"
+title: "16 October 2024 - To the Bahá’ís of the World"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/20241016_001/1"
+content_sha256: "b7594467e5aa1a16bf795206983214ebd8428180a4b845960397eb75f6e9d28a"
+scraped_at: "2026-02-08T03:34:38.098830+00:00"
+---
+The Universal House of Justice
+
+16 October 2024
+
+To the Bahá’ís of the World
+
+Dearly loved Friends,
+
+We indicated in our Riḍván 2022 message our expectation that periodically more places will be identified where Houses of Worship are to be raised up. We are delighted that the national Temple in Papua New Guinea was recently inaugurated, and that progress is being made towards realization of the previously announced Temples in Bihar Sharif, India; Toronto, Canada; Kanchanpur, Nepal; and Mwinilunga, Zambia. With praise and gratitude to the Blessed Beauty, we joyfully announce that conditions make it possible for a further two national Ma
+
+sh
+
+riqu’l-A
+
+dh
+
+kárs to be erected, one in Brasília, Brazil, and the other in Lilongwe, Malawi, as well as a local Ma
+
+sh
+
+riqu’l-A
+
+dh
+
+kár in Batouri, Cameroon.
+
+May the initiation of plans to build three additional Temples fill your hearts with joy and serve as a source of inspiration in your sustained efforts to advance everywhere the processes of community building and engagement with society.
+
+[signed: The Universal
+
+House
+
+of Justice]

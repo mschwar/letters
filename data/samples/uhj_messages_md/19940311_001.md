@@ -1,0 +1,99 @@
+---
+message_id: "19940311_001"
+date: "11 March 1994"
+title: "11 March 1994 – [To an individual]"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/19940311_001/1"
+content_sha256: "59ce1835598ea86a48a5423532e325181c69a7479162e5755c1d9cc6c51b7204"
+scraped_at: "2026-02-08T03:37:55.028253+00:00"
+---
+The Universal House of Justice
+
+Department of the Secretariat
+
+11 March 1994
+
+[To an individual]
+
+Dear Bahá’í Friend,
+
+Your letter of 31 December 1993 was received and referred to us for a response.
+
+You quote the reference in paragraph 42 of the Kitáb-i-Aqdas and ask how this can be understood as an anticipation of the institution of the Guardianship.
+
+As you correctly state, this passage relates entirely to the disposition of endowments dedicated to charity. In it Bahá’u’lláh provides that the authority in this matter passes, after Him, to the A
+
+gh
+
+ṣán. The A
+
+gh
+
+ṣán comprise not only the sons of Bahá’u’lláh, but all His male descendants. Thus in His Will and Testament ‘Abdu’l‑Bahá refers to Shoghi Effendi as “the chosen branch,” and provides that if the eldest son of the Guardian did not possess the qualities which would befit him to be appointed as his successor, the Guardian should “choose another branch [
+
+Gh
+
+uṣn] to succeed him.” There is also a letter in which Shoghi Effendi refers to his brother, Ḥusayn, as a “
+
+Gh
+
+uṣn.”
+
+It should be noted that, although only two of the A
+
+gh
+
+ṣán are explicitly mentioned in the Kitáb-i-‘Ahd (the
+
+Gh
+
+uṣn-i-A‘ẓam and the
+
+Gh
+
+uṣn-i-Akbar, namely ‘Abdu’l‑Bahá and Mírzá Muḥammad-‘Alí), paragraph 42 of the Aqdas refers to more than two. Arabic nouns have three forms for number:
+
+Singular
+
+Branch
+
+Gh
+
+uṣn
+
+Dual
+
+two Branches
+
+Gh
+
+uṣnán
+
+Plural
+
+more than two Branches
+
+A
+
+gh
+
+ṣán
+
+The Aqdas foresees a hereditary function for the A
+
+gh
+
+ṣán in relation to the disposition of endowments dedicated to charity. Paragraph 42 of the Aqdas continues by stating that “after them” [i.e. the A
+
+gh
+
+ṣán] this authority passes “to the House of Justice—should it be established in the world by then.” This envisages the possibility that the line of A
+
+gh
+
+ṣán would come to an end before the Universal House of Justice came into existence, which is, in fact, what happened on the death of Shoghi Effendi.
+
+In this way, therefore, this passage can be seen as anticipating the institution of the Guardianship.…
+
+With loving Bahá’í greetings,
+
+Department of the Secretariat

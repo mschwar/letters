@@ -1,0 +1,33 @@
+---
+message_id: "19730507_001"
+date: "7 May 1973"
+title: "7 May 1973 – To the Bahá’ís of the World"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/19730507_001/1"
+content_sha256: "0fa14c50fb5a9958e2fa859706892cbcc8952bc66853f317a30838d0424c1f96"
+scraped_at: "2026-02-08T03:40:39.054119+00:00"
+---
+The Universal House of Justice
+
+7 May 1973
+
+To the Bahá’ís of the World
+
+Dear Bahá’í Friends,
+
+It is now possible to share with you all the news of an event which crowns the victories with which Bahá’u’lláh has blessed His followers during the Nine Year Plan, an event of which the true significance will be fully understood only in the course of centuries to come: a reigning monarch has accepted the Message of Bahá’u’lláh.
+
+Among those to whom
+
+The Proclamation of Bahá’u’lláh
+
+was presented in 1967 was His Highness Malietoa Tanumafili II, the Head of State of the independent nation of Western Samoa in the heart of the Pacific Ocean. His Highness, who had already heard of the Faith, showed immediately that the sacred Words had touched his heart, and the Universal House of Justice thereupon asked the Hand of the Cause Dr. Ugo Giachery, who had presented the book to him, to return to Western Samoa for further audiences with His Highness. Following this visit the Malietoa conveyed his acceptance of the Faith of Bahá’u’lláh to the Universal House of Justice and became the first reigning sovereign to enter beneath the shade of this Cause.
+
+His Highness decided, with the full agreement of the Universal House of Justice, that it was not propitious to make his declaration public at that time. He has been visited from time to time by Hands of the Cause and other believers, and continual touch with His Highness has been maintained by the House of Justice through Mr. Suhayl ‘Alá’í, a member of the Continental Board of Counselors for Australasia. Gradually the Malietoa has let it be known to those around him that he has accepted Bahá’u’lláh. Now he has judged the time ripe to share this wondrous news with his fellow-believers in all parts of the world, by addressing to the International Bahá’í Convention the gracious and inspiring message of which a copy is enclosed with this letter.…
+
+With loving Bahá’í greetings,
+
+[signed: The Universal
+
+House
+
+of Justice]

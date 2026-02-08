@@ -1,0 +1,27 @@
+---
+message_id: "20000312_001"
+date: "12 March 2000"
+title: "12 March 2000 – To all National Spiritual Assemblies"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/20000312_001/1"
+content_sha256: "169dfdbf2c2702924103f688c9ce6227661cfef3429e56ed58bbf1c6176e12bb"
+scraped_at: "2026-02-08T03:36:53.207757+00:00"
+---
+The Universal House of Justice
+
+Department of the Secretariat
+
+12 March 2000
+
+To all National Spiritual Assemblies
+
+Dear Bahá’í Friends,
+
+In a letter addressed to you under the date of 30 May 1997, the Universal House of Justice announced its decision to establish Regional Bahá’í Councils as a new element of Bahá’í administration, between the local and national levels. These institutions are formed only with the permission of the House of Justice in certain countries where the growing complexity of the issues which are facing National Spiritual Assemblies requires this development. As specified by the House of Justice case by case for the countries directly concerned, a Regional Council is established either through election by the members of the Local Spiritual Assemblies in a region or through appointment by the National Spiritual Assembly, which receives recommendations of candidates from Local Spiritual Assemblies in the region. The date set for formation of Regional Councils has been 23 May, the anniversary of the Declaration of the Báb according to the Gregorian calendar.
+
+To keep you informed of essential aspects of the evolution of Regional Councils, we have been asked to convey the following.
+
+In view of the experience gained over a period of several years, the House of Justice has recognized that it would be more practical to set a new date for the formation of these institutions. Henceforth, then, the election or appointment of Regional Councils will take effect every year on 26 November, the Day of the Covenant. The formation processes will, of course, have to be set in motion in sufficient time to be concluded on this date.
+
+With loving Bahá’í greetings,
+
+Department of the Secretariat

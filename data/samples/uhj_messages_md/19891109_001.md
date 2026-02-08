@@ -1,0 +1,31 @@
+---
+message_id: "19891109_001"
+date: "9 November 1989"
+title: "9 November 1989 – The National Spiritual Assembly of the Bahá’ís of the Hawaiian Islands"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/19891109_001/1"
+content_sha256: "2994d53ce42a7290f319a001564f2ce7603047e7099342ce628d18bf973bb2fc"
+scraped_at: "2026-02-08T03:38:29.606272+00:00"
+---
+The Universal House of Justice
+
+Department of the Secretariat
+
+9 November 1989
+
+The National Spiritual Assembly of the Bahá’ís of the Hawaiian Islands
+
+Dear Bahá’í Friends,
+
+The Universal House of Justice received your letter of 2 October 1989 about your laudable desire to simplify enrollment procedures and eliminate obstacles to new believers’ joining the Bahá’í community. It has asked us to send you the following reply.
+
+First, the House of Justice does not believe that the By-Laws of a Local Spiritual Assembly are intended to imply by the term “voting membership” that there are two classes of membership in the Bahá’í community, except insofar as those under the age of 21 do not have the right to vote or serve on a Spiritual Assembly.
+
+As you well understand, there is no universally applicable procedure that a new believer must follow in making a declaration of faith. In essence, it is simply the act of making it known to the Bahá’ís that he too believes in Bahá’u’lláh, accepts the Faith, and wishes to be recognized as a member of the Bahá’í community. The process of considering and accepting such a declaration by the institutions of the Faith or their duly appointed representatives should follow as swiftly as possible. The procedure for this is left to the discretion of each National Spiritual Assembly, and can vary from area to area within the same country.
+
+As you indicate in your letter, the process of issuing an enrollment card is a separate, purely formal, step that follows the above decision.
+
+Whether a newly declared Bahá’í should be invited to attend a Nineteen Day Feast before his declaration has been accepted is a matter at the discretion of the Local Spiritual Assembly in light of the specific circumstances. For example, where feasible, could the Assembly not provide that, if a declaration is made so soon before a Feast that the Assembly has no time to meet to accept it, the officers would be authorized to welcome the new believer to the Feast unless they have some reason for doubting that the declaration would be accepted? In general it would seem to be better to show a loving and welcoming spirit rather than to stand on a point of administrative procedure.
+
+With loving Bahá’í greetings,
+
+Department of the Secretariat

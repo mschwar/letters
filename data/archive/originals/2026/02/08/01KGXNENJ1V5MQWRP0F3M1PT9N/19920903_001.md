@@ -1,0 +1,43 @@
+---
+message_id: "19920903_001"
+date: "3 September 1992"
+title: "3 September 1992 – To selected National Spiritual Assemblies"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/19920903_001/1"
+content_sha256: "19afd0b4a0242db2f2e0e3e83ee43c8279b7a94759aa63cd48a32f6f0d8b4dd0"
+scraped_at: "2026-02-08T03:38:10.317876+00:00"
+---
+The Universal House of Justice
+
+Department of the Secretariat
+
+3 September 1992
+
+To selected National Spiritual Assemblies
+
+Dear Bahá’í Friends,
+
+The Universal House of Justice has instructed us to inform you of the following disturbing news just received from the Bahá’í friends in Iran.…
+
+Messrs. Bihnám Mí
+
+th
+
+áqí and Kayván
+
+Kh
+
+alajábádí, two active Iranian Bahá’ís who were arrested three years ago and are still being held at the Gohardasht Prison in Karaj near Tehran, have recently been called to the prison authorities where they were orally informed that an Islamic Revolutionary Court has issued a verdict condemning them to death.
+
+The friends in Iran had earlier reported that, as an unprecedented gesture, the Iranian authorities had instructed these two Bahá’í prisoners to choose Muslim lawyers to defend them. Presumably, this was an exercise designed to impress Mr. Reynaldo Galindo Pohl, the Special Rapporteur of the United Nations Human Rights Commission, who was due to visit Iran at that time. Such lawyers were eventually engaged by the Bahá’ís, but, having taken some initial steps regarding the two defendants, they found themselves unable to continue and resigned. Therefore, the trial which resulted in the death sentences for the two Bahá’ís took place without any lawyers defending them. Messrs. Mí
+
+th
+
+áqí and
+
+Kh
+
+alajábádí have appealed against these verdicts to a higher court in Iran, but the outcome is uncertain.…
+
+With loving Bahá’í greetings,
+
+Department of the Secretariat

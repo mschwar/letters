@@ -1,0 +1,39 @@
+---
+message_id: "19980722_001"
+date: "22 July 1998"
+title: "22 July 1998 – To National Spiritual Assemblies"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/19980722_001/1"
+content_sha256: "42cfac0bc0c19f0d810ba51ef89a33f7194854b218de9f8deb65a101db51e993"
+scraped_at: "2026-02-08T03:37:16.473987+00:00"
+---
+The Universal House of Justice
+
+22 July 1998
+
+To National Spiritual Assemblies
+
+Dear Bahá’í Friends,
+
+With sorrowful hearts we have to inform you of the execution in Ma
+
+sh
+
+had, Iran, of a Bahá’í, Mr. Rúḥu’lláh Rawḥání, in the early morning of 21 July 1998. We have been informed that Mr. Rawḥání’s body was handed over to his relatives and was buried at 11:00 a.m. local time on the same day.
+
+Mr. Rawḥání was fifty-two years old and was arrested on 20 September 1997, accused of converting a young woman from Islám to the Bahá’í Faith. The woman concerned denied that she had converted; she explained that her mother was a Bahá’í and that she herself had been raised as a Bahá’í. She was not arrested.
+
+Mr. Rawḥání was kept incommunicado for the duration of his imprisonment; his family was not permitted to communicate with him, and no information is available regarding his treatment in prison. There is no evidence that Mr. Rawḥání was accorded any legal process, and no sentence was announced. It appears certain that he was not allowed access to a lawyer.
+
+The night before his execution, someone from the Iranian Intelligence Department telephoned a Bahá’í in Ma
+
+sh
+
+had stating that Mr. Rawḥání was to be executed the next day. Initially, the friends did not believe this statement, as they had experienced previous incidents when false statements were made to the Bahá’ís in an attempt to cause anguish. It was not until they were summoned to collect the body that they realized that the information had been correct.
+
+You will recall that no Bahá’í had been executed since March 1992, and that the Government of Iran has been indicating to the world that the situation regarding the Bahá’ís had changed. However, the execution of Mr. Rawḥání causes grave concern that, whatever the official assertion of the Iranian Government, the Bahá’í community of Iran remains unprotected, and officials in that country can persecute the Bahá’ís at will and with impunity.…
+
+[signed: The Universal
+
+House
+
+of Justice]

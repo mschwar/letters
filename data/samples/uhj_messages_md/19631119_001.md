@@ -1,0 +1,33 @@
+---
+message_id: "19631119_001"
+date: "19 November 1963"
+title: "19 November 1963 – To all National Spiritual Assemblies"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/19631119_001/1"
+content_sha256: "cecd92d83dac2fc6f27182b0a2054e91c74840c31521d7697598c28b8a813112"
+scraped_at: "2026-02-08T03:41:19.223144+00:00"
+---
+The Universal House of Justice
+
+19 November 1963
+
+To all National Spiritual Assemblies
+
+Dear Friends,
+
+The relationship of the Continental Hands and their respective National Assemblies was clearly delineated in the Message of the beloved Guardian dated June 4, 1957:
+
+CALL UPON HANDS NATIONAL ASSEMBLIES EACH CONTINENT SEPARATELY ESTABLISH HENCEFORTH DIRECT CONTACT DELIBERATE WHENEVER FEASIBLE AS FREQUENTLY POSSIBLE EXCHANGE REPORTS TO BE SUBMITTED THEIR RESPECTIVE AUXILIARY BOARDS NATIONAL COMMITTEES EXERCISE UNRELAXING VIGILANCE CARRY OUT UNFLINCHINGLY SACRED INESCAPABLE DUTIES. SECURITY PRECIOUS FAITH PRESERVATION SPIRITUAL HEALTH BAHÁ’Í COMMUNITIES VITALITY FAITH ITS INDIVIDUAL MEMBERS PROPER FUNCTIONING ITS LABORIOUSLY ERECTED INSTITUTIONS FRUITION ITS WORLDWIDE ENTERPRISES FULFILLMENT ITS ULTIMATE DESTINY ALL DIRECTLY DEPENDENT BEFITTING DISCHARGE WEIGHTY RESPONSIBILITIES NOW RESTING MEMBERS THESE TWO INSTITUTIONS OCCUPYING WITH UNIVERSAL HOUSE JUSTICE NEXT INSTITUTION GUARDIANSHIP FOREMOST RANK DIVINELY ORDAINED ADMINISTRATIVE HIERARCHY WORLD ORDER BAHÁ’U’LLÁH.
+
+These highly significant words of the beloved Guardian clearly foreshadow the tremendous importance of the joint responsibility which he placed upon the Hands and the National Assemblies in protecting the believers and fostering the worldwide development of the Faith.
+
+We stress the necessity of doing everything possible to expedite and facilitate this free play of consultation between the Hands and the National Assemblies within the spirit and framework of these instructions of Shoghi Effendi. The two institutions have joint and complementary functions which can be discharged successfully only if the greatest degree of understanding and cooperation exists between them.
+
+We are confident that this relationship will be further strengthened and developed in the manner envisioned by the Guardian, and that it will contribute in large measure to the successful achievement of the goals of the Nine Year Plan which is to be inaugurated this coming Riḍván.
+
+With loving Bahá’í greetings,
+
+[signed: The Universal
+
+House
+
+of Justice]

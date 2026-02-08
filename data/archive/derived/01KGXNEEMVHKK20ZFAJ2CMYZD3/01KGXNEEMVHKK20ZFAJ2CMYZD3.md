@@ -1,0 +1,397 @@
+---
+message_id: "19760324_001"
+date: "24 March 1976"
+title: "24 March 1976 – To all National Spiritual Assemblies"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/19760324_001/1"
+content_sha256: "299254963b7f22196d2b0a67086d359f22c3ae8b0d8738d25127efaefe16d32a"
+scraped_at: "2026-02-08T03:40:20.519778+00:00"
+---
+The Universal House of Justice
+
+Department of the Secretariat
+
+24 March 1976
+
+To all National Spiritual Assemblies
+
+Dear Bahá’í Friends,
+
+As you will have seen in the Convention message, the Universal House of Justice has appointed six new Counselors and has authorized the appointment of ninety more Auxiliary Board members.
+
+On the instruction of the House of Justice we now enclose for your information a complete list of the members of the Continental Boards of Counselors following the above appointments, and a list of the Auxiliary Boards showing the increases.
+
+With loving Bahá’í greetings,
+
+Department of the Secretariat
+
+MEMBERSHIP OF THE CONTINENTAL BOARDS OF COUNSELORS–MARCH 1976
+
+AFRICA
+
+Northern Africa
+
+Muḥammad Kebdani, Muḥammad Muṣṭafá, ‘Imád Ṣábirán
+
+Western Africa
+
+Ḥusayn Ardikání, Friday Ekpe, Zekrullah Kazemi, Thelma Khelghati, Mihdí Samandarí
+
+Central & East Africa
+
+Hushang Ahdieh, Oloro Epyeru, Kolonario Oule, Isobel Sabri, Peter Vuyiya
+
+Southern Africa
+
+Seewoosumbur-Jeehoba Appa, Shidan Fat’he-Aazam, William Masehla, Bahíyyih Winckler
+
+WESTERN HEMISPHERE
+
+North America
+
+Lloyd Gardner, Sarah Pereira, Velma Sherrill, Edna True
+
+Central America
+
+Carmen de Burafato, Rowland Estall, Artemus Lamb, Paul Lucas, Alfred Osborne
+
+South America
+
+Leonora Armstrong, Athos Costas, Mas‘úd
+
+Kh
+
+amsí, Peter McLaren, Raúl Pavón, Donald Witzel
+
+ASIA
+
+Western Asia
+
+Íraj Ayman, Masiḥ Farhangí, Ḥádí Raḥmání, Manú
+
+ch
+
+ihr Salmánpúr
+
+South Central Asia
+
+Burháni’d-Dín Af
+
+sh
+
+ín, Shirin Boman, Salisa Kermani, Dipchand Khianra, Zena Sorabjee
+
+Northeastern Asia
+
+Richard Benson, Elena Marsella, Rúḥu’lláh Mumtází, Hideya Suzuki
+
+Southeastern Asia
+
+Yan Kee Leong, Firaydún Mí
+
+th
+
+áqíyán,
+
+Kh
+
+udáraḥm Paymán, Vicente Samaniego, Chellie Sundram
+
+AUSTRALASIA
+
+Suhayl ‘Alá’í, Owen Battrick, Howard Harwood, Violet Hoehnke, Thelma Perks
+
+EUROPE
+
+Erik Blumenthal, Anneliese Bopp, Dorothy Ferraby, Louis Hénuzet, Betty Reed, Adib Taherzadeh
+
+AUXILIARY BOARDS—RIḌVÁN 1976
+
+Former
+
+Number
+
+Present
+
+Increase
+
+New
+
+Total
+
+Africa
+
+Protection:
+
+Northern
+
+5
+
+-
+
+5
+
+Western
+
+5
+
+6
+
+11
+
+Central and East
+
+13
+
+-
+
+13
+
+Southern
+
+4
+
+3
+
+7
+
+27
+
+36
+
+Propagation:
+
+Northern
+
+5
+
+-
+
+5
+
+Western
+
+11
+
+3
+
+14
+
+Central and East
+
+19
+
+-
+
+19
+
+Southern
+
+10
+
+6
+
+16
+
+45
+
+54
+
+Western Hemisphere
+
+Protection:
+
+North America
+
+9
+
+-
+
+9
+
+Central America
+
+9
+
+2
+
+11
+
+South America
+
+9
+
+7
+
+16
+
+27
+
+36
+
+Propagation:
+
+North America
+
+18
+
+-
+
+18
+
+Central America
+
+9
+
+7
+
+16
+
+South America
+
+27
+
+11
+
+38
+
+54
+
+72
+
+Asia
+
+Protection:
+
+Western
+
+9
+
+-
+
+9
+
+South Central
+
+3
+
+3
+
+6
+
+Northeastern
+
+3
+
+-
+
+3
+
+Southeastern
+
+3
+
+6
+
+9
+
+18
+
+27
+
+Propagation:
+
+Western
+
+18
+
+-
+
+18
+
+South Central
+
+15
+
+15
+
+30
+
+Northeastern
+
+15
+
+-
+
+15
+
+Southeastern
+
+15
+
+12
+
+27
+
+63
+
+90
+
+Australasia
+
+Protection:
+
+9
+
+-
+
+9
+
+Propagation:
+
+9
+
+9
+
+18
+
+Europe
+
+Protection:
+
+9
+
+-
+
+9
+
+Propagation:
+
+27
+
+-
+
+27
+
+TOTAL
+
+288
+
+90
+
+378
+
+Total Protection
+
+90
+
+27
+
+117
+
+Total Propagation
+
+198
+
+63
+
+261

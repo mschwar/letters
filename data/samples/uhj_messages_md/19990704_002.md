@@ -1,0 +1,25 @@
+---
+message_id: "19990704_002"
+date: "4 July 1999"
+title: "4 July 1999 – To all Bahá’í Publishing Trusts"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/19990704_002/1"
+content_sha256: "e86a45278dd7b99b9e990ee54c09d2f0e072f933bc758144e4ea0be5f7ab6739"
+scraped_at: "2026-02-08T03:37:02.006791+00:00"
+---
+The Universal House of Justice
+
+Department of the Secretariat
+
+4 July 1999
+
+To all Bahá’í Publishing Trusts
+
+Recently the Universal House of Justice clarified an issue related to publication of Bahá’í Sacred Texts as follows:
+
+The House of Justice feels that it would not be proper to publish a full-text edition of a Bahá’í Sacred Text incorporating a study guide.
+
+This is not to say that study guides may not include comments on all aspects of the texts under study. They may also cite extensively from any of the Bahá’í Writings, but such works should in no way become substitutes for the basic texts as normally published.
+
+The purpose of this decision is to distinguish clearly between the Sacred Texts themselves and study guides or commentaries written upon them, since the latter are not authoritative. The Texts should remain free of any impression that the views of the author of any study guide are necessarily to be followed in gaining an understanding of the Holy Writings.
+
+Department of the Secretariat

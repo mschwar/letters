@@ -1,0 +1,31 @@
+---
+message_id: "20220408_001"
+date: "8 April 2022"
+title: "8 April 2022 – To all National Spiritual Assemblies"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/20220408_001/1"
+content_sha256: "1c10908dcf8c2c41d21f31e675c4ec7b0e48b5c5c91f4181954764aec82bc686"
+scraped_at: "2026-02-08T03:34:51.868234+00:00"
+---
+The Universal House of Justice
+
+TO:
+
+All National Spiritual Assemblies
+
+DATE:
+
+8 April 2022
+
+MESSAGE:
+
+A major fire broke out earlier today at the construction site of the Shrine of ‘Abdu’l-Bahá. The fire has now been extinguished and no one has been injured. The Holy Site of the Riḍván Garden has not been affected.
+
+Time will be required to assess the extent of the damage that has been caused and the remedial work needed. More information will be provided in this regard when it becomes available.
+
+While this is a considerable setback for the project, the steps required to recover from it and for the construction to resume will begin as expeditiously as possible.
+
+The Universal
+
+House
+
+of Justice

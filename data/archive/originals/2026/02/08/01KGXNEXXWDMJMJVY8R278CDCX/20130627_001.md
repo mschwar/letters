@@ -1,0 +1,25 @@
+---
+message_id: "20130627_001"
+date: "27 June 2013"
+title: "27 June 2013 – To all National Spiritual Assemblies"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/20130627_001/1"
+content_sha256: "84b074b4eef0a55e5b48282f88f8dad1dae6ed2ef46b804df9c185bb1688bfac"
+scraped_at: "2026-02-08T03:35:43.300971+00:00"
+---
+The Universal House of Justice
+
+27 June 2013
+
+To all National Spiritual Assemblies
+
+With shattered hearts, we have received news of the destruction of the Most Great House—the House of Bahá’u’lláh in Baghdad. While the precise circumstances attending this outrageous violation are as yet unclear, its immediate consequence is without doubt, and must be emphatically stated: The peoples of the world have been robbed of a sanctuary of incalculable sacredness.
+
+So deplorable an act, coming on the eve of the unprecedented worldwide convocation of Bahá’u’lláh’s young followers and their friends, calls to mind that mysterious interplay of crisis and victory through which His indestructible, irrepressible, inexorable purpose will finally be consummated.
+
+We supplicate the Blessed Beauty to confer upon His faithful followers throughout the world fortitude and resolve in the face of this grievous blow. More information will be provided as it becomes available.
+
+[signed: The Universal
+
+House
+
+of Justice]

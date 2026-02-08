@@ -1,5 +1,5 @@
 Project: LetterOps
-Last Updated: 2026-02-07 21:33 (local)
+Last Updated: 2026-02-07 21:43 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
@@ -295,6 +295,16 @@ FEATURE LOG (append-only)
   - PASS (2026-02-08): live dry-run succeeded for 10 entries with 0 errors.
   - PASS (2026-02-08): pulled 3 real markdown examples under `data/samples/uhj_messages_md`.
   - PASS (2026-02-08): rerun on same 3 entries correctly reported duplicate skips.
+
+[2026-02-08] Phase 5: Full UHJ corpus scrape + ingest
+- Scope reference: Phase 5 data tooling execution (full pull and pipeline ingest)
+- What was built:
+  - Executed `make scrape-uhj` for the full UHJ messages index.
+  - Scrape results: 513 total entries, 512 saved, 1 duplicate skipped, 0 errors.
+  - Batch-ingested all scraped markdown files through worker pipeline.
+- Result:
+  - PASS (2026-02-08): batch ingest completed with 513/513 success, 0 errors, 0 warnings.
+  - DB now includes full corpus ingestion records (`documents=522`, `document_fts=522`, `pipeline_runs=522`, `ingestion_events=522`).
 
 ========================================
 PIPELINE HEALTH

@@ -1,0 +1,27 @@
+---
+message_id: "19980106_002"
+date: "6 January 1998"
+title: "6 January 1998 – To the friends gathered at the Latin American Youth Congress in Chile"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/19980106_002/1"
+content_sha256: "3088a99693cb08d7cd10ae6249ab55c2ec7599cc21acf46d2e97fbc4f9f0151f"
+scraped_at: "2026-02-08T03:37:25.315954+00:00"
+---
+The Universal House of Justice
+
+6 January 1998
+
+To the friends gathered at the Latin American Youth Congress in Chile
+
+Dear Friends,
+
+As the Cause of God advances resistlessly along the path traced out for it by its Divine Founder, each stage of the process opens up to a new generation of Bahá’í youth challenges unique to the historical moment. Building on the accomplishments of the generations before, youth must devise ways to take advantage of the opportunities presented to them. A discourse in consonance with the requirements of the time has to be refined, and activities aimed at transforming society have to be pursued with vigor.
+
+To accomplish such tasks during the brief span of time afforded youth requires resolve, spiritual discipline, energy, reliance on the power of divine assistance, and constant immersion in the Word of God. These efforts, which constitute an integral part of the growth processes of the Bahá’í community itself, nevertheless possess characteristics distinctly their own. In recent years, and in many parts of the world, Bahá’í youth have referred to their collective endeavors as a “youth movement,” a reminder that the energy being generated will not only bring new recruits from among their peers, but will move an entire generation one step closer to the World Order of Bahá’u’lláh.
+
+Over the next few days you will be contemplating the special opportunities which the Hand of Providence has laid before you. An essential component of any strategy you devise is training. In all your countries, this question is being enthusiastically addressed as institutes learn to operate with increasing effectiveness. You yourselves are participating, as students and as teachers, in building capacity in your communities to train thousands and thousands of believers, many of whom will be young people. With this vision in mind, you should devise actions, characteristic of your youth movement, in which your swelling numbers will engage. How will you teach the Cause and advance the process of entry by troops? How will you contribute to the establishment of a distinctly Bahá’í life? And how will you accelerate the transformation of Latin American society to achieve its high destiny? As you contemplate these questions, be assured that our prayers will surround you.
+
+[signed: The Universal
+
+House
+
+of Justice]

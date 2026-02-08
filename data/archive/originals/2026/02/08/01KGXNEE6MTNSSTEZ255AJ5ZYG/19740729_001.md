@@ -1,0 +1,45 @@
+---
+message_id: "19740729_001"
+date: "29 July 1974"
+title: "29 July 1974 – The National Spiritual Assembly of the Bahá’ís of the United States"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/19740729_001/1"
+content_sha256: "6107dddd49250194be8829991c333227da86f47e4bb9c6c4ab86d818da535531"
+scraped_at: "2026-02-08T03:40:30.096742+00:00"
+---
+The Universal House of Justice
+
+29 July 1974
+
+The National Spiritual Assembly of the Bahá’ís of the United States
+
+Dear Bahá’í Friends,
+
+We have received your letter of 19 June 1974 describing the preoccupation of some American believers with the date of the Lesser Peace, and with their feeling that “the calamity,” as a prelude to that peace, is imminent.
+
+It is true that ‘Abdu’l‑Bahá made statements linking the establishment of the unity of nations to the twentieth century. For example: “The fifth candle is the unity of nations—a unity which, in this century, will be securely established, causing all the peoples of the world to regard themselves as citizens of one common fatherland.” And, in
+
+The Promised Day Is Come
+
+, following a similar statement quoted from
+
+Some Answered Questions
+
+, Shoghi Effendi makes this comment: “This is the stage which the world is now approaching, the stage of world unity, which, as ‘Abdu’l‑Bahá assures us, will, in this century, be securely established.”
+
+There is also this statement from a letter written in 1946 to an individual believer on behalf of the beloved Guardian by his secretary:
+
+All we know is that the Lesser and the Most Great Peace
+
+will
+
+come—their exact dates we do not know. The same is true as regards the possibility of a future war; we cannot state dogmatically it will or will not take place—all we know is that mankind must suffer and be punished sufficiently to make it turn to God.
+
+It is apparent that the disintegration of the old order is accelerating, but the friends should not permit this inevitable process to deter them from giving their undivided attention to the tasks lying immediately before them. Let them take heart from the reassuring words of Shoghi Effendi contained in the closing paragraphs of his momentous message of June 5, 1947, and concentrate on the challenging tasks of this hour.
+
+With loving Bahá’í greetings,
+
+[signed: The Universal
+
+House
+
+of Justice]

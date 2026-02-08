@@ -1,0 +1,139 @@
+---
+message_id: "19731007_001"
+date: "7 October 1973"
+title: "7 October 1973 – To the Bahá’ís of the World"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/19731007_001/1"
+content_sha256: "e64f143b6605ccb82d9e49ff4aaf186d43cfe76a63d66d1ad6f3f195104cfcca"
+scraped_at: "2026-02-08T03:40:36.547332+00:00"
+---
+The Universal House of Justice
+
+7 October 1973
+
+To the Bahá’ís of the World
+
+Dear Bahá’í Friends,
+
+In order to meet the growing needs of an ever-expanding Bahá’í World Community we have taken two decisions designed to reinforce and extend the services of the Auxiliary Boards.
+
+First, the number of Auxiliary Board members throughout the world is to be raised to two hundred and seventy, of whom eighty-one will serve on the Auxiliary Boards for the Protection of the Faith and one hundred and eighty-nine will serve on the Auxiliary Boards for the Propagation of the Faith. In all there will be fifty-four Auxiliary Board members in Africa, eighty-one in the Western Hemisphere, eighty-one in Asia, eighteen in Australasia and thirty-six in Europe.
+
+Secondly, we have decided to take a further step in the development of the institution by giving to each Continental Board of Counselors the discretion to authorize individual Auxiliary Board members to appoint assistants. Such authorization does not have to be given to all the Auxiliary Board members in a zone nor does the number assigned have to be the same for all Board members; indeed certain Boards of Counselors may decide that the present circumstances in their zones do not require them to take advantage of this possibility. Such matters are left entirely to the discretion of each Continental Board of Counselors.
+
+The exact nature of the duties and the duration of the appointment of the assistants is also left to each Continental Board to decide for itself. Their aims should be to activate and encourage Local Spiritual Assemblies, to call the attention of Local Spiritual Assembly members to the importance of holding regular meetings, to encourage local communities to meet for the Nineteen Day Feasts and Holy Days, to help deepen their fellow-believers’ understanding of the Teachings, and generally to assist the Auxiliary Board members in the discharge of their duties. Appointments may be made for a limited period, such as a year or two, with the possibility of reappointment. Believers can serve at the same time both as assistants to Auxiliary Board members and on administrative institutions.
+
+It is our prayer at the Sacred Threshold that this new development in the institution of the Auxiliary Boards will lead to an unprecedented strengthening of the Local Spiritual Assemblies throughout the world.
+
+[signed: The Universal
+
+House
+
+of Justice]
+
+Auxiliary
+
+Board for
+
+Protection
+
+Auxiliary
+
+Board for
+
+Propagation
+
+Africa
+
+Northwestern
+
+3
+
+9
+
+Central and East
+
+13
+
+19
+
+Southern
+
+2
+
+8
+
+18
+
+36
+
+Western Hemisphere
+
+North America
+
+9
+
+18
+
+Central America
+
+9
+
+9
+
+South America
+
+9
+
+27
+
+27
+
+54
+
+Asia
+
+Western
+
+9
+
+18
+
+South Central
+
+3
+
+15
+
+Southeastern
+
+3
+
+15
+
+Northeastern
+
+3
+
+15
+
+18
+
+63
+
+Australasia
+
+9
+
+9
+
+Europe
+
+9
+
+27
+
+TOTAL
+
+81
+
+189

@@ -1,0 +1,35 @@
+---
+message_id: "20000119_001"
+date: "19 January 2000"
+title: "19 January 2000 – To the Bahá’ís of the World"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/20000119_001/1"
+content_sha256: "f7c2027beb0ef58748aa59fd7de4a1f38368ff4b391ae8426b1c57faf5e70e99"
+scraped_at: "2026-02-08T03:36:55.627227+00:00"
+---
+The Universal House of Justice
+
+19 January 2000
+
+To the Bahá’ís of the World
+
+In the early hours of this morning, the soul of Amatu’l-Bahá Rúḥíyyih
+
+Kh
+
+ánum, beloved consort of Shoghi Effendi and the Bahá’í world’s last remaining link with the family of ‘Abdu’l‑Bahá, was released from the limitations of this earthly existence. In the midst of our grief, we are sustained by our confidence that she has been gathered to the glory of the Concourse on High in the presence of the Abhá Beauty.
+
+For all whose hearts she touched so deeply, the sorrow that this irreparable loss brings will, in God’s good time, be assuaged in awareness of the joy that is hers through her reunion with the Guardian and with the Master, Who had Himself prayed in the Most Holy Shrine that her parents be blessed with a child. Down the centuries to come, the followers of Bahá’u’lláh will contemplate with wonder and gratitude the quality of the services—ardent, indomitable, resourceful—that she brought to the protection and promotion of the Cause.
+
+In her youth, Amatu’l-Bahá had already distinguished herself through her activities in North America, and later, both with her dear mother and on her own, she had rendered valuable service to the Cause in Europe. Her twenty years of intimate association with Shoghi Effendi evoked from his pen such accolades as “my helpmate,” “my shield,” “my tireless collaborator in the arduous tasks I shoulder.” To these tributes he added in 1952 his decision to elevate her to the rank of Hand of the Cause of God, after the death of her illustrious father.
+
+The devastating shock of the beloved Guardian’s passing steeled her resolve to lend her share, with the other Hands of the Cause, to the triumph of the Ten Year Crusade, and subsequently to undertake, with characteristic intrepidity, her historic worldwide travels.
+
+A life so noble in its provenance, so crucial to the preservation of the Faith’s integrity, and so rich in its dedicated, uninterrupted and selfless service, moves us to call for befitting commemorations by Bahá’í communities on both national and local levels, as well as for special gatherings in her memory in all Houses of Worship.
+
+With yearning hearts, we supplicate at the Holy Threshold for infinite heavenly bounties to surround her soul, as she assumes her rightful and well-earned position among the exalted company in the Abhá Kingdom.
+
+[signed: The Universal
+
+House
+
+of Justice]

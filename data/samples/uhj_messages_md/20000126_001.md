@@ -1,0 +1,43 @@
+---
+message_id: "20000126_001"
+date: "26 January 2000"
+title: "26 January 2000 – To all National Spiritual Assemblies"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/20000126_001/1"
+content_sha256: "7ca909b78e7715b55013d54f272965a3a5378a5f6c6c8d01f02625b2032f2140"
+scraped_at: "2026-02-08T03:36:54.827206+00:00"
+---
+The Universal House of Justice
+
+Department of the Secretariat
+
+26 January 2000
+
+To all National Spiritual Assemblies
+
+Dear Bahá’í Friends,
+
+Further to its message of 19 January 2000 concerning the passing of Amatu’l-Bahá Rúḥíyyih
+
+Kh
+
+ánum, the Universal House of Justice has asked us to convey the following.
+
+On the afternoon of 23 January, in a light rain, the blessed remains of Rúḥíyyih
+
+Kh
+
+ánum were laid to rest in Haifa, following a funeral service at the House of the Master and graveside prayers attended by more than 1100 believers. The interment took place in a plot of land which had been converted into a garden by Shoghi Effendi, directly across the street from the Master’s House. The participants came from near and far, and included 24 Continental Counselors, representatives of 76 National Spiritual Assemblies, and pilgrims, as well as members of the institutions and volunteers serving at the Bahá’í World Centre. Among them, too, were senior officials from the Canadian and United States embassies, representatives of the Israeli government, the mayors of ‘Akká and Haifa, and other prominent Israeli citizens.
+
+The House of Justice is deeply gratified that such a wide representation of believers was able to come to the Holy Land on very short notice to pay final respects on behalf of all the friends throughout the world who could not be present. Moreover, it warmly appreciates the various expressions of sympathy and love received at the World Center through many messages and gifts of flowers. It is also pleased that news of Rúḥíyyih
+
+Kh
+
+ánum’s passing and funeral has been given coverage by the world press and electronic media.
+
+Enclosed for your interest is a copy of the printed program of the funeral service.
+
+Without doubt, the memory of a life so inestimably precious, so extraordinarily dynamic as that of Amatu’l-Bahá will infuse the Bahá’í institutions and individual friends everywhere with renewed resolve and redoubled energy.
+
+With loving Bahá’í greetings,
+
+Department of the Secretariat

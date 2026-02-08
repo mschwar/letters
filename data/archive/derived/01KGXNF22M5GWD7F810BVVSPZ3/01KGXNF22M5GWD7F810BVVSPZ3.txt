@@ -1,0 +1,27 @@
+---
+message_id: "20251127_001"
+date: "27 November 2025"
+title: "27 November 2025 – To all National Spiritual Assemblies"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/20251127_001/1"
+content_sha256: "1cd5ea0703185a8f28f18fe970a04e482eedfaa85f0f1f8aec8938e66eb88e45"
+scraped_at: "2026-02-08T03:34:34.139373+00:00"
+---
+The Universal House of Justice
+
+27 November 2025
+
+To all National Spiritual Assemblies
+
+Dear Bahá’í Friends,
+
+We have recently communicated with the International Board of Trustees regarding the evolution of the institution of the trusteeship of Ḥuqúqu’lláh and are pleased to convey the following to you.
+
+Since the establishment in 2005 of the International Board of Trustees, assuming the responsibilities of the Chief Trustee, the institution of the trusteeship of Ḥuqúqu’lláh has evolved rapidly. Notably, the membership of the International Board of Trustees has increased from three to seven; its term of service—as well as that of the members of the National and Regional Boards—has been extended from three to five years; and with the able support of the Office of Ḥuqúqu’lláh in the Holy Land, the International Board oversees the work of a worldwide network of National and Regional Boards, Deputy Trustees, and Representatives. Given these developments, and since there is no longer a Chief Trustee, members of the National and Regional Boards, previously referred to as Deputy Trustees, will henceforth be known simply as Trustees.
+
+The contents of this letter may be shared with your communities as you deem appropriate.
+
+[signed: The Universal
+
+House
+
+of Justice]

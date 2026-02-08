@@ -1,0 +1,31 @@
+---
+message_id: "19991109_001"
+date: "9 November 1999"
+title: "9 November 1999 – To all National Spiritual Assemblies"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/19991109_001/1"
+content_sha256: "df534adaf995067ca90f188282bc3d5a5f180170f61c8a32ddd02e1a9b631c89"
+scraped_at: "2026-02-08T03:36:58.807763+00:00"
+---
+The Universal House of Justice
+
+Department of the Secretariat
+
+9 November 1999
+
+To all National Spiritual Assemblies
+
+Dear Bahá’í Friends,
+
+As the work of the Bahá’í World Centre steadily increases, the Universal House of Justice, in order to concentrate on matters requiring its direct attention, has progressively referred to various Departments subjects that can be handled in other ways.
+
+We have been asked to inform you of a new development in this respect. As you may know, in addition to the ongoing responsibility exercised by the Secretariat of the House of Justice, the Office of Correspondence has been responding to a small percentage of relatively routine requests and inquiries made to the World Center. Arrangements have now been made for that Office to handle a broader range of such correspondence, over its own signature, following policies laid down for this purpose. The House of Justice trusts that these new arrangements will further improve communication between the World Center and the Bahá’í world.
+
+Communications to the Bahá’í World Centre should continue to be addressed as indicated in the
+
+International Bahá’í Directory
+
+.
+
+With loving Bahá’í greetings,
+
+Department of the Secretariat

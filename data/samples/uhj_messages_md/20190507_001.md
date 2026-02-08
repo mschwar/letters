@@ -1,0 +1,29 @@
+---
+message_id: "20190507_001"
+date: "7 May 2019"
+title: "7 May 2019 – To all National Spiritual Assemblies"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/20190507_001/1"
+content_sha256: "79f770f76f0e74644435284fe9e18a064f84dd3f9fb82fdf5a4489a569ae7c7d"
+scraped_at: "2026-02-08T03:35:10.359855+00:00"
+---
+The Universal House of Justice
+
+TO:
+
+All National Spiritual Assemblies
+
+DATE:
+
+7 May 2019
+
+MESSAGE:
+
+We are delighted to announce the appointment of Mr. Hossein Amanat of Canada as architect for the Shrine of ‘Abdu’l‑Bahá.
+
+We are also pleased to announce the inauguration of a Fund dedicated to the construction of the Shrine. It is our heartfelt desire that this sacred edifice will be raised up through the universal participation of the friends.
+
+The Universal
+
+House
+
+of Justice

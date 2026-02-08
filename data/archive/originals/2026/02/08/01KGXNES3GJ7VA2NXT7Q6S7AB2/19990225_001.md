@@ -1,0 +1,33 @@
+---
+message_id: "19990225_001"
+date: "25 February 1999"
+title: "25 February 1999 – To all National Spiritual Assemblies"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/19990225_001/1"
+content_sha256: "e466ad4fe442d02de5b3831a349334379e74aefd41009d9defb08d1637227307"
+scraped_at: "2026-02-08T03:37:07.663117+00:00"
+---
+The Universal House of Justice
+
+Department of the Secretariat
+
+25 February 1999
+
+To all National Spiritual Assemblies
+
+Dear Bahá’í Friends,
+
+The year 2000 will conclude the hundred years that ‘Abdu’l‑Bahá described as “the century of light.” His perspective on the twentieth century offers Bahá’ís and Bahá’í communities an opportunity to participate meaningfully in many of the activities and discussions expected to take place around the world over the coming two years.
+
+To assist the friends in this respect, the Universal House of Justice has asked the Bahá’í International Community’s Office of Public Information to prepare the enclosed document, “Who is Writing the Future?” As you will see, it both examines the events of the twentieth century in the light of Bahá’u’lláh’s Teachings, and relates these developments to the challenges facing humanity at century’s end. Its purpose is to serve as a source of ideas, perspectives, images, and language that will stimulate a wide range of creative responses among Bahá’ís.
+
+The sponsorship of millennial activities will, of course, be the concern of non-Bahá’í groups, but the House of Justice believes that such activities can be seen by Bahá’ís and the Bahá’í communities as creating occasions whose effectiveness can be enhanced by Bahá’í contributions. Given the great diversity of our community’s resources, National Spiritual Assemblies will want to ensure that ample latitude is given for a wide range of responses by individual believers and groups. Artists, writers, musicians and dramatists will no doubt find the enclosed document highly stimulating and will readily identify ways in which its themes can be introduced into activities organized by government agencies and various private bodies. It is likely that programs of scholarly associations will also present a range of opportunities for qualified believers to draw attention to Bahá’í perspectives on the current world situation. Your Assembly may wish to address special messages to groups in your own country, adapting elements of the document’s theme to this purpose.
+
+In order that such efforts enjoy broad support within the Bahá’í community, it will be important for the friends to understand the message being communicated. Consequently, consideration should be given to ways of incorporating the material in the enclosed document into Bahá’í summer school programs and local study activities.
+
+As you will note, “Who is Writing the Future?” has been cast in the form of a message addressed to non-Bahá’í readers. This has been done primarily in order to make the material most readily useful to Bahá’ís participating in the various events marking the beginning of the new millennium. Should your Assembly feel, however, that the document would also be useful as a booklet or brochure, there is no objection to your publishing it. In that case, although the design is left to your discretion, the text should be used in its present form, without editing, commentary, or supplementary material.
+
+Whatever their various forms of belief, our fellow human beings are looking to the immediate future with mingled feelings of tentative hope and deep anxiety. This circumstance offers Bahá’ís a unique opportunity to share with them the Teachings that give meaning to this critical moment in human history.
+
+With loving Bahá’í greetings,
+
+Department of the Secretariat

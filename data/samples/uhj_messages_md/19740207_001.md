@@ -1,0 +1,21 @@
+---
+message_id: "19740207_001"
+date: "7 February 1974"
+title: "7 February 1974 – To all National Spiritual Assemblies"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/19740207_001/1"
+content_sha256: "a28a9d5a95f0d4bf7d3e45f23c600fe8c0df83ce8c0024fa158fc6159a8571fc"
+scraped_at: "2026-02-08T03:40:35.006665+00:00"
+---
+The Universal House of Justice
+
+7 February 1974
+
+To all National Spiritual Assemblies
+
+JOYFULLY ANNOUNCE ACCEPTANCE EXQUISITE DESIGN CONCEIVED BY ḤUSAYN AMÁNAT FOR BUILDING TO SERVE AS PERMANENT SEAT UNIVERSAL HOUSE OF JUSTICE MOUNT CARMEL. DECISION MADE TO PROCEED NEGOTIATE CONTRACTS CONSTRUCTION THIS NOBLE EDIFICE SECOND THOSE BUILDINGS DESTINED ARISE AROUND ARC CONSTITUTE ADMINISTRATIVE CENTER BAHÁ’Í WORLD.
+
+[signed: The Universal
+
+House
+
+of Justice]

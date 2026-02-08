@@ -1,0 +1,73 @@
+---
+message_id: "19750106_001"
+date: "6 January 1975"
+title: "6 January 1975 – To all National Spiritual Assemblies"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/19750106_001/1"
+content_sha256: "3bcc444cb8b51ca54c7a7bbfffebde8cfc180a1d0c802db40ee90d614056456d"
+scraped_at: "2026-02-08T03:40:28.497356+00:00"
+---
+The Universal House of Justice
+
+6 January 1975
+
+To all National Spiritual Assemblies
+
+Dear Bahá’í Friends,
+
+We are glad to announce that preparations are being made for next Riḍván by the friends in several countries in West Africa and one in the Near East to form, in accordance with the provisions of the Five Year Plan, their new National Spiritual Assemblies. In Western Africa, the National Spiritual Assembly of Dahomey, Togo and Niger will divide into three separate national communities for each of the three countries which presently compose the region, with their seats in Cotonou, Lomé and Niamey respectively, while the National Spiritual Assemblies of West Africa and of Upper West Africa will each split into two units, the former into Liberia and Guinea, with its seat in Monrovia, and Sierra Leone, with its seat in Freetown, and the latter into the Gambia, with its seat in Banjul, and a new National Spiritual Assembly with the name of Upper West Africa comprising Sénégal, Mauritania, Guinea-Bissau and the Cape Verde Islands, with its seat in Dakar. In the Near East the National Spiritual Assembly of Jordan will be formed, with its seat in ‘Ammán. These developments on the national level will result in a net increase next Riḍván of five National Spiritual Assemblies, but in view of the inability of the friends in Indonesia to maintain national administrative activities, the total number of National Spiritual Assemblies will thus be raised throughout the world to 119.
+
+Of the five new National Spiritual Assemblies, four will have their seats in Western Africa. Three more National Spiritual Assemblies are scheduled to be formed in this area in the course of the Plan. The mighty potentialities for growth and expansion in the western regions of Africa are such as to justify a corresponding development of the institution of the Continental Boards of Counselors in that vast and promising area. The decision has been taken, therefore, after consultation with the International Teaching Centre, to break the present zone of Northwestern Africa into two separate zones of Northern and Western Africa, to each of which will be transferred parts of the Central and East African zone. The zone of Northern Africa will comprise Egypt, Libya, Tunisia, Algeria, Morocco and Spanish Sahara. The zone of Western Africa will consist of Mauritania, Sénégal, the Gambia, Guinea-Bissau, the Cape Verde Islands, Guinea, Mali, Sierra Leone, Liberia, Ivory Coast, Upper Volta, Niger, Ghana, Togo, Dahomey, Nigeria, Chad, Cameroon, Equatorial Guinea, Gabon, and São Tomé and Príncipe.
+
+Because of the creation of a new Board for Northern Africa, the Counselors in this and the one for Western Africa must be regrouped, new appointments made to the Northern Board, and the number of Auxiliary Board members increased. We decided, therefore, that the Board for Northern Africa will consist of Mr. Muḥammad Kebdani, already serving as a Counselor, Mr. Muḥammad Muṣṭafá, and Mr. ‘Imád Ṣábirán. The Board for Western Africa will consist of Mr. Ḥusayn Ardikání (Trustee), Mr. Friday Ekpe, Mr. Zekrullah Kazemi, and Dr. Mihdí Samandarí (transferred from the Central and East African Board).
+
+We are also increasing the number of Auxiliary Board members in Africa, adding 9 members to the Board for Protection, and 9 to that for Propagation, bringing the totals for that continent to 27 and 45 respectively, allocated according to the following schedule:
+
+Auxiliary Board
+
+members for
+
+Protection
+
+Auxiliary Board
+
+members for
+
+Propagation
+
+Central and East Africa
+
+13
+
+19
+
+Southern Africa
+
+4
+
+10
+
+Northern Africa
+
+5
+
+5
+
+Western Africa
+
+5
+
+11
+
+27
+
+45
+
+We pray at the Holy Shrines that these decisions, which reflect the growth of our beloved Faith in Africa, will pave the way for speedier progress, wider expansion and greater consolidation, as the friends of that mighty continent forge ahead in their efforts to promote and protect the precious Cause of Bahá’u’lláh.
+
+With loving Bahá’í greetings,
+
+[signed: The Universal
+
+House
+
+of Justice]

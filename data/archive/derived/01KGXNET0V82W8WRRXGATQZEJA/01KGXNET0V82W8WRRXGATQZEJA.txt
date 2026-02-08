@@ -1,0 +1,29 @@
+---
+message_id: "20000516_001"
+date: "16 May 2000"
+title: "16 May 2000 – The National Spiritual Assembly of the Bahá’ís of South Africa"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/20000516_001/1"
+content_sha256: "87b6ca645eccdc697f904d2d2aa3224dfbdd2afb580b6f3725fe23404a93c8be"
+scraped_at: "2026-02-08T03:36:50.784849+00:00"
+---
+The Universal House of Justice
+
+Department of the Secretariat
+
+16 May 2000
+
+The National Spiritual Assembly of the Bahá’ís of South Africa
+
+Dear Bahá’í Friends,
+
+The Universal House of Justice has received your email . . . in which you pose a number of questions related to Regional Bahá’í Councils.…
+
+In reference to your first question, the establishment of administrative committees where Local Spiritual Assemblies are not yet functioning constitutes an important step in the development of local Bahá’í communities. Appointing such committees is a function of the National Spiritual Assembly; however, it can certainly delegate this task to the Regional Councils, if it so wishes.
+
+Your second question is whether or not a Regional Bahá’í Council can accept or dissolve a Local Spiritual Assembly in its area of jurisdiction. Although the prerogative of recognition of Local Spiritual Assemblies rests with the National Spiritual Assembly, procedures for accepting Local Assemblies are determined at the discretion of the National Assembly. The question of dissolving Local Assemblies is another matter; it should not be delegated by the National Assembly to the Regional Councils at this time. The Councils can, of course, make recommendations to the National Assembly in this respect.
+
+As to your final query, you quote a passage concerning the need for newly enrolled believers to understand that there is an administration in the Faith which must be obeyed and ask whether this applies to Regional Councils. Clearly for a Regional Council to carry out the range of responsibilities with which it has been entrusted, it has to have the complete support of the friends, and its decisions should carry due weight. Each of these decisions is made within the context of one of the functions delegated by the National Assembly to the Regional Council. The response of the friends will be commensurate with the nature of that function.
+
+With loving Bahá’í greetings,
+
+Department of the Secretariat

@@ -1,0 +1,29 @@
+---
+message_id: "19870619_001"
+date: "19 June 1987"
+title: "19 June 1987 – The National Spiritual Assembly of the Bahá’ís of Germany"
+source_url: "https://www.bahai.org/library/authoritative-texts/the-universal-house-of-justice/messages/19870619_001/1"
+content_sha256: "beda447a47b6aa2af3dcece0e361cdd98450f399b1221e0f5b42bfac7e52b87a"
+scraped_at: "2026-02-08T03:38:48.087531+00:00"
+---
+The Universal House of Justice
+
+Department of the Secretariat
+
+19 June 1987
+
+The National Spiritual Assembly of the Bahá’ís of Germany
+
+Dear Bahá’í Friends,
+
+The Universal House of Justice has considered your letter of 10 June 1987 and has instructed us to send you the following reply.
+
+The House of Justice was very pleased to know how fruitful you have found the consultation at your recent National Conventions to have been.
+
+The Convention is, of course, free to decide that every suggestion made by a delegate be recorded and conveyed to the National Spiritual Assembly. Beyond this, the National Assembly members who are present are always free to note down for their own interest and further discussion any points that are made. It is by no means necessary to have a formal consultation and vote on every recommendation. It is important to remember, however, that the National Convention is not a conference, it is a consultative institution of the Faith; therefore, consultation and formal voting on recommendations should not be ruled out altogether. There may, for example, be disagreement among the delegates on certain proposals put forward, and it would be fruitful for the matter to be discussed and voted upon so that the National Spiritual Assembly will know the recommendation of the Convention as a whole on those issues.
+
+Detailed aspects of Convention procedure which are not defined in the National Bahá’í Constitution, being secondary in nature, are within the discretion of each National Spiritual Assembly to decide. The House of Justice feels that it is generally advisable not to be rigid and to leave it to the discretion of the Convention officers, or the Convention itself, to decide which recommendations need to be discussed and voted upon and which may be recorded without more ado. A distinction should be made in the record between recommendations of the entire Convention and those which are merely the proposals of individual delegates.
+
+With loving Bahá’í greetings,
+
+Department of the Secretariat
