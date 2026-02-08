@@ -21,6 +21,9 @@ class Settings:
     vector_provider: str
     vector_dir: Path
     vector_collection: str
+    search_fusion_fts_weight: float
+    search_fusion_vector_weight: float
+    search_fusion_rrf_k: int
 
     @staticmethod
     def _repo_root() -> Path:
@@ -54,6 +57,13 @@ class Settings:
                 os.getenv("LETTEROPS_VECTOR_DIR", str(repo_root / "data" / "vectors"))
             ),
             vector_collection=os.getenv("LETTEROPS_VECTOR_COLLECTION", "documents"),
+            search_fusion_fts_weight=float(
+                os.getenv("LETTEROPS_SEARCH_FUSION_FTS_WEIGHT", "0.45")
+            ),
+            search_fusion_vector_weight=float(
+                os.getenv("LETTEROPS_SEARCH_FUSION_VECTOR_WEIGHT", "0.55")
+            ),
+            search_fusion_rrf_k=int(os.getenv("LETTEROPS_SEARCH_FUSION_RRF_K", "20")),
         )
 
 

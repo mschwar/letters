@@ -1,12 +1,12 @@
 Project: LetterOps
-Last Updated: 2026-02-08 02:47 (local)
+Last Updated: 2026-02-08 02:55 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
 Phase: 4 (Intelligence/RAG Bootstrap)
 Branch: main
-Overall Progress: 84%
+Overall Progress: 88%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -25,7 +25,7 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Add hybrid ranking blend (vector + FTS score fusion) and evaluation script.
+- [ ] Calibrate fusion weights using judged query set; capture target latency and quality thresholds.
 
 Blocked:
 - [ ] None.
@@ -168,6 +168,18 @@ FEATURE LOG (append-only)
 - Result:
   - PASS (2026-02-08): `pytest` suite green with confidence + citation assertions.
 
+[2026-02-08] Phase 4: Hybrid fusion + evaluation harness
+- Scope reference: Next step (vector + FTS fusion + eval script)
+- What was built:
+  - Implemented hybrid retrieval mode in `/api/v1/search` using weighted reciprocal-rank fusion (RRF) over vector + FTS result lists.
+  - Added fusion tunables in config (`LETTEROPS_SEARCH_FUSION_*`) and metadata counters (`result_counts`) in search responses.
+  - Added `infra/scripts/evaluate_search.py` to benchmark retrieval mode, confidence, top IDs, and latency across a query set.
+  - Added hybrid integration coverage with deterministic vector stub ranking.
+- Tests added/updated:
+  - `apps/api/tests/test_search_integration.py`
+- Result:
+  - PASS (2026-02-08): `pytest` green and evaluation script operational.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -194,6 +206,7 @@ Priority 0: Phase 4 Bootstrap
 - [x] Return source-cited answer summary and ranked results.
 - [x] Add optional vector retrieval backend (ChromaDB).
 - [x] Add answer confidence scoring and richer citation formatting.
+- [x] Add hybrid ranking blend (vector + FTS score fusion) and evaluation script.
 
 Priority 1: Expand Pipeline (Linking + Tagging)
 - [x] Implement link inference (date/source cues per BACKEND_STRUCTURE.md) and persist to `document_links`.

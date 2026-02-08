@@ -1,20 +1,20 @@
 # LetterOps Snapshot Report
 
-Generated: 2026-02-07T20:34:24
+Generated: 2026-02-07T20:41:03
 Root: /Users/mschwar/Dropbox/letters
 
 ## Progress Summary
-Gist: Project: LetterOps Last Updated: 2026-02-08 02:47 (local) ========================================
+Gist: Project: LetterOps Last Updated: 2026-02-08 02:55 (local) ========================================
 
 Project: LetterOps
-Last Updated: 2026-02-08 02:47 (local)
+Last Updated: 2026-02-08 02:55 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
 Phase: 4 (Intelligence/RAG Bootstrap)
 Branch: main
-Overall Progress: 84%
+Overall Progress: 88%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -33,7 +33,7 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Add hybrid ranking blend (vector + FTS score fusion) and evaluation script.
+- [ ] Calibrate fusion weights using judged query set; capture target latency and quality thresholds.
 
 Blocked:
 - [ ] None.
@@ -176,58 +176,39 @@ FEATURE LOG (append-only)
 - Result:
   - PASS (2026-02-08): `pytest` suite green with confidence + citation assertions.
 
-========================================
-PIPELINE HEALTH
-========================================
-Latest run IDs:
-- run_id:
-- run_id:
-
-Failure patterns observed:
-- None recorded.
-
-Reliability notes:
-- None recorded.
-
-========================================
-TECH DEBT / IMPROVEMENTS
-========================================
-- [ ] Align local runtime to Python 3.12.6 (currently 3.13.2).
-
-========================================
-NEXT STEPS CHECKLIST (PRIORITIZED)
-===============================
+[2026-02-08] Phase 4: Hybrid fusion + evaluation harness
+- Scope reference: Next step (vector + FTS fusion + eval script)
+- What was built:
+  - Implemented hybrid retrieval mode in `/api/v1/search` using weighted reciprocal-rank fusion (RRF) over vector + FTS result lists.
+  - Added fusion tunables in config (`LETTEROPS_SEARCH_FUSION_*`) and metadata counters (`result_counts`) in search responses.
+  - Added `infra/scripts/evaluate_search.py` to benchmark retrieval mode,
 ... (truncated)
 
-Keywords: 2026, phase, tests, scope, added, reference, result, pass, pytest, built
+Keywords: 2026, phase, tests, added, scope, result, reference, built, pass, pytest
 
 ## Git State
 Branch: main
 Status:
-## main...origin/main [ahead 4]
- M DOC_AGENT.md
+## main...origin/main [ahead 5]
+ M .env.example
+ M apps/api/app/core/config.py
  M apps/api/app/routers/search_router.py
- M apps/api/tests/conftest.py
  M apps/api/tests/test_search_integration.py
- M apps/worker/extraction.py
- M infra/scripts/doc_agent.py
- M infra/scripts/generate_snapshot.py
  M progress.txt
-?? apps/api/tests/test_ingest_search_e2e.py
-?? apps/worker/tests/test_ingest_samples.py
-Reminder: Branch is ahead of remote by 4 commit(s). Run git push.
+?? infra/scripts/evaluate_search.py
+Reminder: Branch is ahead of remote by 5 commit(s). Run git push.
 Recent commits:
+aa87c22 Improve search synthesis and include current workspace updates
 1c2f193 Add optional Chroma vector retrieval with FTS fallback
 01feed0 Begin Phase 4 with authenticated FTS search endpoint
 fb0845f Patch jose warning handling and add snapshot pytest summary
 c880c5e Verify ingest pipeline after dependency install
-b52603c Expand pipeline linking/tagging and add auth guards
 Diff summary:
 (no diffs)
 
 ## Pytest Summary
 Status: PASS
-Summary: 15 passed, 1 warning in 3.38s
+Summary: 16 passed, 1 warning in 3.49s
 
 ## canonical-docs-v2.md Excerpt
 Gist: # PRD.md (Revised v2) ## 1) Product Overview LetterOps is a local-first document intelligence app for letter-heavy knowledge workflows (starting with Bahá’í letters). It ingests letters from email and watched folders, preserves originals, creates normalized derivatives, extracts metadata, links references, and provides fast retrieval by date/source/topic/reference. +Revised: Integrated Gemini's se...

@@ -53,7 +53,9 @@ def _query_fts(db: Session, match_query: str, limit: int) -> list[dict]:
             "document_date": row["document_date"],
             "summary": row["summary"],
             "snippet": row["snippet"],
-            "score": abs(float(row["rank_score"])) if row["rank_score"] is not None else 0.0,
+            # SQLite bm25: lower is better. Convert to a higher-is-better relevance proxy.
+            "score": 1.0 / (1.0 + abs(float(row["rank_score"] or 0.0))),
+            "fts_raw_score": float(row["rank_score"] or 0.0),
         }
         for row in rows
     ]
@@ -109,9 +111,60 @@ def _query_vector(db: Session, query: str, limit: int) -> list[dict]:
                 **doc,
                 "snippet": hit.snippet or doc["summary"],
                 "score": hit.score,
+                "vector_raw_score": hit.score,
             }
         )
     return results
+
+
+def _fuse_results(
+    fts_results: list[dict],
+    vector_results: list[dict],
+    limit: int,
+) -> list[dict]:
+    if not vector_results:
+        return fts_results[:limit]
+    if not fts_results:
+        return vector_results[:limit]
+
+    fts_index = {item["document_id"]: idx + 1 for idx, item in enumerate(fts_results)}
+    vector_index = {item["document_id"]: idx + 1 for idx, item in enumerate(vector_results)}
+    by_id: dict[str, dict] = {item["document_id"]: dict(item) for item in fts_results}
+    for item in vector_results:
+        doc_id = item["document_id"]
+        existing = by_id.get(doc_id)
+        if existing:
+            if item.get("snippet"):
+                existing["snippet"] = item["snippet"]
+            existing["vector_raw_score"] = item.get("vector_raw_score", item.get("score", 0.0))
+        else:
+            by_id[doc_id] = dict(item)
+
+    fused: list[dict] = []
+    w_fts = max(settings.search_fusion_fts_weight, 0.0)
+    w_vector = max(settings.search_fusion_vector_weight, 0.0)
+    k = max(settings.search_fusion_rrf_k, 1)
+
+    for doc_id, item in by_id.items():
+        f_rank = fts_index.get(doc_id)
+        v_rank = vector_index.get(doc_id)
+        fused_score = 0.0
+        if f_rank is not None:
+            fused_score += w_fts / (k + f_rank)
+        if v_rank is not None:
+            fused_score += w_vector / (k + v_rank)
+        item["score"] = fused_score
+        item["fusion"] = {
+            "fts_rank": f_rank,
+            "vector_rank": v_rank,
+            "fts_weight": w_fts,
+            "vector_weight": w_vector,
+            "rrf_k": k,
+        }
+        fused.append(item)
+
+    fused.sort(key=lambda row: float(row.get("score", 0.0)), reverse=True)
+    return fused[:limit]
 
 
 def _confidence_from_results(results: list[dict]) -> tuple[float, str]:
@@ -121,10 +174,9 @@ def _confidence_from_results(results: list[dict]) -> tuple[float, str]:
     top_score = float(results[0].get("score") or 0.0)
     second_score = float(results[1].get("score") or 0.0) if len(results) > 1 else 0.0
     separation = max(top_score - second_score, 0.0)
-
-    base = min(top_score / 4.0, 1.0)
-    bonus = 0.15 if separation >= 0.2 else 0.05 if separation >= 0.1 else 0.0
-    score = min(base + bonus, 1.0)
+    coverage = min(len(results) / 5.0, 1.0)
+    score = min(top_score * 40.0, 0.5) + (coverage * 0.25) + min(separation * 8.0, 0.25)
+    score = min(score, 1.0)
 
     if score >= 0.75:
         label = "high"
@@ -181,18 +233,28 @@ def search_documents(
 
     retrieval_mode = "fts"
     vector_fallback_reason: str | None = None
+    vector_result_count = 0
+    fts_result_count = 0
     try:
         if settings.vector_search_enabled:
-            results = _query_vector(db, payload.query, payload.limit)
-            if results:
+            vector_results = _query_vector(db, payload.query, payload.limit)
+            fts_results = _query_fts(db, match_query, payload.limit)
+            vector_result_count = len(vector_results)
+            fts_result_count = len(fts_results)
+            if vector_results and fts_results:
+                retrieval_mode = "hybrid"
+            elif vector_results:
                 retrieval_mode = "vector"
             else:
-                results = _query_fts(db, match_query, payload.limit)
+                retrieval_mode = "fts"
+            results = _fuse_results(fts_results, vector_results, payload.limit)
         else:
             results = _query_fts(db, match_query, payload.limit)
+            fts_result_count = len(results)
     except VectorSearchUnavailable as exc:
         vector_fallback_reason = str(exc)
         results = _query_fts(db, match_query, payload.limit)
+        fts_result_count = len(results)
     except SQLAlchemyError as exc:
         message = str(getattr(exc, "orig", exc))
         if "no such table: document_fts" in message.lower():
@@ -206,7 +268,11 @@ def search_documents(
     citations = _build_citations(results)
     answer = _build_answer(results, citations, confidence_label)
 
-    meta = {"retrieval_mode": retrieval_mode, "request_user_id": user.id}
+    meta = {
+        "retrieval_mode": retrieval_mode,
+        "request_user_id": user.id,
+        "result_counts": {"fts": fts_result_count, "vector": vector_result_count},
+    }
     if vector_fallback_reason:
         meta["vector_fallback_reason"] = vector_fallback_reason
 
