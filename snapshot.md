@@ -1,20 +1,20 @@
 # LetterOps Snapshot Report
 
-Generated: 2026-02-07T20:50:28
+Generated: 2026-02-07T20:56:39
 Root: /Users/mschwar/Dropbox/letters
 
 ## Progress Summary
-Gist: Project: LetterOps Last Updated: 2026-02-08 03:06 (local) ========================================
+Gist: Project: LetterOps Last Updated: 2026-02-08 03:13 (local) ========================================
 
 Project: LetterOps
-Last Updated: 2026-02-08 03:06 (local)
+Last Updated: 2026-02-08 03:13 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
 Phase: 4 (Intelligence/RAG Bootstrap)
 Branch: main
-Overall Progress: 91%
+Overall Progress: 94%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -33,8 +33,8 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Enable vector backend in environment (`chromadb`) and rerun judged calibration for true hybrid metrics.
-- [ ] Expand judged query set to improve recall evaluation and stabilize weight tuning.
+- [ ] Expand judged query set beyond 5 samples and re-run calibration to reduce overfitting.
+- [ ] Finalize default fusion settings from larger judged benchmark and update release thresholds.
 
 Blocked:
 - [ ] None.
@@ -181,7 +181,7 @@ FEATURE LOG (append-only)
 - Scope reference: Next step (vector + FTS fusion + eval script)
 - What was built:
   - Implemented hybrid retrieval mode in `/api/v1/search` using weighted reciprocal-rank fusion (RRF) over vector + FTS result lists.
-  - Added fusion tunables in config (`LETTEROPS_SEARCH_FUSION_*`) and metadata counters (`result_counts`)
+  - Added fusion tunables in config (`LETTEROPS_SEARCH_FUSION_*`) and metadata counters (`result_counts`) in se
 ... (truncated)
 
 Keywords: 2026, phase, tests, scope, result, added, reference, built, pass, pytest
@@ -189,23 +189,25 @@ Keywords: 2026, phase, tests, scope, result, added, reference, built, pass, pyte
 ## Git State
 Branch: main
 Status:
-## main...origin/main [ahead 7]
- M infra/scripts/evaluate_search.py
+## main...origin/main [ahead 8]
+ M apps/api/app/services/vector_search.py
  M progress.txt
-?? data/eval/
-Reminder: Branch is ahead of remote by 7 commit(s). Run git push.
+ M requirements.lock
+?? data/vectors/
+?? infra/scripts/backfill_vectors.py
+Reminder: Branch is ahead of remote by 8 commit(s). Run git push.
 Recent commits:
+4768893 Add judged-query calibration workflow for search fusion
 620c213 Add real UHJ sample corpus and ingest artifacts
 9a7f60e Add hybrid retrieval fusion and search evaluation script
 aa87c22 Improve search synthesis and include current workspace updates
 1c2f193 Add optional Chroma vector retrieval with FTS fallback
-01feed0 Begin Phase 4 with authenticated FTS search endpoint
 Diff summary:
 (no diffs)
 
 ## Pytest Summary
 Status: PASS
-Summary: 16 passed, 1 warning in 4.16s
+Summary: 16 passed, 1 warning in 3.74s
 
 ## canonical-docs-v2.md Excerpt
 Gist: # PRD.md (Revised v2) ## 1) Product Overview LetterOps is a local-first document intelligence app for letter-heavy knowledge workflows (starting with Bahá’í letters). It ingests letters from email and watched folders, preserves originals, creates normalized derivatives, extracts metadata, links references, and provides fast retrieval by date/source/topic/reference. +Revised: Integrated Gemini's se...
@@ -483,7 +485,8 @@ a086452d-3df8-4c40-8848-1c7867d086dd, success, 2026-02-08T02:47:02.901166+00:00,
 │   ├── eval
 │   ├── metadata
 │   ├── runs
-│   └── samples
+│   ├── samples
+│   └── vectors
 ├── infra
 │   ├── hooks
 │   ├── migrations
@@ -496,4 +499,4 @@ a086452d-3df8-4c40-8848-1c7867d086dd, success, 2026-02-08T02:47:02.901166+00:00,
 ├── requirements.lock
 └── snapshot.md
 
-19 directories, 19 files
+20 directories, 19 files

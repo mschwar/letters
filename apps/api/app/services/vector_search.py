@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import hashlib
+import re
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -16,6 +18,34 @@ class VectorHit:
     snippet: str
 
 
+class HashEmbeddingFunction:
+    """Deterministic lightweight embedding for local/offline vector tests."""
+
+    def __init__(self, dimensions: int = 64) -> None:
+        self.dimensions = dimensions
+
+    def __call__(self, input: list[str]) -> list[list[float]]:  # noqa: A002
+        return [self.embed_text(text) for text in input]
+
+    def name(self) -> str:
+        return "hash-embedding-function-v1"
+
+    def embed_text(self, text: str) -> list[float]:
+        vector = [0.0] * self.dimensions
+        tokens = re.findall(r"[a-z0-9]{2,}", text.lower())
+        if not tokens:
+            return vector
+        for token in tokens:
+            digest = hashlib.blake2b(token.encode("utf-8"), digest_size=8).digest()
+            slot = int.from_bytes(digest[:4], "big") % self.dimensions
+            sign = -1.0 if digest[4] % 2 else 1.0
+            vector[slot] += sign
+        norm = sum(value * value for value in vector) ** 0.5
+        if norm == 0.0:
+            return vector
+        return [value / norm for value in vector]
+
+
 class ChromaVectorRetriever:
     def __init__(self, persist_dir: Path, collection_name: str) -> None:
         try:
@@ -23,8 +53,12 @@ class ChromaVectorRetriever:
         except ImportError as exc:  # pragma: no cover - environment dependent
             raise VectorSearchUnavailable("chromadb is not installed") from exc
 
+        self._embedder = HashEmbeddingFunction()
         self._client = chromadb.PersistentClient(path=str(persist_dir))
-        self._collection = self._client.get_or_create_collection(name=collection_name)
+        self._collection = self._client.get_or_create_collection(
+            name=collection_name,
+            embedding_function=self._embedder,
+        )
 
     def search(self, query: str, limit: int) -> list[VectorHit]:
         try:
@@ -72,4 +106,3 @@ def _to_float(value: Any) -> float:
         return float(value)
     except (TypeError, ValueError):
         return 1.0
-

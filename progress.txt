@@ -1,12 +1,12 @@
 Project: LetterOps
-Last Updated: 2026-02-08 03:06 (local)
+Last Updated: 2026-02-08 03:13 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
 Phase: 4 (Intelligence/RAG Bootstrap)
 Branch: main
-Overall Progress: 91%
+Overall Progress: 94%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -25,8 +25,8 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Enable vector backend in environment (`chromadb`) and rerun judged calibration for true hybrid metrics.
-- [ ] Expand judged query set to improve recall evaluation and stabilize weight tuning.
+- [ ] Expand judged query set beyond 5 samples and re-run calibration to reduce overfitting.
+- [ ] Finalize default fusion settings from larger judged benchmark and update release thresholds.
 
 Blocked:
 - [ ] None.
@@ -192,6 +192,18 @@ FEATURE LOG (append-only)
   - PASS (2026-02-08): calibration workflow runs end-to-end; current environment falls back to FTS because `chromadb` is unavailable.
   - Baseline judged metrics (FTS-only fallback): `hit_rate_at_k=0.4`, `mrr=0.4`, `p95_latency_ms=71.762`.
 
+[2026-02-08] Phase 4: Vector backend enabled + true hybrid calibration
+- Scope reference: Next step continuation (enable vectors and rerun judged calibration)
+- What was built:
+  - Installed `chromadb` in `.venv` and pinned it in `requirements.lock`.
+  - Added `infra/scripts/backfill_vectors.py` to populate vector collection from `document_fts`.
+  - Added deterministic hash embedding `name()` compatibility for Chroma integration.
+  - Backfilled vectors into `data/vectors` and re-ran judged evaluation + calibration with vector mode enabled.
+- Result:
+  - PASS (2026-02-08): hybrid/vector retrieval active (`hybrid_count=2`).
+  - Baseline vector-enabled summary: `hit_rate_at_k=0.6`, `mrr=0.5`, `p95_latency_ms=311.682`.
+  - Best calibration trial: `fts_weight=0.2`, `vector_weight=0.2`, `rrf_k=10` with `hit_rate_at_k=0.8`, `mrr=0.7`, `p95_latency_ms=73.614`.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -220,6 +232,7 @@ Priority 0: Phase 4 Bootstrap
 - [x] Add answer confidence scoring and richer citation formatting.
 - [x] Add hybrid ranking blend (vector + FTS score fusion) and evaluation script.
 - [x] Calibrate fusion weights using judged query set; capture latency + quality metrics.
+- [x] Enable vector backend (`chromadb`) and rerun judged calibration with true hybrid/vector retrieval.
 
 Priority 1: Expand Pipeline (Linking + Tagging)
 - [x] Implement link inference (date/source cues per BACKEND_STRUCTURE.md) and persist to `document_links`.
