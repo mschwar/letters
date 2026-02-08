@@ -1,0 +1,77 @@
+Project: LetterOps
+Last Updated: 2026-02-07 18:36 (local)
+
+========================================
+CURRENT STATUS SNAPSHOT
+========================================
+Phase: 1 (Backend Foundation)
+Branch: main
+Overall Progress: 20%
+
+Done:
+- [x] Canonical docs reviewed and merged.
+- [x] Phase 0: Initialize repo structure and baseline files.
+- [x] Phase 1: Backend foundation (FastAPI bootstrap, schema + migrations, auth scaffold, seeding hooks).
+
+In Progress:
+- [ ] None.
+
+Next:
+- [ ] Phase 2: File & Pipeline Core.
+- [ ] Implement ingestion script.
+- [ ] Run Alembic migrations to initialize `data/db.sqlite`.
+- [ ] Test Git-versioned DB workflow.
+
+Blocked:
+- [ ] None.
+
+========================================
+FEATURE LOG (append-only)
+========================================
+[2026-02-07] Feature: Phase 1 Backend Foundation
+- Scope reference: IMPLEMENTATION_PLAN.md Phase 1; BACKEND_STRUCTURE.md schema; PERSISTANT.md rules
+- What was built:
+  - FastAPI app skeleton with `/health` and `/api/v1/auth` endpoints.
+  - Structured logging + config loader.
+  - SQLAlchemy models matching canonical schema.
+  - Alembic migration `0001_initial` (includes FTS5 virtual table).
+  - Seed defaults helper + optional startup seeding.
+  - Unit tests for health + security helpers.
+- Tests added/updated:
+  - `apps/api/tests/test_health.py`
+  - `apps/api/tests/test_security.py`
+- Result:
+  - NOT RUN (dependencies not installed in this environment).
+- Known gaps:
+  - DB migrations not executed yet; `data/db.sqlite` still empty.
+  - Auth role guards not enforced beyond `/me` dependency.
+- Follow-up tasks:
+  - Run `alembic upgrade head` and seed defaults.
+  - Add role-based guards and integration tests.
+
+========================================
+PIPELINE HEALTH
+========================================
+Latest run IDs:
+- run_id:
+- run_id:
+
+Failure patterns observed:
+- None recorded.
+
+Reliability notes:
+- None recorded.
+
+========================================
+TECH DEBT / IMPROVEMENTS
+========================================
+- [ ] Add API integration tests with migrations applied.
+
+========================================
+RELEASE CHECKLIST (v1)
+========================================
+- [ ] All PRD acceptance criteria validated
+- [ ] Backup/restore round-trip tested
+- [ ] Search latency target met
+- [ ] Documentation complete
+- [ ] Security checks complete

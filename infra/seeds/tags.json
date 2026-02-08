@@ -1,0 +1,7 @@
+[
+  {"key": "administration", "label": "Administration"},
+  {"key": "community", "label": "Community"},
+  {"key": "education", "label": "Education"},
+  {"key": "funds", "label": "Funds"},
+  {"key": "youth", "label": "Youth"}
+]

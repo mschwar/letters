@@ -1,0 +1,25 @@
+.DS_Store
+.obsidian/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+.env
+.env.*
+!.env.example
+node_modules/
+.next/
+dist/
+coverage/
+*.log
+*.tmp
+*.swp
+*.swo
+# Allow versioned SQLite DB
+!data/db.sqlite
+# Allow data directory contents explicitly tracked
+!data/**/.gitkeep
