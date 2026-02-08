@@ -71,6 +71,19 @@ FEATURE LOG (append-only)
 - Follow-up tasks:
   - Extend pipeline steps and add integration tests.
 
+[2026-02-07] Auto-doc: Use FastAPI lifespan and configure pytest-asyncio (API)
+- Commit: 38c420a "Use FastAPI lifespan and configure pytest-asyncio"
+- Changed files:
+  - apps/api/app/main.py
+  - progress.txt
+  - pytest.ini
+- Docs updated:
+  - BACKEND_STRUCTURE.md
+  - TECH_STACK.md
+  - DOC_INDEX.md
+  - IMPLEMENTATION_PLAN.md
+  - PERSISTANT.md
+
 ========================================
 PIPELINE HEALTH
 ========================================

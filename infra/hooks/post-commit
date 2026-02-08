@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ "${DOC_AGENT_SKIP:-}" == "1" ]]; then
+  exit 0
+fi
+
+ROOT_DIR=$(git rev-parse --show-toplevel)
+python3 "$ROOT_DIR/infra/scripts/doc_agent.py" --mode post-commit
