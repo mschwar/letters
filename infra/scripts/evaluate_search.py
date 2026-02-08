@@ -427,6 +427,9 @@ def main() -> None:
     try:
         records: list[dict] = []
         with SessionLocal() as db:
+            # Warm once to avoid counting one-time retriever/index cold-start in latency metrics.
+            if entries:
+                _ = evaluate_one(db, entries[0], args.limit)
             for entry in entries:
                 records.append(evaluate_one(db, entry, args.limit))
     finally:

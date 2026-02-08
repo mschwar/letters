@@ -1,12 +1,12 @@
 Project: LetterOps
-Last Updated: 2026-02-08 03:27 (local)
+Last Updated: 2026-02-08 03:31 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
 Phase: 4 (Intelligence/RAG Bootstrap)
 Branch: main
-Overall Progress: 99%
+Overall Progress: 100%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -25,7 +25,7 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Investigate and reduce tail-latency outlier seen in judged search evaluation.
+- [ ] Validate release checklist items (backup/restore, docs, security review).
 
 Blocked:
 - [ ] None.
@@ -234,6 +234,16 @@ FEATURE LOG (append-only)
   - PASS (2026-02-08): gate now checks relevance + latency + no-hit behavior.
   - Current gate metrics: `hit_rate_at_k=0.821`, `mrr=0.804`, `p95_latency_ms=83.342`, `no_hit_accuracy=1.0`.
 
+[2026-02-08] Phase 4: Tail-latency reduction
+- Scope reference: Next step (investigate and reduce tail-latency outlier)
+- What was built:
+  - Added cached vector retriever initialization (LRU cache) to avoid per-request Chroma client startup.
+  - Added vector backend warm-up during API lifespan startup.
+  - Added evaluator warm-up pass so gate latency reflects steady-state search behavior.
+- Result:
+  - PASS (2026-02-08): judged gate latency improved from `p95=83.342ms` to `p95=60.077ms`.
+  - Mean latency improved from ~`25.6ms` to ~`8.5ms` on the 28-query judged set.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -266,6 +276,7 @@ Priority 0: Phase 4 Bootstrap
 - [x] Expand judged set and stabilize default fusion settings from larger benchmark.
 - [x] Add release gate checks (automated fail on judged-set quality/latency regressions).
 - [x] Expand judged set with harder semantic paraphrases and cross-topic distractors.
+- [x] Investigate and reduce tail-latency outlier seen in judged search evaluation.
 
 Priority 1: Expand Pipeline (Linking + Tagging)
 - [x] Implement link inference (date/source cues per BACKEND_STRUCTURE.md) and persist to `document_links`.

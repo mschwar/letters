@@ -16,6 +16,7 @@ from app.db.seed import seed_defaults
 from app.routers.auth_router import router as auth_router
 from app.routers.health_router import router as health_router
 from app.routers.search_router import router as search_router
+from app.services.vector_search import VectorSearchUnavailable, warm_vector_backend
 
 
 configure_logging()
@@ -34,6 +35,16 @@ async def lifespan(app: FastAPI):  # noqa: ARG001
         with SessionLocal() as db:
             result = seed_defaults(db, settings)
             logger.info("seed_defaults", **result)
+    if settings.vector_search_enabled:
+        try:
+            warm_vector_backend(
+                provider=settings.vector_provider,
+                persist_dir=settings.vector_dir,
+                collection_name=settings.vector_collection,
+            )
+            logger.info("vector_backend_warm", provider=settings.vector_provider)
+        except VectorSearchUnavailable as exc:
+            logger.warning("vector_backend_unavailable", reason=str(exc))
     yield
 
 

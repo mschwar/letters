@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import re
+from functools import lru_cache
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -60,6 +61,10 @@ class ChromaVectorRetriever:
             embedding_function=self._embedder,
         )
 
+    def warm(self) -> None:
+        # Touch the collection once so first query latency is reduced.
+        _ = self._collection.count()
+
     def search(self, query: str, limit: int) -> list[VectorHit]:
         try:
             response = self._collection.query(
@@ -87,10 +92,22 @@ class ChromaVectorRetriever:
 
 
 def create_vector_retriever(provider: str, persist_dir: Path, collection_name: str) -> Any:
+    return _create_vector_retriever_cached(provider.lower().strip(), str(persist_dir), collection_name)
+
+
+@lru_cache(maxsize=8)
+def _create_vector_retriever_cached(provider: str, persist_dir: str, collection_name: str) -> Any:
     normalized = provider.lower().strip()
     if normalized == "chroma":
-        return ChromaVectorRetriever(persist_dir=persist_dir, collection_name=collection_name)
+        return ChromaVectorRetriever(persist_dir=Path(persist_dir), collection_name=collection_name)
     raise VectorSearchUnavailable(f"unsupported vector provider: {provider}")
+
+
+def warm_vector_backend(provider: str, persist_dir: Path, collection_name: str) -> None:
+    retriever = create_vector_retriever(provider=provider, persist_dir=persist_dir, collection_name=collection_name)
+    warm = getattr(retriever, "warm", None)
+    if callable(warm):
+        warm()
 
 
 def _first_list(value: Any) -> list[Any]:
