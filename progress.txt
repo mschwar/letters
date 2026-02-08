@@ -1,12 +1,12 @@
 Project: LetterOps
-Last Updated: 2026-02-08 02:36 (local)
+Last Updated: 2026-02-08 02:42 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
 Phase: 4 (Intelligence/RAG Bootstrap)
 Branch: main
-Overall Progress: 76%
+Overall Progress: 80%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -25,7 +25,6 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Add optional vector retrieval backend (ChromaDB) behind feature flag.
 - [ ] Add richer answer synthesis (citations + confidence/explanations).
 
 Blocked:
@@ -145,6 +144,18 @@ FEATURE LOG (append-only)
 - Result:
   - PASS (2026-02-08): search endpoint returns ranked hits + synthesized answer with citations.
 
+[2026-02-08] Phase 4: Optional vector backend (Chroma feature flag)
+- Scope reference: Phase 4 follow-up (optional vectors)
+- What was built:
+  - Added vector retrieval config flags (`LETTEROPS_VECTOR_*`) to API settings.
+  - Added pluggable vector search service with Chroma provider support.
+  - Integrated `/api/v1/search` to prefer vector retrieval when enabled and gracefully fallback to FTS when unavailable.
+  - Added fallback metadata (`vector_fallback_reason`) for observability.
+- Tests added/updated:
+  - `apps/api/tests/test_search_integration.py`
+- Result:
+  - PASS (2026-02-08): fallback path validated and default FTS path unchanged.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -169,7 +180,7 @@ NEXT STEPS CHECKLIST (PRIORITIZED)
 Priority 0: Phase 4 Bootstrap
 - [x] Add `/api/v1/search` natural-language retrieval endpoint.
 - [x] Return source-cited answer summary and ranked results.
-- [ ] Add optional vector retrieval backend (ChromaDB).
+- [x] Add optional vector retrieval backend (ChromaDB).
 - [ ] Add answer confidence scoring and richer citation formatting.
 
 Priority 1: Expand Pipeline (Linking + Tagging)

@@ -1,20 +1,20 @@
 # LetterOps Snapshot Report
 
-Generated: 2026-02-07T20:28:29
+Generated: 2026-02-07T20:31:11
 Root: /Users/mschwar/Dropbox/letters
 
 ## Progress Summary
-Gist: Project: LetterOps Last Updated: 2026-02-08 02:36 (local) ========================================
+Gist: Project: LetterOps Last Updated: 2026-02-08 02:42 (local) ========================================
 
 Project: LetterOps
-Last Updated: 2026-02-08 02:36 (local)
+Last Updated: 2026-02-08 02:42 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
 Phase: 4 (Intelligence/RAG Bootstrap)
 Branch: main
-Overall Progress: 76%
+Overall Progress: 80%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -33,7 +33,6 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Add optional vector retrieval backend (ChromaDB) behind feature flag.
 - [ ] Add richer answer synthesis (citations + confidence/explanations).
 
 Blocked:
@@ -153,6 +152,18 @@ FEATURE LOG (append-only)
 - Result:
   - PASS (2026-02-08): search endpoint returns ranked hits + synthesized answer with citations.
 
+[2026-02-08] Phase 4: Optional vector backend (Chroma feature flag)
+- Scope reference: Phase 4 follow-up (optional vectors)
+- What was built:
+  - Added vector retrieval config flags (`LETTEROPS_VECTOR_*`) to API settings.
+  - Added pluggable vector search service with Chroma provider support.
+  - Integrated `/api/v1/search` to prefer vector retrieval when enabled and gracefully fallback to FTS when unavailable.
+  - Added fallback metadata (`vector_fallback_reason`) for observability.
+- Tests added/updated:
+  - `apps/api/tests/test_search_integration.py`
+- Result:
+  - PASS (2026-02-08): fallback path validated and default FTS path unchanged.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -177,56 +188,40 @@ NEXT STEPS CHECKLIST (PRIORITIZED)
 Priority 0: Phase 4 Bootstrap
 - [x] Add `/api/v1/search` natural-language retrieval endpoint.
 - [x] Return source-cited answer summary and ranked results.
-- [ ] Add optional vector retrieval backend (ChromaDB).
+- [x] Add optional vector retrieval backend (ChromaDB).
 - [ ] Add answer confidence scoring and richer citation formatting.
 
 Priority 1: Expand Pipeline (Linking + Tagging)
 - [x] Implement link inference (date/source cues per BACKEND_STRUCTURE.md) and persist to `document_links`.
 - [x] Implement tagging heuristics (controlled vocab from `tags`/`tag_aliases`) and persist to `document_tags`.
 - [x] Integrate linking + tagging into the ingest pipeline (complete skipped step).
-Parallel lanes: linking vs tagging.
-
-Priority 2: Phase 1 Follow-Ups
-- [x] Implement role-based guards (FastAPI dependencies).
-- [x] Add auth integration tests.
-Parallel lanes: guards vs tests.
-
-Priority 3: Verify with Data
-- [x] Run sample ingest (e.g., Bahá’í letter PDF) to populate DB.
-- [x] Validate current FTS/indexing, tags, links, and pipeline run records.
-Parallel lanes: ingest vs validation/perf checks.
-
-Automation / Overhead
-- [x] Align runtime to Python 3.12.6; patch jose compatibility if needed.
-- [x] Enhance snapshot script with pytest summary (PASS/FAIL).
-
-========
+Parallel l
 ... (truncated)
 
-Keywords: 2026, phase, tests, pipeline, backend, pytest, scope, add, run, ingest
+Keywords: 2026, phase, tests, scope, pipeline, backend, reference, result, pass, added
 
 ## Git State
 Branch: main
 Status:
-## main...origin/main [ahead 2]
- M apps/api/app/main.py
+## main...origin/main [ahead 3]
+ M .env.example
+ M apps/api/app/core/config.py
+ M apps/api/app/routers/search_router.py
+ M apps/api/tests/test_search_integration.py
  M progress.txt
- M snapshot.md
-?? apps/api/app/routers/search_router.py
-?? apps/api/app/schemas/search.py
-?? apps/api/tests/test_search_integration.py
+?? apps/api/app/services/
 Recent commits:
+01feed0 Begin Phase 4 with authenticated FTS search endpoint
 fb0845f Patch jose warning handling and add snapshot pytest summary
 c880c5e Verify ingest pipeline after dependency install
 b52603c Expand pipeline linking/tagging and add auth guards
 c26d497 Document commit-after-major-task rule
-bd440b1 Add deterministic extraction, conversion, and FTS indexing
 Diff summary:
 (no diffs)
 
 ## Pytest Summary
 Status: PASS
-Summary: 12 passed, 1 warning in 2.48s
+Summary: 13 passed, 1 warning in 2.67s
 
 ## canonical-docs-v2.md Excerpt
 Gist: # PRD.md (Revised v2) ## 1) Product Overview LetterOps is a local-first document intelligence app for letter-heavy knowledge workflows (starting with Bahá’í letters). It ingests letters from email and watched folders, preserves originals, creates normalized derivatives, extracts metadata, links references, and provides fast retrieval by date/source/topic/reference. +Revised: Integrated Gemini's se...

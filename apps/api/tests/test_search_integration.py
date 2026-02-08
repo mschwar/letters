@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from dataclasses import replace
 from uuid import uuid4
 
 from fastapi.testclient import TestClient
@@ -12,6 +13,8 @@ from app.core.security import hash_password
 from app.db.base import Base
 from app.db.models import Document, User
 from app.main import app
+from app.routers import search_router
+from app.services.vector_search import VectorSearchUnavailable
 
 
 def _setup_db() -> sessionmaker:
@@ -113,3 +116,34 @@ def test_search_returns_ranked_results_and_answer() -> None:
     assert payload["meta"]["retrieval_mode"] == "fts"
     app.dependency_overrides.clear()
 
+
+def test_search_vector_enabled_falls_back_to_fts_when_unavailable() -> None:
+    client, SessionLocal = _setup_client()
+    _, document_id = _seed_user_and_doc(SessionLocal)
+
+    login = client.post(
+        "/api/v1/auth/login",
+        json={"email": "viewer@example.com", "password": "secret"},
+    )
+    assert login.status_code == 200
+
+    original_settings = search_router.settings
+    original_factory = search_router.create_vector_retriever
+    search_router.settings = replace(original_settings, vector_search_enabled=True)
+
+    def _raise_unavailable(*args, **kwargs):
+        raise VectorSearchUnavailable("vector backend unavailable")
+
+    search_router.create_vector_retriever = _raise_unavailable
+    try:
+        response = client.post("/api/v1/search", json={"query": "guidance funds"})
+    finally:
+        search_router.settings = original_settings
+        search_router.create_vector_retriever = original_factory
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["data"]["results"][0]["document_id"] == document_id
+    assert payload["meta"]["retrieval_mode"] == "fts"
+    assert payload["meta"]["vector_fallback_reason"] == "vector backend unavailable"
+    app.dependency_overrides.clear()

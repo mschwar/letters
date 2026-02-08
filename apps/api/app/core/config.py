@@ -17,6 +17,10 @@ class Settings:
     owner_email: str | None
     owner_password: str | None
     seed_tags_path: Path
+    vector_search_enabled: bool
+    vector_provider: str
+    vector_dir: Path
+    vector_collection: str
 
     @staticmethod
     def _repo_root() -> Path:
@@ -44,6 +48,12 @@ class Settings:
                     str(repo_root / "infra" / "seeds" / "tags.json"),
                 )
             ),
+            vector_search_enabled=os.getenv("LETTEROPS_VECTOR_SEARCH", "0") == "1",
+            vector_provider=os.getenv("LETTEROPS_VECTOR_PROVIDER", "chroma"),
+            vector_dir=Path(
+                os.getenv("LETTEROPS_VECTOR_DIR", str(repo_root / "data" / "vectors"))
+            ),
+            vector_collection=os.getenv("LETTEROPS_VECTOR_COLLECTION", "documents"),
         )
 
 
