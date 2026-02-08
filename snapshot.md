@@ -1,20 +1,20 @@
 # LetterOps Snapshot Report
 
-Generated: 2026-02-07T20:19:50
+Generated: 2026-02-07T20:23:12
 Root: /Users/mschwar/Dropbox/letters
 
 ## Progress Summary
-Gist: Project: LetterOps Last Updated: 2026-02-08 02:20 (local) ========================================
+Gist: Project: LetterOps Last Updated: 2026-02-08 02:29 (local) ========================================
 
 Project: LetterOps
-Last Updated: 2026-02-08 02:20 (local)
+Last Updated: 2026-02-08 02:29 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
 Phase: 3 (Metadata + Conversion + Linking/Tagging)
 Branch: main
-Overall Progress: 62%
+Overall Progress: 70%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -33,7 +33,7 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Address jose `datetime.utcnow` deprecation (library-side).
+- [ ] Begin Phase 4 planning for intelligence/RAG implementation.
 
 Blocked:
 - [ ] None.
@@ -122,6 +122,25 @@ FEATURE LOG (append-only)
   - Step logs confirm `tag|success|tags=5` and `link|success|links=2`.
   - Table deltas after run: `documents=4`, `document_tags=11`, `document_links=4`, `pipeline_runs=4`, `document_fts=4`.
 
+[2026-02-08] Maintenance: jose utcnow deprecation compatibility
+- Scope reference: Next task + automation checklist (jose compatibility)
+- What was built:
+  - Wrapped JWT decode with targeted warning suppression for `python-jose` utcnow deprecation.
+  - Added regression test to assert no utcnow deprecation warning leaks from `decode_token`.
+- Tests added/updated:
+  - `apps/api/tests/test_security.py`
+- Result:
+  - PASS (2026-02-08): `pytest` now shows no jose utcnow warning.
+
+[2026-02-08] Maintenance: Snapshot pytest summary
+- Scope reference: Automation/Overhead checklist (snapshot pytest summary)
+- What was built:
+  - Added pytest execution and PASS/FAIL summary to `infra/scripts/generate_snapshot.py`.
+  - Added CLI flags `--no-pytest` and `--pytest-timeout`.
+  - Snapshot markdown now includes a dedicated `Pytest Summary` section.
+- Result:
+  - PASS (2026-02-08): snapshot reports `Status: PASS` and test summary line.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -160,8 +179,8 @@ Priority 3: Verify with Data
 Parallel lanes: ingest vs validation/perf checks.
 
 Automation / Overhead
-- [ ] Align runtime to Python 3.12.6; patch jose compatibility if needed.
-- [ ] Enhance snapshot script with pytest summary (PASS/FAIL).
+- [x] Align runtime to Python 3.12.6; patch jose compatibility if needed.
+- [x] Enhance snapshot script with pytest summary (PASS/FAIL).
 
 ========================================
 RELEASE CHECKLIST (v1)
@@ -172,26 +191,29 @@ RELEASE CHECKLIST (v1)
 - [ ] Documentation complete
 - [ ] Security checks complete
 
-Keywords: phase, tests, pipeline, 2026, run, ingest, tagging, backend, local, auth
+Keywords: 2026, phase, tests, pipeline, pytest, run, ingest, scope, tagging, backend
 
 ## Git State
 Branch: main
 Status:
-## main...origin/main
- M data/db.sqlite
+## main...origin/main [ahead 1]
+ M apps/api/app/core/security.py
+ M apps/api/tests/test_security.py
+ M infra/scripts/generate_snapshot.py
  M progress.txt
  M snapshot.md
-?? data/archive/derived/01KGXGR50BFDNE42KFGXW1NC0V/
-?? data/archive/originals/2026/02/08/01KGXGR50BFDNE42KFGXW1NC0V/
-?? data/metadata/01KGXGR50BFDNE42KFGXW1NC0V/
 Recent commits:
+c880c5e Verify ingest pipeline after dependency install
 b52603c Expand pipeline linking/tagging and add auth guards
 c26d497 Document commit-after-major-task rule
 bd440b1 Add deterministic extraction, conversion, and FTS indexing
 b9a7085 Create snapshot.md
-9741feb Update repo snapshot tooling and docs
 Diff summary:
 (no diffs)
+
+## Pytest Summary
+Status: PASS
+Summary: 10 passed, 1 warning in 1.83s
 
 ## canonical-docs-v2.md Excerpt
 Gist: # PRD.md (Revised v2) ## 1) Product Overview LetterOps is a local-first document intelligence app for letter-heavy knowledge workflows (starting with Bahá’í letters). It ingests letters from email and watched folders, preserves originals, creates normalized derivatives, extracts metadata, links references, and provides fast retrieval by date/source/topic/reference. +Revised: Integrated Gemini's se...

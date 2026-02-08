@@ -227,6 +227,36 @@ def get_git_state(root: Path, warnings: SnapshotWarnings, log_count: int) -> dic
     return state
 
 
+def get_pytest_summary(root: Path, warnings: SnapshotWarnings, timeout: int) -> dict[str, object]:
+    venv_pytest = root / ".venv" / "bin" / "pytest"
+    cmd = [str(venv_pytest), "-q"] if venv_pytest.exists() else ["pytest", "-q"]
+    try:
+        result = subprocess.run(
+            cmd,
+            cwd=root,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            check=False,
+        )
+    except FileNotFoundError:
+        warnings.add(f"Command not found: {' '.join(cmd)}")
+        return {"status": "unavailable", "returncode": None, "summary": "pytest not found"}
+    except subprocess.TimeoutExpired:
+        warnings.add("Pytest summary timed out.")
+        return {"status": "timeout", "returncode": None, "summary": f"timeout after {timeout}s"}
+
+    output = (result.stdout or "").strip()
+    lines = [line.strip() for line in output.splitlines() if line.strip()]
+    summary = lines[-1] if lines else ("PASS" if result.returncode == 0 else "FAIL")
+    status = "PASS" if result.returncode == 0 else "FAIL"
+    return {
+        "status": status,
+        "returncode": result.returncode,
+        "summary": summary,
+    }
+
+
 def get_db_snapshot(db_path: Path, warnings: SnapshotWarnings, limit_runs: int) -> dict[str, object]:
     if not db_path.exists():
         warnings.add(f"DB not found: {db_path}")
@@ -333,6 +363,13 @@ def format_markdown(report: dict[str, object]) -> str:
         lines.append(diff or "(no diffs)")
         lines.append("")
 
+    pytest_summary = report.get("pytest")
+    if isinstance(pytest_summary, dict):
+        lines.append("## Pytest Summary")
+        lines.append(f"Status: {pytest_summary.get('status', 'unknown')}")
+        lines.append(f"Summary: {pytest_summary.get('summary', '')}")
+        lines.append("")
+
     docs = report.get("docs")
     if isinstance(docs, list):
         for doc in docs:
@@ -423,6 +460,9 @@ def generate_report(args: argparse.Namespace) -> dict[str, object]:
 
     if not args.no_git:
         report["git"] = get_git_state(root, warnings, args.git_log_count)
+
+    if not args.no_pytest:
+        report["pytest"] = get_pytest_summary(root, warnings, args.pytest_timeout)
 
     docs: list[dict[str, object]] = []
     for doc in args.docs:
@@ -527,6 +567,17 @@ def parse_args() -> argparse.Namespace:
         "--no-tree",
         action="store_true",
         help="Skip repo tree.",
+    )
+    parser.add_argument(
+        "--no-pytest",
+        action="store_true",
+        help="Skip pytest summary.",
+    )
+    parser.add_argument(
+        "--pytest-timeout",
+        type=int,
+        default=180,
+        help="Timeout in seconds for pytest summary command.",
     )
     parser.add_argument(
         "--tree-depth",

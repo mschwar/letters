@@ -1,12 +1,12 @@
 Project: LetterOps
-Last Updated: 2026-02-08 02:20 (local)
+Last Updated: 2026-02-08 02:29 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
 Phase: 3 (Metadata + Conversion + Linking/Tagging)
 Branch: main
-Overall Progress: 62%
+Overall Progress: 70%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -25,7 +25,7 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Address jose `datetime.utcnow` deprecation (library-side).
+- [ ] Begin Phase 4 planning for intelligence/RAG implementation.
 
 Blocked:
 - [ ] None.
@@ -114,6 +114,25 @@ FEATURE LOG (append-only)
   - Step logs confirm `tag|success|tags=5` and `link|success|links=2`.
   - Table deltas after run: `documents=4`, `document_tags=11`, `document_links=4`, `pipeline_runs=4`, `document_fts=4`.
 
+[2026-02-08] Maintenance: jose utcnow deprecation compatibility
+- Scope reference: Next task + automation checklist (jose compatibility)
+- What was built:
+  - Wrapped JWT decode with targeted warning suppression for `python-jose` utcnow deprecation.
+  - Added regression test to assert no utcnow deprecation warning leaks from `decode_token`.
+- Tests added/updated:
+  - `apps/api/tests/test_security.py`
+- Result:
+  - PASS (2026-02-08): `pytest` now shows no jose utcnow warning.
+
+[2026-02-08] Maintenance: Snapshot pytest summary
+- Scope reference: Automation/Overhead checklist (snapshot pytest summary)
+- What was built:
+  - Added pytest execution and PASS/FAIL summary to `infra/scripts/generate_snapshot.py`.
+  - Added CLI flags `--no-pytest` and `--pytest-timeout`.
+  - Snapshot markdown now includes a dedicated `Pytest Summary` section.
+- Result:
+  - PASS (2026-02-08): snapshot reports `Status: PASS` and test summary line.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -152,8 +171,8 @@ Priority 3: Verify with Data
 Parallel lanes: ingest vs validation/perf checks.
 
 Automation / Overhead
-- [ ] Align runtime to Python 3.12.6; patch jose compatibility if needed.
-- [ ] Enhance snapshot script with pytest summary (PASS/FAIL).
+- [x] Align runtime to Python 3.12.6; patch jose compatibility if needed.
+- [x] Enhance snapshot script with pytest summary (PASS/FAIL).
 
 ========================================
 RELEASE CHECKLIST (v1)

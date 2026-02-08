@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import warnings
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
@@ -35,4 +36,13 @@ def create_refresh_token(subject: str, role: str) -> str:
 
 
 def decode_token(token: str) -> dict[str, Any]:
-    return jwt.decode(token, settings.jwt_secret, algorithms=[settings.jwt_algorithm])
+    # python-jose uses datetime.utcnow() internally during decode on some versions.
+    # Suppress only that deprecation warning until upstream releases a fix.
+    with warnings.catch_warnings():
+        warnings.filterwarnings(
+            "ignore",
+            message=r".*datetime\.datetime\.utcnow\(\) is deprecated.*",
+            category=DeprecationWarning,
+            module=r"jose\.jwt",
+        )
+        return jwt.decode(token, settings.jwt_secret, algorithms=[settings.jwt_algorithm])
