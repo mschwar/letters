@@ -15,6 +15,7 @@ from app.core.database import SessionLocal
 from app.db.seed import seed_defaults
 from app.routers.auth_router import router as auth_router
 from app.routers.health_router import router as health_router
+from app.routers.search_router import router as search_router
 
 
 configure_logging()
@@ -40,6 +41,7 @@ app = FastAPI(title="LetterOps API", version="0.1.0", lifespan=lifespan)
 
 app.include_router(health_router)
 app.include_router(auth_router, prefix="/api/v1")
+app.include_router(search_router, prefix="/api/v1")
 
 
 @app.exception_handler(HTTPException)

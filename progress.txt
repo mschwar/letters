@@ -1,12 +1,12 @@
 Project: LetterOps
-Last Updated: 2026-02-08 02:29 (local)
+Last Updated: 2026-02-08 02:36 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
-Phase: 3 (Metadata + Conversion + Linking/Tagging)
+Phase: 4 (Intelligence/RAG Bootstrap)
 Branch: main
-Overall Progress: 70%
+Overall Progress: 76%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -25,7 +25,8 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Begin Phase 4 planning for intelligence/RAG implementation.
+- [ ] Add optional vector retrieval backend (ChromaDB) behind feature flag.
+- [ ] Add richer answer synthesis (citations + confidence/explanations).
 
 Blocked:
 - [ ] None.
@@ -133,6 +134,17 @@ FEATURE LOG (append-only)
 - Result:
   - PASS (2026-02-08): snapshot reports `Status: PASS` and test summary line.
 
+[2026-02-08] Phase 4: Intelligence/RAG bootstrap
+- Scope reference: Phase 4 (Intelligence/RAG)
+- What was built:
+  - Added authenticated `POST /api/v1/search` endpoint for natural-language retrieval.
+  - Implemented local FTS query translation (`token*` AND semantics), ranked retrieval, and source-cited answer text.
+  - Added graceful error handling when `document_fts` is unavailable.
+- Tests added/updated:
+  - `apps/api/tests/test_search_integration.py`
+- Result:
+  - PASS (2026-02-08): search endpoint returns ranked hits + synthesized answer with citations.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -154,6 +166,12 @@ TECH DEBT / IMPROVEMENTS
 ========================================
 NEXT STEPS CHECKLIST (PRIORITIZED)
 ========================================
+Priority 0: Phase 4 Bootstrap
+- [x] Add `/api/v1/search` natural-language retrieval endpoint.
+- [x] Return source-cited answer summary and ranked results.
+- [ ] Add optional vector retrieval backend (ChromaDB).
+- [ ] Add answer confidence scoring and richer citation formatting.
+
 Priority 1: Expand Pipeline (Linking + Tagging)
 - [x] Implement link inference (date/source cues per BACKEND_STRUCTURE.md) and persist to `document_links`.
 - [x] Implement tagging heuristics (controlled vocab from `tags`/`tag_aliases`) and persist to `document_tags`.

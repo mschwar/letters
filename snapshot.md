@@ -1,20 +1,20 @@
 # LetterOps Snapshot Report
 
-Generated: 2026-02-07T20:23:12
+Generated: 2026-02-07T20:28:29
 Root: /Users/mschwar/Dropbox/letters
 
 ## Progress Summary
-Gist: Project: LetterOps Last Updated: 2026-02-08 02:29 (local) ========================================
+Gist: Project: LetterOps Last Updated: 2026-02-08 02:36 (local) ========================================
 
 Project: LetterOps
-Last Updated: 2026-02-08 02:29 (local)
+Last Updated: 2026-02-08 02:36 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
-Phase: 3 (Metadata + Conversion + Linking/Tagging)
+Phase: 4 (Intelligence/RAG Bootstrap)
 Branch: main
-Overall Progress: 70%
+Overall Progress: 76%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -33,7 +33,8 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Begin Phase 4 planning for intelligence/RAG implementation.
+- [ ] Add optional vector retrieval backend (ChromaDB) behind feature flag.
+- [ ] Add richer answer synthesis (citations + confidence/explanations).
 
 Blocked:
 - [ ] None.
@@ -141,6 +142,17 @@ FEATURE LOG (append-only)
 - Result:
   - PASS (2026-02-08): snapshot reports `Status: PASS` and test summary line.
 
+[2026-02-08] Phase 4: Intelligence/RAG bootstrap
+- Scope reference: Phase 4 (Intelligence/RAG)
+- What was built:
+  - Added authenticated `POST /api/v1/search` endpoint for natural-language retrieval.
+  - Implemented local FTS query translation (`token*` AND semantics), ranked retrieval, and source-cited answer text.
+  - Added graceful error handling when `document_fts` is unavailable.
+- Tests added/updated:
+  - `apps/api/tests/test_search_integration.py`
+- Result:
+  - PASS (2026-02-08): search endpoint returns ranked hits + synthesized answer with citations.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -162,6 +174,12 @@ TECH DEBT / IMPROVEMENTS
 ========================================
 NEXT STEPS CHECKLIST (PRIORITIZED)
 ========================================
+Priority 0: Phase 4 Bootstrap
+- [x] Add `/api/v1/search` natural-language retrieval endpoint.
+- [x] Return source-cited answer summary and ranked results.
+- [ ] Add optional vector retrieval backend (ChromaDB).
+- [ ] Add answer confidence scoring and richer citation formatting.
+
 Priority 1: Expand Pipeline (Linking + Tagging)
 - [x] Implement link inference (date/source cues per BACKEND_STRUCTURE.md) and persist to `document_links`.
 - [x] Implement tagging heuristics (controlled vocab from `tags`/`tag_aliases`) and persist to `document_tags`.
@@ -182,38 +200,33 @@ Automation / Overhead
 - [x] Align runtime to Python 3.12.6; patch jose compatibility if needed.
 - [x] Enhance snapshot script with pytest summary (PASS/FAIL).
 
-========================================
-RELEASE CHECKLIST (v1)
-========================================
-- [ ] All PRD acceptance criteria validated
-- [ ] Backup/restore round-trip tested
-- [ ] Search latency target met
-- [ ] Documentation complete
-- [ ] Security checks complete
+========
+... (truncated)
 
-Keywords: 2026, phase, tests, pipeline, pytest, run, ingest, scope, tagging, backend
+Keywords: 2026, phase, tests, pipeline, backend, pytest, scope, add, run, ingest
 
 ## Git State
 Branch: main
 Status:
-## main...origin/main [ahead 1]
- M apps/api/app/core/security.py
- M apps/api/tests/test_security.py
- M infra/scripts/generate_snapshot.py
+## main...origin/main [ahead 2]
+ M apps/api/app/main.py
  M progress.txt
  M snapshot.md
+?? apps/api/app/routers/search_router.py
+?? apps/api/app/schemas/search.py
+?? apps/api/tests/test_search_integration.py
 Recent commits:
+fb0845f Patch jose warning handling and add snapshot pytest summary
 c880c5e Verify ingest pipeline after dependency install
 b52603c Expand pipeline linking/tagging and add auth guards
 c26d497 Document commit-after-major-task rule
 bd440b1 Add deterministic extraction, conversion, and FTS indexing
-b9a7085 Create snapshot.md
 Diff summary:
 (no diffs)
 
 ## Pytest Summary
 Status: PASS
-Summary: 10 passed, 1 warning in 1.83s
+Summary: 12 passed, 1 warning in 2.48s
 
 ## canonical-docs-v2.md Excerpt
 Gist: # PRD.md (Revised v2) ## 1) Product Overview LetterOps is a local-first document intelligence app for letter-heavy knowledge workflows (starting with Bahá’í letters). It ingests letters from email and watched folders, preserves originals, creates normalized derivatives, extracts metadata, links references, and provides fast retrieval by date/source/topic/reference. +Revised: Integrated Gemini's se...
