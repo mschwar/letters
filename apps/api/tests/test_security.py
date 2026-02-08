@@ -2,7 +2,7 @@ from app.core.security import create_access_token, decode_token, hash_password, 
 
 
 def test_password_hashing_roundtrip() -> None:
-    password = "ExamplePass123"
+    password = "ExamplePass123"  # bcrypt hard limit 72 bytes
     hashed = hash_password(password)
     assert verify_password(password, hashed)
 
