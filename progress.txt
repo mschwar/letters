@@ -1,30 +1,34 @@
 Project: LetterOps
-Last Updated: 2026-02-07 19:07 (local)
+Last Updated: 2026-02-07 19:26 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
 Phase: 2 (File & Pipeline Core)
 Branch: main
-Overall Progress: 30%
+Overall Progress: 35%
 
 Done:
 - [x] Canonical docs reviewed and merged.
 - [x] Phase 0: Initialize repo structure and baseline files.
 - [x] Phase 1: Backend foundation (FastAPI bootstrap, schema + migrations, auth scaffold, seeding hooks).
 - [x] Phase 2: Storage + ingestion core (hashing, ULID, original archiving, ingestion event/run tracking).
+- [x] Dependencies installed (local venv).
+- [x] DB migrations applied (0001_initial).
+- [x] Seed defaults executed (tags).
+- [x] Unit tests (API + worker) passing.
 
 In Progress:
 - [ ] None.
 
 Next:
-- [ ] Run Alembic migrations to initialize `data/db.sqlite`.
-- [ ] Seed default owner + taxonomy.
 - [ ] Expand pipeline steps (extract/convert/index/link).
 - [ ] Add role-based guards and integration tests.
+- [ ] Add pytest-asyncio default loop scope config to silence warning.
+- [ ] Migrate FastAPI startup to lifespan handler (deprecation warning).
 
 Blocked:
-- [ ] Dependency installation blocked (no network access to fetch pinned packages).
+- [ ] None.
 
 ========================================
 FEATURE LOG (append-only)
@@ -42,12 +46,10 @@ FEATURE LOG (append-only)
   - `apps/api/tests/test_health.py`
   - `apps/api/tests/test_security.py`
 - Result:
-  - NOT RUN (dependencies not installed in this environment).
+  - PASS (2026-02-07, local venv).
 - Known gaps:
-  - DB migrations not executed yet; `data/db.sqlite` still empty.
   - Auth role guards not enforced beyond `/me` dependency.
 - Follow-up tasks:
-  - Run `alembic upgrade head` and seed defaults.
   - Add role-based guards and integration tests.
 
 [2026-02-07] Feature: Phase 2 File & Pipeline Core (baseline)
@@ -62,12 +64,10 @@ FEATURE LOG (append-only)
   - `apps/worker/tests/test_hashing.py`
   - `apps/worker/tests/test_ulid.py`
 - Result:
-  - NOT RUN (dependencies not installed in this environment).
+  - PASS (2026-02-07, local venv).
 - Known gaps:
-  - Migrations not executed; ingestion will fail until DB initialized.
   - Pipeline steps beyond archive are stubbed.
 - Follow-up tasks:
-  - Run migrations + seed defaults.
   - Extend pipeline steps and add integration tests.
 
 ========================================
@@ -86,7 +86,7 @@ Reliability notes:
 ========================================
 TECH DEBT / IMPROVEMENTS
 ========================================
-- [ ] Add API + worker integration tests after dependencies install.
+- [ ] Align local runtime to Python 3.12.6 (currently 3.13.2).
 
 ========================================
 RELEASE CHECKLIST (v1)
