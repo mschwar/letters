@@ -4,12 +4,13 @@ import json
 from datetime import datetime, timezone
 from uuid import uuid4
 
-from sqlalchemy import select
+from sqlalchemy import select, text
 from sqlalchemy.orm import Session
 
 from app.db.models import (
     Document,
     DocumentFile,
+    DocumentMetadataVersion,
     IngestionEvent,
     IngestionStatus,
     IngestionTrigger,
@@ -18,6 +19,7 @@ from app.db.models import (
     RunStatus,
     StepStatus,
 )
+from apps.worker.extraction import ExtractedMetadata
 
 
 def now_iso() -> str:
@@ -109,6 +111,57 @@ def create_document(
     db.commit()
     db.refresh(document)
     return document
+
+
+def update_document_metadata(db: Session, document_id: str, metadata: ExtractedMetadata) -> None:
+    db.execute(
+        text(
+            "UPDATE documents SET canonical_title=:canonical_title, source_name=:source_name, "
+            "audience=:audience, document_date=:document_date, document_type=:document_type, "
+            "summary_one_sentence=:summary_one_sentence WHERE id=:document_id"
+        ),
+        {
+            "canonical_title": metadata.canonical_title,
+            "source_name": metadata.source_name,
+            "audience": metadata.audience,
+            "document_date": metadata.document_date,
+            "document_type": metadata.document_type,
+            "summary_one_sentence": metadata.summary_one_sentence,
+            "document_id": document_id,
+        },
+    )
+    db.commit()
+
+
+def update_document_status(db: Session, document_id: str, status: str, confidence: float) -> None:
+    db.execute(
+        text(
+            "UPDATE documents SET status=:status, confidence_overall=:confidence_overall WHERE id=:document_id"
+        ),
+        {
+            "status": status,
+            "confidence_overall": confidence,
+            "document_id": document_id,
+        },
+    )
+    db.commit()
+
+
+def create_metadata_version(
+    db: Session, document_id: str, version_no: int, metadata_payload: dict
+) -> DocumentMetadataVersion:
+    version = DocumentMetadataVersion(
+        id=str(uuid4()),
+        document_id=document_id,
+        version_no=version_no,
+        metadata_json=json.dumps(metadata_payload),
+        edited_by_user_id=None,
+        edit_reason="auto",
+    )
+    db.add(version)
+    db.commit()
+    db.refresh(version)
+    return version
 
 
 def create_document_file(
