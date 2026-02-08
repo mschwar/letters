@@ -1,20 +1,20 @@
 # LetterOps Snapshot Report
 
-Generated: 2026-02-07T19:51:00
+Generated: 2026-02-07T20:19:50
 Root: /Users/mschwar/Dropbox/letters
 
 ## Progress Summary
-Gist: Project: LetterOps Last Updated: 2026-02-07 19:45 (local) ========================================
+Gist: Project: LetterOps Last Updated: 2026-02-08 02:20 (local) ========================================
 
 Project: LetterOps
-Last Updated: 2026-02-07 19:45 (local)
+Last Updated: 2026-02-08 02:20 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
-Phase: 3 (Metadata + Conversion)
+Phase: 3 (Metadata + Conversion + Linking/Tagging)
 Branch: main
-Overall Progress: 42%
+Overall Progress: 62%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -33,8 +33,6 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Expand pipeline steps (linking + tagging suggestions).
-- [ ] Add role-based guards and integration tests.
 - [ ] Address jose `datetime.utcnow` deprecation (library-side).
 
 Blocked:
@@ -98,6 +96,32 @@ FEATURE LOG (append-only)
 - Follow-up tasks:
   - Add link inference + tagging heuristics.
 
+[2026-02-08] Feature: Linking + Tagging + Auth Guards
+- Scope reference: BACKEND_STRUCTURE.md linking/tagging + role access expectations
+- What was built:
+  - Implemented link inference and document link persistence in pipeline.
+  - Implemented tagging heuristics using tags + aliases with persistence in pipeline.
+  - Added role guard dependencies and auth integration tests.
+- Tests added/updated:
+  - `apps/api/tests/test_auth_integration.py`
+- Result:
+  - Code complete; runtime verification still pending in this environment.
+- Known gaps:
+  - None.
+- Follow-up tasks:
+  - Monitor heuristic quality against real letters.
+
+[2026-02-08] Verification: Fresh Sample Ingest (Priority 3)
+- Scope reference: progress checklist Priority 3 (verify with data)
+- What was run:
+  - Installed API/worker dependencies in `.venv` from `apps/api/requirements.txt`.
+  - Ingested a fresh sample markdown letter via `apps.worker.ingest_file`.
+  - Queried SQLite for run, step, FTS, tag, and link deltas.
+- Result:
+  - PASS (2026-02-08): new run `d2e448bb-ed2f-495a-bab7-49f919006097` succeeded.
+  - Step logs confirm `tag|success|tags=5` and `link|success|links=2`.
+  - Table deltas after run: `documents=4`, `document_tags=11`, `document_links=4`, `pipeline_runs=4`, `document_fts=4`.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -117,6 +141,29 @@ TECH DEBT / IMPROVEMENTS
 - [ ] Align local runtime to Python 3.12.6 (currently 3.13.2).
 
 ========================================
+NEXT STEPS CHECKLIST (PRIORITIZED)
+========================================
+Priority 1: Expand Pipeline (Linking + Tagging)
+- [x] Implement link inference (date/source cues per BACKEND_STRUCTURE.md) and persist to `document_links`.
+- [x] Implement tagging heuristics (controlled vocab from `tags`/`tag_aliases`) and persist to `document_tags`.
+- [x] Integrate linking + tagging into the ingest pipeline (complete skipped step).
+Parallel lanes: linking vs tagging.
+
+Priority 2: Phase 1 Follow-Ups
+- [x] Implement role-based guards (FastAPI dependencies).
+- [x] Add auth integration tests.
+Parallel lanes: guards vs tests.
+
+Priority 3: Verify with Data
+- [x] Run sample ingest (e.g., Bahá’í letter PDF) to populate DB.
+- [x] Validate current FTS/indexing, tags, links, and pipeline run records.
+Parallel lanes: ingest vs validation/perf checks.
+
+Automation / Overhead
+- [ ] Align runtime to Python 3.12.6; patch jose compatibility if needed.
+- [ ] Enhance snapshot script with pytest summary (PASS/FAIL).
+
+========================================
 RELEASE CHECKLIST (v1)
 ========================================
 - [ ] All PRD acceptance criteria validated
@@ -125,18 +172,24 @@ RELEASE CHECKLIST (v1)
 - [ ] Documentation complete
 - [ ] Security checks complete
 
-Keywords: phase, tests, 2026, local, pipeline, metadata, backend, storage, deterministic, ingest
+Keywords: phase, tests, pipeline, 2026, run, ingest, tagging, backend, local, auth
 
 ## Git State
 Branch: main
 Status:
 ## main...origin/main
+ M data/db.sqlite
+ M progress.txt
+ M snapshot.md
+?? data/archive/derived/01KGXGR50BFDNE42KFGXW1NC0V/
+?? data/archive/originals/2026/02/08/01KGXGR50BFDNE42KFGXW1NC0V/
+?? data/metadata/01KGXGR50BFDNE42KFGXW1NC0V/
 Recent commits:
+b52603c Expand pipeline linking/tagging and add auth guards
 c26d497 Document commit-after-major-task rule
 bd440b1 Add deterministic extraction, conversion, and FTS indexing
 b9a7085 Create snapshot.md
 9741feb Update repo snapshot tooling and docs
-38c420a Use FastAPI lifespan and configure pytest-asyncio
 Diff summary:
 (no diffs)
 
@@ -193,28 +246,28 @@ Keywords: local, see, appsapi, backend, migrations, start, env, letterops, first
 
 ## DB Snapshot
 Path: /Users/mschwar/Dropbox/letters/data/db.sqlite
-Size (bytes): 200704
+Size (bytes): 364544
 Tables:
 - alembic_version (rows: 1)
 - audit_events (rows: 0)
-- document_files (rows: 0)
-- document_fts (rows: 0)
+- document_files (rows: 12)
+- document_fts (rows: 4)
 - document_fts_config (rows: 1)
-- document_fts_content (rows: 0)
-- document_fts_data (rows: 2)
-- document_fts_docsize (rows: 0)
-- document_fts_idx (rows: 0)
-- document_links (rows: 0)
-- document_metadata_versions (rows: 0)
-- document_tags (rows: 0)
-- documents (rows: 0)
-- ingestion_events (rows: 0)
-- pipeline_runs (rows: 0)
-- pipeline_steps (rows: 0)
+- document_fts_content (rows: 4)
+- document_fts_data (rows: 32)
+- document_fts_docsize (rows: 4)
+- document_fts_idx (rows: 30)
+- document_links (rows: 4)
+- document_metadata_versions (rows: 4)
+- document_tags (rows: 11)
+- documents (rows: 4)
+- ingestion_events (rows: 4)
+- pipeline_runs (rows: 4)
+- pipeline_steps (rows: 32)
 - sources (rows: 0)
 - tag_aliases (rows: 0)
 - tags (rows: 5)
-- users (rows: 0)
+- users (rows: 1)
 
 Schema:
 CREATE TABLE alembic_version (
@@ -383,13 +436,19 @@ CREATE TABLE users (
 
 Recent pipeline_runs:
 id, status, started_at
+d2e448bb-ed2f-495a-bab7-49f919006097, success, 2026-02-08T02:19:33.244788+00:00
+2e4ab680-716a-4348-ad02-13c306f115a8, success, 2026-02-08T02:04:29.065117+00:00
+4b15772a-bdf3-4a42-a855-7e4a5e4ad652, success, 2026-02-08T02:04:25.299691+00:00
+ce9ca3a5-70d3-498b-8bb4-c0f40a89787a, success, 2026-02-08T02:04:19.596460+00:00
 
 ## Repo Structure
 /Users/mschwar/Dropbox/letters
 ├── BACKEND_STRUCTURE.md
+├── CLAUDE.md
 ├── DOC_AGENT.md
 ├── DOC_INDEX.md
 ├── IMPLEMENTATION_PLAN.md
+├── Makefile
 ├── PERSISTANT.md
 ├── README.md
 ├── TECH_STACK.md
@@ -420,4 +479,4 @@ id, status, started_at
 ├── requirements.lock
 └── snapshot.md
 
-17 directories, 17 files
+17 directories, 19 files

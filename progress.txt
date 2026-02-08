@@ -1,12 +1,12 @@
 Project: LetterOps
-Last Updated: 2026-02-07 19:45 (local)
+Last Updated: 2026-02-08 02:20 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
-Phase: 3 (Metadata + Conversion)
+Phase: 3 (Metadata + Conversion + Linking/Tagging)
 Branch: main
-Overall Progress: 42%
+Overall Progress: 62%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -25,8 +25,6 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Expand pipeline steps (linking + tagging suggestions).
-- [ ] Add role-based guards and integration tests.
 - [ ] Address jose `datetime.utcnow` deprecation (library-side).
 
 Blocked:
@@ -90,6 +88,32 @@ FEATURE LOG (append-only)
 - Follow-up tasks:
   - Add link inference + tagging heuristics.
 
+[2026-02-08] Feature: Linking + Tagging + Auth Guards
+- Scope reference: BACKEND_STRUCTURE.md linking/tagging + role access expectations
+- What was built:
+  - Implemented link inference and document link persistence in pipeline.
+  - Implemented tagging heuristics using tags + aliases with persistence in pipeline.
+  - Added role guard dependencies and auth integration tests.
+- Tests added/updated:
+  - `apps/api/tests/test_auth_integration.py`
+- Result:
+  - Code complete; runtime verification still pending in this environment.
+- Known gaps:
+  - None.
+- Follow-up tasks:
+  - Monitor heuristic quality against real letters.
+
+[2026-02-08] Verification: Fresh Sample Ingest (Priority 3)
+- Scope reference: progress checklist Priority 3 (verify with data)
+- What was run:
+  - Installed API/worker dependencies in `.venv` from `apps/api/requirements.txt`.
+  - Ingested a fresh sample markdown letter via `apps.worker.ingest_file`.
+  - Queried SQLite for run, step, FTS, tag, and link deltas.
+- Result:
+  - PASS (2026-02-08): new run `d2e448bb-ed2f-495a-bab7-49f919006097` succeeded.
+  - Step logs confirm `tag|success|tags=5` and `link|success|links=2`.
+  - Table deltas after run: `documents=4`, `document_tags=11`, `document_links=4`, `pipeline_runs=4`, `document_fts=4`.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -112,19 +136,19 @@ TECH DEBT / IMPROVEMENTS
 NEXT STEPS CHECKLIST (PRIORITIZED)
 ========================================
 Priority 1: Expand Pipeline (Linking + Tagging)
-- [ ] Implement link inference (date/source cues per BACKEND_STRUCTURE.md) and persist to `document_links`.
-- [ ] Implement tagging heuristics (controlled vocab from `tags`/`tag_aliases`) and persist to `document_tags`.
-- [ ] Integrate linking + tagging into the ingest pipeline (complete skipped step).
+- [x] Implement link inference (date/source cues per BACKEND_STRUCTURE.md) and persist to `document_links`.
+- [x] Implement tagging heuristics (controlled vocab from `tags`/`tag_aliases`) and persist to `document_tags`.
+- [x] Integrate linking + tagging into the ingest pipeline (complete skipped step).
 Parallel lanes: linking vs tagging.
 
 Priority 2: Phase 1 Follow-Ups
-- [ ] Implement role-based guards (FastAPI dependencies).
-- [ ] Add auth integration tests.
+- [x] Implement role-based guards (FastAPI dependencies).
+- [x] Add auth integration tests.
 Parallel lanes: guards vs tests.
 
 Priority 3: Verify with Data
-- [ ] Run sample ingest (e.g., Bahá’í letter PDF) to populate DB.
-- [ ] Validate FTS/indexing, tags, links, and pipeline run records.
+- [x] Run sample ingest (e.g., Bahá’í letter PDF) to populate DB.
+- [x] Validate current FTS/indexing, tags, links, and pipeline run records.
 Parallel lanes: ingest vs validation/perf checks.
 
 Automation / Overhead

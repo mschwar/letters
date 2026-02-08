@@ -1,0 +1,13 @@
+{
+  "audience": null,
+  "canonical_title": null,
+  "confidence_by_field": {
+    "document_date": 0.9,
+    "source_name": 0.6,
+    "summary_one_sentence": 0.4
+  },
+  "document_date": "2026-02-08",
+  "document_type": null,
+  "source_name": "Universal House of Justice",
+  "summary_one_sentence": "PRD policy update for community education and youth funds."
+}
