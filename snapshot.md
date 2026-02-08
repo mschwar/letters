@@ -1,38 +1,39 @@
 # LetterOps Snapshot Report
 
-Generated: 2026-02-07T19:34:03
+Generated: 2026-02-07T19:51:00
 Root: /Users/mschwar/Dropbox/letters
 
 ## Progress Summary
-Gist: Project: LetterOps Last Updated: 2026-02-07 19:24 (local) ========================================
+Gist: Project: LetterOps Last Updated: 2026-02-07 19:45 (local) ========================================
 
 Project: LetterOps
-Last Updated: 2026-02-07 19:24 (local)
+Last Updated: 2026-02-07 19:45 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
-Phase: 2 (File & Pipeline Core)
+Phase: 3 (Metadata + Conversion)
 Branch: main
-Overall Progress: 37%
+Overall Progress: 42%
 
 Done:
 - [x] Canonical docs reviewed and merged.
 - [x] Phase 0: Initialize repo structure and baseline files.
 - [x] Phase 1: Backend foundation (FastAPI bootstrap, schema + migrations, auth scaffold, seeding hooks).
 - [x] Phase 2: Storage + ingestion core (hashing, ULID, original archiving, ingestion event/run tracking).
+- [x] Phase 3: Deterministic extraction + conversion + indexing wired into ingest.
 - [x] Dependencies installed (local venv).
 - [x] DB migrations applied (0001_initial).
 - [x] Seed defaults executed (tags).
 - [x] Unit tests (API + worker) passing.
 - [x] Startup migrated to FastAPI lifespan handler.
-- [x] pytest-asyncio default loop scope set (warning silenced).
+- [x] pytest-asyncio default loop scope set.
 
 In Progress:
 - [ ] None.
 
 Next:
-- [ ] Expand pipeline steps (extract/convert/index/link).
+- [ ] Expand pipeline steps (linking + tagging suggestions).
 - [ ] Add role-based guards and integration tests.
 - [ ] Address jose `datetime.utcnow` deprecation (library-side).
 
@@ -75,22 +76,27 @@ FEATURE LOG (append-only)
 - Result:
   - PASS (2026-02-07, local venv).
 - Known gaps:
-  - Pipeline steps beyond archive are stubbed.
+  - Pipeline steps beyond archive were stubbed.
 - Follow-up tasks:
   - Extend pipeline steps and add integration tests.
 
-[2026-02-07] Auto-doc: Use FastAPI lifespan and configure pytest-asyncio (API)
-- Commit: 38c420a "Use FastAPI lifespan and configure pytest-asyncio"
-- Changed files:
-  - apps/api/app/main.py
-  - progress.txt
-  - pytest.ini
-- Docs updated:
-  - BACKEND_STRUCTURE.md
-  - TECH_STACK.md
-  - DOC_INDEX.md
-  - IMPLEMENTATION_PLAN.md
-  - PERSISTANT.md
+[2026-02-07] Feature: Phase 3 Deterministic Extraction + Conversion
+- Scope reference: IMPLEMENTATION_PLAN.md Phase 3; BACKEND_STRUCTURE.md data + storage rules
+- What was built:
+  - Deterministic metadata extraction (date/source/summary) with confidence scoring.
+  - Derivative generation (txt/md) with partial failure handling.
+  - Metadata sidecar writer + DB metadata version record.
+  - FTS upsert on ingest.
+  - Ingest pipeline now runs: hash -> dedupe -> archive -> extract -> convert -> index -> link (skipped).
+- Tests added/updated:
+  - `apps/worker/tests/test_extraction.py`
+  - `apps/worker/tests/test_metadata_sidecar.py`
+- Result:
+  - PASS (2026-02-07, local venv).
+- Known gaps:
+  - Linking and tagging suggestions not implemented.
+- Follow-up tasks:
+  - Add link inference + tagging heuristics.
 
 ========================================
 PIPELINE HEALTH
@@ -119,18 +125,18 @@ RELEASE CHECKLIST (v1)
 - [ ] Documentation complete
 - [ ] Security checks complete
 
-Keywords: phase, tests, 2026, pipeline, local, backend, fastapi, none, steps, core
+Keywords: phase, tests, 2026, local, pipeline, metadata, backend, storage, deterministic, ingest
 
 ## Git State
 Branch: main
 Status:
-## main
+## main...origin/main
 Recent commits:
+c26d497 Document commit-after-major-task rule
+bd440b1 Add deterministic extraction, conversion, and FTS indexing
+b9a7085 Create snapshot.md
 9741feb Update repo snapshot tooling and docs
 38c420a Use FastAPI lifespan and configure pytest-asyncio
-ef5f23f Update progress after migrations and tests
-6d056f9 Pin bcrypt for passlib compatibility
-2731dbf Fix Cookie default in auth dependency
 Diff summary:
 (no diffs)
 
@@ -411,6 +417,7 @@ id, status, started_at
 │   └── shared
 ├── progress.txt
 ├── pytest.ini
-└── requirements.lock
+├── requirements.lock
+└── snapshot.md
 
-17 directories, 16 files
+17 directories, 17 files

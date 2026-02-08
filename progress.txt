@@ -109,6 +109,29 @@ TECH DEBT / IMPROVEMENTS
 - [ ] Align local runtime to Python 3.12.6 (currently 3.13.2).
 
 ========================================
+NEXT STEPS CHECKLIST (PRIORITIZED)
+========================================
+Priority 1: Expand Pipeline (Linking + Tagging)
+- [ ] Implement link inference (date/source cues per BACKEND_STRUCTURE.md) and persist to `document_links`.
+- [ ] Implement tagging heuristics (controlled vocab from `tags`/`tag_aliases`) and persist to `document_tags`.
+- [ ] Integrate linking + tagging into the ingest pipeline (complete skipped step).
+Parallel lanes: linking vs tagging.
+
+Priority 2: Phase 1 Follow-Ups
+- [ ] Implement role-based guards (FastAPI dependencies).
+- [ ] Add auth integration tests.
+Parallel lanes: guards vs tests.
+
+Priority 3: Verify with Data
+- [ ] Run sample ingest (e.g., Bahá’í letter PDF) to populate DB.
+- [ ] Validate FTS/indexing, tags, links, and pipeline run records.
+Parallel lanes: ingest vs validation/perf checks.
+
+Automation / Overhead
+- [ ] Align runtime to Python 3.12.6; patch jose compatibility if needed.
+- [ ] Enhance snapshot script with pytest summary (PASS/FAIL).
+
+========================================
 RELEASE CHECKLIST (v1)
 ========================================
 - [ ] All PRD acceptance criteria validated

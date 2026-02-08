@@ -11,8 +11,10 @@ from apps.worker.conversion import convert_text
 from apps.worker.extraction import extract_content
 from apps.worker.hashing import sha256_file
 from apps.worker.indexing import upsert_document_fts
+from apps.worker.linking import infer_links
 from apps.worker.metadata_sidecar import write_metadata
 from apps.worker.storage_service import build_original_path, store_original
+from apps.worker.tagging import infer_tags
 from apps.worker.ulid import new_ulid
 from apps.worker.repos import (
     create_document,
@@ -22,6 +24,8 @@ from apps.worker.repos import (
     create_pipeline_run,
     create_step,
     find_document_by_hash,
+    upsert_document_link,
+    upsert_document_tag,
     update_document_metadata,
     update_document_status,
     update_run_status,
@@ -130,7 +134,28 @@ def ingest_file(db: Session, path: Path) -> IngestResult:
         else:
             update_step_status(db, convert_step, StepStatus.success)
 
+        tag_step = create_step(db, run.id, "tag", StepStatus.running)
+        tag_labels: list[str] = []
+        try:
+            tag_suggestions = infer_tags(db, extracted.text, metadata)
+            for suggestion in tag_suggestions:
+                upsert_document_tag(
+                    db,
+                    document_id=document.id,
+                    tag_id=suggestion.tag_id,
+                    confidence=suggestion.confidence,
+                )
+                tag_labels.append(suggestion.label)
+            if tag_suggestions:
+                update_step_status(db, tag_step, StepStatus.success, logs=f"tags={len(tag_suggestions)}")
+            else:
+                update_step_status(db, tag_step, StepStatus.skipped, logs="no tag matches")
+        except Exception as exc:  # noqa: BLE001
+            warnings.append(f"tagging_failed:{exc}")
+            update_step_status(db, tag_step, StepStatus.failed, logs=str(exc))
+
         index_step = create_step(db, run.id, "index", StepStatus.running)
+        tags_text = ", ".join(tag_labels) if tag_labels else None
         upsert_document_fts(
             db,
             document_id=document.id,
@@ -138,12 +163,30 @@ def ingest_file(db: Session, path: Path) -> IngestResult:
             summary=metadata.summary_one_sentence,
             full_text=extracted.text,
             source_name=metadata.source_name,
-            tags=None,
+            tags=tags_text,
         )
         update_step_status(db, index_step, StepStatus.success)
 
         link_step = create_step(db, run.id, "link", StepStatus.running)
-        update_step_status(db, link_step, StepStatus.skipped)
+        try:
+            link_suggestions = infer_links(db, document, metadata, extracted.text)
+            for suggestion in link_suggestions:
+                if suggestion.to_document_id == document.id:
+                    continue
+                upsert_document_link(
+                    db,
+                    from_document_id=document.id,
+                    to_document_id=suggestion.to_document_id,
+                    link_type=suggestion.link_type,
+                    confidence=suggestion.confidence,
+                )
+            if link_suggestions:
+                update_step_status(db, link_step, StepStatus.success, logs=f"links={len(link_suggestions)}")
+            else:
+                update_step_status(db, link_step, StepStatus.skipped, logs="no link matches")
+        except Exception as exc:  # noqa: BLE001
+            warnings.append(f"linking_failed:{exc}")
+            update_step_status(db, link_step, StepStatus.failed, logs=str(exc))
 
         overall_confidence = metadata.overall_confidence()
         status = "indexed" if overall_confidence >= 0.6 else "needs_review"

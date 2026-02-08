@@ -10,14 +10,22 @@ from sqlalchemy.orm import Session
 from app.db.models import (
     Document,
     DocumentFile,
+    DocumentLink,
     DocumentMetadataVersion,
+    DocumentTag,
     IngestionEvent,
     IngestionStatus,
     IngestionTrigger,
+    LinkCreatedBy,
+    LinkState,
+    LinkType,
     PipelineRun,
     PipelineStep,
     RunStatus,
     StepStatus,
+    Tag,
+    TagAlias,
+    TagAssignedBy,
 )
 from apps.worker.extraction import ExtractedMetadata
 
@@ -186,3 +194,78 @@ def create_document_file(
     db.commit()
     db.refresh(doc_file)
     return doc_file
+
+
+def list_tags(db: Session) -> list[Tag]:
+    return db.execute(select(Tag).where(Tag.is_active == 1)).scalars().all()
+
+
+def list_tag_aliases(db: Session) -> list[TagAlias]:
+    return db.execute(select(TagAlias)).scalars().all()
+
+
+def upsert_document_tag(
+    db: Session,
+    document_id: str,
+    tag_id: str,
+    confidence: float,
+    assigned_by: TagAssignedBy = TagAssignedBy.system,
+) -> DocumentTag:
+    existing = db.execute(
+        select(DocumentTag).where(
+            DocumentTag.document_id == document_id,
+            DocumentTag.tag_id == tag_id,
+        )
+    ).scalar_one_or_none()
+    if existing:
+        if confidence > existing.confidence:
+            existing.confidence = confidence
+            db.add(existing)
+            db.commit()
+        return existing
+    record = DocumentTag(
+        document_id=document_id,
+        tag_id=tag_id,
+        confidence=confidence,
+        assigned_by=assigned_by.value,
+    )
+    db.add(record)
+    db.commit()
+    return record
+
+
+def upsert_document_link(
+    db: Session,
+    from_document_id: str,
+    to_document_id: str,
+    link_type: LinkType = LinkType.related,
+    confidence: float = 0.6,
+    state: LinkState = LinkState.suggested,
+    created_by: LinkCreatedBy = LinkCreatedBy.system,
+) -> DocumentLink:
+    existing = db.execute(
+        select(DocumentLink).where(
+            DocumentLink.from_document_id == from_document_id,
+            DocumentLink.to_document_id == to_document_id,
+            DocumentLink.link_type == link_type.value,
+        )
+    ).scalar_one_or_none()
+    if existing:
+        if confidence > existing.confidence:
+            existing.confidence = confidence
+            db.add(existing)
+            db.commit()
+        return existing
+    link = DocumentLink(
+        id=str(uuid4()),
+        from_document_id=from_document_id,
+        to_document_id=to_document_id,
+        link_type=link_type.value,
+        confidence=confidence,
+        state=state.value,
+        created_by=created_by.value,
+    )
+    db.add(link)
+    db.commit()
+    db.refresh(link)
+    return link
