@@ -1,20 +1,20 @@
 # LetterOps Snapshot Report
 
-Generated: 2026-02-07T20:41:03
+Generated: 2026-02-07T20:50:28
 Root: /Users/mschwar/Dropbox/letters
 
 ## Progress Summary
-Gist: Project: LetterOps Last Updated: 2026-02-08 02:55 (local) ========================================
+Gist: Project: LetterOps Last Updated: 2026-02-08 03:06 (local) ========================================
 
 Project: LetterOps
-Last Updated: 2026-02-08 02:55 (local)
+Last Updated: 2026-02-08 03:06 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
 Phase: 4 (Intelligence/RAG Bootstrap)
 Branch: main
-Overall Progress: 88%
+Overall Progress: 91%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -33,7 +33,8 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Calibrate fusion weights using judged query set; capture target latency and quality thresholds.
+- [ ] Enable vector backend in environment (`chromadb`) and rerun judged calibration for true hybrid metrics.
+- [ ] Expand judged query set to improve recall evaluation and stabilize weight tuning.
 
 Blocked:
 - [ ] None.
@@ -180,35 +181,31 @@ FEATURE LOG (append-only)
 - Scope reference: Next step (vector + FTS fusion + eval script)
 - What was built:
   - Implemented hybrid retrieval mode in `/api/v1/search` using weighted reciprocal-rank fusion (RRF) over vector + FTS result lists.
-  - Added fusion tunables in config (`LETTEROPS_SEARCH_FUSION_*`) and metadata counters (`result_counts`) in search responses.
-  - Added `infra/scripts/evaluate_search.py` to benchmark retrieval mode,
+  - Added fusion tunables in config (`LETTEROPS_SEARCH_FUSION_*`) and metadata counters (`result_counts`)
 ... (truncated)
 
-Keywords: 2026, phase, tests, added, scope, result, reference, built, pass, pytest
+Keywords: 2026, phase, tests, scope, result, added, reference, built, pass, pytest
 
 ## Git State
 Branch: main
 Status:
-## main...origin/main [ahead 5]
- M .env.example
- M apps/api/app/core/config.py
- M apps/api/app/routers/search_router.py
- M apps/api/tests/test_search_integration.py
+## main...origin/main [ahead 7]
+ M infra/scripts/evaluate_search.py
  M progress.txt
-?? infra/scripts/evaluate_search.py
-Reminder: Branch is ahead of remote by 5 commit(s). Run git push.
+?? data/eval/
+Reminder: Branch is ahead of remote by 7 commit(s). Run git push.
 Recent commits:
+620c213 Add real UHJ sample corpus and ingest artifacts
+9a7f60e Add hybrid retrieval fusion and search evaluation script
 aa87c22 Improve search synthesis and include current workspace updates
 1c2f193 Add optional Chroma vector retrieval with FTS fallback
 01feed0 Begin Phase 4 with authenticated FTS search endpoint
-fb0845f Patch jose warning handling and add snapshot pytest summary
-c880c5e Verify ingest pipeline after dependency install
 Diff summary:
 (no diffs)
 
 ## Pytest Summary
 Status: PASS
-Summary: 16 passed, 1 warning in 3.49s
+Summary: 16 passed, 1 warning in 4.16s
 
 ## canonical-docs-v2.md Excerpt
 Gist: # PRD.md (Revised v2) ## 1) Product Overview LetterOps is a local-first document intelligence app for letter-heavy knowledge workflows (starting with Bahá’í letters). It ingests letters from email and watched folders, preserves originals, creates normalized derivatives, extracts metadata, links references, and provides fast retrieval by date/source/topic/reference. +Revised: Integrated Gemini's se...
@@ -263,24 +260,24 @@ Keywords: local, see, appsapi, backend, migrations, start, env, letterops, first
 
 ## DB Snapshot
 Path: /Users/mschwar/Dropbox/letters/data/db.sqlite
-Size (bytes): 364544
+Size (bytes): 712704
 Tables:
 - alembic_version (rows: 1)
 - audit_events (rows: 0)
-- document_files (rows: 12)
-- document_fts (rows: 4)
+- document_files (rows: 27)
+- document_fts (rows: 9)
 - document_fts_config (rows: 1)
-- document_fts_content (rows: 4)
-- document_fts_data (rows: 32)
-- document_fts_docsize (rows: 4)
-- document_fts_idx (rows: 30)
-- document_links (rows: 4)
-- document_metadata_versions (rows: 4)
-- document_tags (rows: 11)
-- documents (rows: 4)
-- ingestion_events (rows: 4)
-- pipeline_runs (rows: 4)
-- pipeline_steps (rows: 32)
+- document_fts_content (rows: 9)
+- document_fts_data (rows: 65)
+- document_fts_docsize (rows: 9)
+- document_fts_idx (rows: 63)
+- document_links (rows: 14)
+- document_metadata_versions (rows: 9)
+- document_tags (rows: 31)
+- documents (rows: 9)
+- ingestion_events (rows: 9)
+- pipeline_runs (rows: 9)
+- pipeline_steps (rows: 72)
 - sources (rows: 0)
 - tag_aliases (rows: 0)
 - tags (rows: 5)
@@ -453,10 +450,11 @@ CREATE TABLE users (
 
 Recent pipeline_runs:
 id, status, started_at, ended_at, error_summary, document_id, ingestion_event_id
-d2e448bb-ed2f-495a-bab7-49f919006097, success, 2026-02-08T02:19:33.244788+00:00, 2026-02-08T02:19:33.297953+00:00, None, 01KGXGR50BFDNE42KFGXW1NC0V, 0b5fd573-5a41-43c9-bb3e-eb882cb7329c
-2e4ab680-716a-4348-ad02-13c306f115a8, success, 2026-02-08T02:04:29.065117+00:00, 2026-02-08T02:04:29.093258+00:00, None, 01KGXFWJ0H8W9BBE7F85VHCS27, 16fa2189-94ff-423f-90c6-b0e403e14c98
-4b15772a-bdf3-4a42-a855-7e4a5e4ad652, success, 2026-02-08T02:04:25.299691+00:00, 2026-02-08T02:04:25.328602+00:00, None, 01KGXFWEAVAMB3GTY3A59D4ZKM, f79e5258-d1f2-43b2-9dbb-8081f3c1f4a0
-ce9ca3a5-70d3-498b-8bb4-c0f40a89787a, success, 2026-02-08T02:04:19.596460+00:00, 2026-02-08T02:04:19.619509+00:00, None, 01KGXFW8RHMZ99RP4ZBGGCCX2V, eb0da9a6-ee4a-46db-80ed-aa1c2edcc6ed
+41e953fb-348d-45d2-865d-571a8c945234, success, 2026-02-08T02:47:04.702051+00:00, 2026-02-08T02:47:04.943189+00:00, None, 01KGXJAHRAWYB4SQSH02YGG7CE, a3639d2d-53f8-498d-a933-990676f1c4b8
+bd2e2c94-9ecb-4827-9a6d-d078424cd798, success, 2026-02-08T02:47:03.374750+00:00, 2026-02-08T02:47:04.482111+00:00, None, 01KGXJAGETQEVE5VG5VHNA5515, 57df37f0-4f13-4d69-8851-bb18af4c8287
+a086452d-3df8-4c40-8848-1c7867d086dd, success, 2026-02-08T02:47:02.901166+00:00, 2026-02-08T02:47:03.152555+00:00, None, 01KGXJAG00WT4782E1FC6YP9AM, 01a5c86a-db93-4b16-8fea-f8fdaf212191
+2f66319b-95b2-4ba7-b951-4d88e6fb3ab4, success, 2026-02-08T02:47:02.231983+00:00, 2026-02-08T02:47:02.690569+00:00, None, 01KGXJAFB46DZKXQZSP806ZQXG, c872836c-f22a-4304-bc36-797e73133160
+42cbbfdc-2395-4074-be87-3f5319a1d5ab, success, 2026-02-08T02:47:01.952260+00:00, 2026-02-08T02:47:02.022326+00:00, None, 01KGXJAF2C46WR4W6MFMBZRHA8, 0f010003-7c6d-419d-abd8-69e5278dad1f
 
 ## Repo Structure
 /Users/mschwar/Dropbox/letters
@@ -482,8 +480,10 @@ ce9ca3a5-70d3-498b-8bb4-c0f40a89787a, success, 2026-02-08T02:04:19.596460+00:00,
 ├── data
 │   ├── archive
 │   ├── db.sqlite
+│   ├── eval
 │   ├── metadata
-│   └── runs
+│   ├── runs
+│   └── samples
 ├── infra
 │   ├── hooks
 │   ├── migrations
@@ -496,4 +496,4 @@ ce9ca3a5-70d3-498b-8bb4-c0f40a89787a, success, 2026-02-08T02:04:19.596460+00:00,
 ├── requirements.lock
 └── snapshot.md
 
-17 directories, 19 files
+19 directories, 19 files

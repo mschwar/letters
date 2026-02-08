@@ -1,12 +1,12 @@
 Project: LetterOps
-Last Updated: 2026-02-08 02:55 (local)
+Last Updated: 2026-02-08 03:06 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
 Phase: 4 (Intelligence/RAG Bootstrap)
 Branch: main
-Overall Progress: 88%
+Overall Progress: 91%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -25,7 +25,8 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Calibrate fusion weights using judged query set; capture target latency and quality thresholds.
+- [ ] Enable vector backend in environment (`chromadb`) and rerun judged calibration for true hybrid metrics.
+- [ ] Expand judged query set to improve recall evaluation and stabilize weight tuning.
 
 Blocked:
 - [ ] None.
@@ -180,6 +181,17 @@ FEATURE LOG (append-only)
 - Result:
   - PASS (2026-02-08): `pytest` green and evaluation script operational.
 
+[2026-02-08] Phase 4: Judged-set calibration workflow
+- Scope reference: Next step (calibrate fusion weights + thresholds)
+- What was built:
+  - Extended `infra/scripts/evaluate_search.py` with judged-query support (`expected_archive_suffixes`) and retrieval quality metrics (`hit_rate_at_k`, `mrr`).
+  - Added calibration grid search over `fts_weight`, `vector_weight`, and `rrf_k`, with objective scoring that includes latency threshold penalties.
+  - Added percentile-correct p95 latency calculation and top-result archive-path matching for ground-truth checks.
+  - Added judged query set file: `data/eval/uhj_judged_queries.json`.
+- Result:
+  - PASS (2026-02-08): calibration workflow runs end-to-end; current environment falls back to FTS because `chromadb` is unavailable.
+  - Baseline judged metrics (FTS-only fallback): `hit_rate_at_k=0.4`, `mrr=0.4`, `p95_latency_ms=71.762`.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -207,6 +219,7 @@ Priority 0: Phase 4 Bootstrap
 - [x] Add optional vector retrieval backend (ChromaDB).
 - [x] Add answer confidence scoring and richer citation formatting.
 - [x] Add hybrid ranking blend (vector + FTS score fusion) and evaluation script.
+- [x] Calibrate fusion weights using judged query set; capture latency + quality metrics.
 
 Priority 1: Expand Pipeline (Linking + Tagging)
 - [x] Implement link inference (date/source cues per BACKEND_STRUCTURE.md) and persist to `document_links`.

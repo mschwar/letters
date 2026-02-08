@@ -1,0 +1,33 @@
+[
+  {
+    "query": "promise of world peace peoples of the world",
+    "expected_archive_suffixes": [
+      "19851001_001.pdf"
+    ]
+  },
+  {
+    "query": "world religious leaders invitation interfaith",
+    "expected_archive_suffixes": [
+      "20020401_001.pdf"
+    ]
+  },
+  {
+    "query": "first century formative age reflections",
+    "expected_archive_suffixes": [
+      "20231128_001.pdf"
+    ]
+  },
+  {
+    "query": "family life and marriage bahais of the world",
+    "expected_archive_suffixes": [
+      "20250319_001.pdf"
+    ]
+  },
+  {
+    "query": "bahai funds east and west 1963",
+    "expected_archive_suffixes": [
+      "19631218_001.pdf"
+    ]
+  }
+]
+
