@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+from dataclasses import dataclass
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, status
@@ -49,13 +50,37 @@ def _token_set(text: str) -> set[str]:
     }
 
 
+@dataclass(frozen=True)
+class SearchFilters:
+    source_name: str | None
+    tag: str | None
+    date_from: str | None
+    date_to: str | None
+
+
+def _normalize_optional(value: str | None) -> str | None:
+    if value is None:
+        return None
+    normalized = value.strip()
+    return normalized or None
+
+
+def _build_filters(payload: SearchRequest) -> SearchFilters:
+    return SearchFilters(
+        source_name=_normalize_optional(payload.source_name),
+        tag=_normalize_optional(payload.tag),
+        date_from=payload.date_from,
+        date_to=payload.date_to,
+    )
+
+
 def _build_fts_query(raw_query: str) -> str:
     tokens = re.findall(r"[A-Za-z0-9]{2,}", raw_query.lower())
     # Prefix matching keeps natural language queries forgiving for partial terms.
     return " AND ".join(f"{token}*" for token in tokens[:12])
 
 
-def _query_fts(db: Session, match_query: str, limit: int) -> list[dict]:
+def _query_fts(db: Session, match_query: str, limit: int, filters: SearchFilters) -> list[dict]:
     sql = text(
         """
         SELECT
@@ -69,11 +94,25 @@ def _query_fts(db: Session, match_query: str, limit: int) -> list[dict]:
         FROM document_fts AS f
         JOIN documents AS d ON d.id = f.document_id
         WHERE document_fts MATCH :match_query
+          AND (:source_like IS NULL OR lower(COALESCE(d.source_name, '')) LIKE :source_like)
+          AND (:tag_like IS NULL OR lower(COALESCE(f.tags, '')) LIKE :tag_like)
+          AND (:date_from IS NULL OR COALESCE(d.document_date, '') >= :date_from)
+          AND (:date_to IS NULL OR COALESCE(d.document_date, '') <= :date_to)
         ORDER BY rank_score
         LIMIT :limit
         """
     )
-    rows = db.execute(sql, {"match_query": match_query, "limit": limit}).mappings().all()
+    rows = db.execute(
+        sql,
+        {
+            "match_query": match_query,
+            "limit": limit,
+            "source_like": f"%{filters.source_name.lower()}%" if filters.source_name else None,
+            "tag_like": f"%{filters.tag.lower()}%" if filters.tag else None,
+            "date_from": filters.date_from,
+            "date_to": filters.date_to,
+        },
+    ).mappings().all()
     return [
         {
             "document_id": row["document_id"],
@@ -101,7 +140,13 @@ def _query_docs_by_ids(db: Session, document_ids: list[str]) -> dict[str, dict]:
                 COALESCE(canonical_title, '') AS title,
                 COALESCE(source_name, '') AS source_name,
                 COALESCE(document_date, '') AS document_date,
-                COALESCE(summary_one_sentence, '') AS summary
+                COALESCE(summary_one_sentence, '') AS summary,
+                COALESCE((
+                    SELECT tags
+                    FROM document_fts
+                    WHERE document_fts.document_id = documents.id
+                    LIMIT 1
+                ), '') AS tags
             FROM documents
             WHERE id IN :document_ids
             """
@@ -116,12 +161,13 @@ def _query_docs_by_ids(db: Session, document_ids: list[str]) -> dict[str, dict]:
             "source_name": row["source_name"],
             "document_date": row["document_date"],
             "summary": row["summary"],
+            "tags": row["tags"],
         }
         for row in rows
     }
 
 
-def _query_vector(db: Session, query: str, limit: int) -> list[dict]:
+def _query_vector(db: Session, query: str, limit: int, filters: SearchFilters) -> list[dict]:
     retriever = create_vector_retriever(
         provider=settings.vector_provider,
         persist_dir=settings.vector_dir,
@@ -141,6 +187,23 @@ def _query_vector(db: Session, query: str, limit: int) -> list[dict]:
         )
         # Guard against vector-only false positives by requiring lexical overlap.
         if query_tokens and not query_tokens.intersection(_token_set(candidate_text)):
+            continue
+        source_ok = True
+        if filters.source_name:
+            source_ok = filters.source_name.lower() in doc.get("source_name", "").lower()
+
+        tag_ok = True
+        if filters.tag:
+            tag_ok = filters.tag.lower() in doc.get("tags", "").lower()
+
+        date_ok = True
+        doc_date = doc.get("document_date", "")
+        if filters.date_from and doc_date < filters.date_from:
+            date_ok = False
+        if filters.date_to and doc_date > filters.date_to:
+            date_ok = False
+
+        if not (source_ok and tag_ok and date_ok):
             continue
         results.append(
             {
@@ -203,6 +266,27 @@ def _fuse_results(
     return fused[:limit]
 
 
+def _apply_sort(results: list[dict], sort_by: str) -> list[dict]:
+    if sort_by == "date_desc":
+        return sorted(
+            results,
+            key=lambda row: (
+                row.get("document_date", "") == "",
+                row.get("document_date", ""),
+            ),
+            reverse=True,
+        )
+    if sort_by == "date_asc":
+        return sorted(
+            results,
+            key=lambda row: (
+                row.get("document_date", "") == "",
+                row.get("document_date", ""),
+            ),
+        )
+    return results
+
+
 def _confidence_from_results(results: list[dict]) -> tuple[float, str]:
     if not results:
         return 0.0, "low"
@@ -260,6 +344,7 @@ def search_documents(
     db: Annotated[Session, Depends(get_db)],
     user: Annotated[User, Depends(require_viewer)],
 ) -> dict:
+    filters = _build_filters(payload)
     match_query = _build_fts_query(payload.query)
     if not match_query:
         raise HTTPException(
@@ -273,8 +358,8 @@ def search_documents(
     fts_result_count = 0
     try:
         if settings.vector_search_enabled:
-            vector_results = _query_vector(db, payload.query, payload.limit)
-            fts_results = _query_fts(db, match_query, payload.limit)
+            vector_results = _query_vector(db, payload.query, payload.limit, filters)
+            fts_results = _query_fts(db, match_query, payload.limit, filters)
             vector_result_count = len(vector_results)
             fts_result_count = len(fts_results)
             if vector_results and fts_results:
@@ -285,11 +370,11 @@ def search_documents(
                 retrieval_mode = "fts"
             results = _fuse_results(fts_results, vector_results, payload.limit)
         else:
-            results = _query_fts(db, match_query, payload.limit)
+            results = _query_fts(db, match_query, payload.limit, filters)
             fts_result_count = len(results)
     except VectorSearchUnavailable as exc:
         vector_fallback_reason = str(exc)
-        results = _query_fts(db, match_query, payload.limit)
+        results = _query_fts(db, match_query, payload.limit, filters)
         fts_result_count = len(results)
     except SQLAlchemyError as exc:
         message = str(getattr(exc, "orig", exc))
@@ -300,6 +385,7 @@ def search_documents(
             ) from exc
         raise
 
+    results = _apply_sort(results, payload.sort_by)[: payload.limit]
     confidence_score, confidence_label = _confidence_from_results(results)
     citations = _build_citations(results)
     answer = _build_answer(results, citations, confidence_label)
@@ -308,6 +394,7 @@ def search_documents(
         "retrieval_mode": retrieval_mode,
         "request_user_id": user.id,
         "result_counts": {"fts": fts_result_count, "vector": vector_result_count},
+        "sort_by": payload.sort_by,
     }
     if vector_fallback_reason:
         meta["vector_fallback_reason"] = vector_fallback_reason

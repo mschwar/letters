@@ -1,5 +1,5 @@
 Project: LetterOps
-Last Updated: 2026-02-07 21:26 (local)
+Last Updated: 2026-02-07 21:29 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
@@ -272,6 +272,17 @@ FEATURE LOG (append-only)
 - Result:
   - PASS (manual): phase 5 UI foundation is in-repo and ready for iterative polish and build-system migration.
 
+[2026-02-08] Phase 5: Search filters + sorting controls
+- Scope reference: Phase 5 next step (filter controls and result sorting)
+- What was built:
+  - Extended search API request schema with optional `source_name`, `tag`, `date_from`, `date_to`, and `sort_by`.
+  - Added backend filter handling for FTS and vector retrieval paths.
+  - Added date-based sorting (`date_desc`, `date_asc`) with relevance as default.
+  - Added Phase 5 web controls for source/tag/date range/sort in `apps/web`.
+  - Added integration coverage for source/tag filters and date sorting.
+- Result:
+  - PASS (2026-02-08): `apps/api/tests/test_search_integration.py` all tests passing including new filter/sort test.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -295,7 +306,7 @@ NEXT STEPS CHECKLIST (PRIORITIZED)
 ========================================
 Priority 0: Phase 5 UX Polish
 - [x] Create initial user-facing web shell for auth + search + evidence display.
-- [ ] Add filter controls (source/date/tag) and result sorting to web UI.
+- [x] Add filter controls (source/date/tag) and result sorting to web UI.
 - [ ] Add loading skeletons + empty/error states tuned for retrieval workflows.
 - [ ] Add frontend smoke test coverage for login/search flows.
 - [ ] Decide and migrate to formal frontend build stack (Next.js or Vite).

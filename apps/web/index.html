@@ -50,6 +50,30 @@
             <textarea id="query" rows="3" placeholder="guidance regarding family life and marriage"></textarea>
           </label>
           <label>
+            Source filter (optional)
+            <input id="source-name" type="text" placeholder="Universal House of Justice" />
+          </label>
+          <label>
+            Tag filter (optional)
+            <input id="tag" type="text" placeholder="funds" />
+          </label>
+          <label>
+            Date from (optional)
+            <input id="date-from" type="date" />
+          </label>
+          <label>
+            Date to (optional)
+            <input id="date-to" type="date" />
+          </label>
+          <label>
+            Sort
+            <select id="sort-by">
+              <option value="relevance">Relevance</option>
+              <option value="date_desc">Date (Newest First)</option>
+              <option value="date_asc">Date (Oldest First)</option>
+            </select>
+          </label>
+          <label>
             Limit
             <input id="limit" type="number" min="1" max="20" value="5" />
           </label>

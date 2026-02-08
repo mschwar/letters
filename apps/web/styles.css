@@ -88,7 +88,8 @@ label {
 }
 
 input,
-textarea {
+textarea,
+select {
   width: 100%;
   border: 1px solid rgba(23, 37, 61, 0.22);
   border-radius: 8px;
@@ -98,7 +99,8 @@ textarea {
 }
 
 input:focus,
-textarea:focus {
+textarea:focus,
+select:focus {
   outline: 2px solid var(--accent-soft);
   border-color: var(--accent);
 }

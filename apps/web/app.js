@@ -104,6 +104,11 @@ searchForm.addEventListener("submit", async (event) => {
 
   const query = document.querySelector("#query").value.trim();
   const limit = Number(document.querySelector("#limit").value || 5);
+  const sourceName = document.querySelector("#source-name").value.trim();
+  const tag = document.querySelector("#tag").value.trim();
+  const dateFrom = document.querySelector("#date-from").value;
+  const dateTo = document.querySelector("#date-to").value;
+  const sortBy = document.querySelector("#sort-by").value;
 
   if (!query) {
     setStatus(searchStatus, "Query is required.", "status low");
@@ -112,12 +117,18 @@ searchForm.addEventListener("submit", async (event) => {
 
   setStatus(searchStatus, "Searching...", "status");
   try {
+    const payload = { query, limit, sort_by: sortBy };
+    if (sourceName) payload.source_name = sourceName;
+    if (tag) payload.tag = tag;
+    if (dateFrom) payload.date_from = dateFrom;
+    if (dateTo) payload.date_to = dateTo;
+
     const body = await asJson(
       await fetch(endpoint("/search"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ query, limit }),
+        body: JSON.stringify(payload),
       })
     );
     renderResults({ ...body.data, meta: body.meta || {} });

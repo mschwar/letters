@@ -1,13 +1,13 @@
 # LetterOps Snapshot Report
 
-Generated: 2026-02-07T21:26:50
+Generated: 2026-02-07T21:30:07
 Root: /Users/mschwar/Dropbox/letters
 
 ## Progress Summary
-Gist: Project: LetterOps Last Updated: 2026-02-07 21:26 (local) ========================================
+Gist: Project: LetterOps Last Updated: 2026-02-07 21:29 (local) ========================================
 
 Project: LetterOps
-Last Updated: 2026-02-07 21:26 (local)
+Last Updated: 2026-02-07 21:29 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
@@ -189,26 +189,30 @@ Keywords: 2026, phase, tests, added, scope, result, reference, built, pass, pyte
 ## Git State
 Branch: main
 Status:
-## main...origin/main
- M README.md
+## main...origin/main [ahead 1]
+ M apps/api/app/routers/search_router.py
+ M apps/api/app/schemas/search.py
+ M apps/api/tests/test_search_integration.py
+ M apps/web/app.js
+ M apps/web/index.html
+ M apps/web/styles.css
  M data/vectors/04af47cf-0ecd-47d5-ae40-e009417991c0/length.bin
  M data/vectors/chroma.sqlite3
  M progress.txt
- M snapshot.md
-?? apps/web/
 ?? data/backups/
+Reminder: Branch is ahead of remote by 1 commit(s). Run git push.
 Recent commits:
+0baf951 Start Phase 5 with web search UX shell
 bd71603 Add v1.0.0 release notes
 f299a54 Close release checklist with backup/security gates
 e0a3f96 Reduce search tail latency with retriever cache and warm-up
 53d2f6d Add distractor-aware judged gate and reduce vector false positives
-0350043 Add automated search quality gate and Make target
 Diff summary:
 (no diffs)
 
 ## Pytest Summary
 Status: PASS
-Summary: 16 passed, 1 warning in 4.19s
+Summary: 17 passed, 1 warning in 4.65s
 
 ## canonical-docs-v2.md Excerpt
 Gist: # PRD.md (Revised v2) ## 1) Product Overview LetterOps is a local-first document intelligence app for letter-heavy knowledge workflows (starting with Bahá’í letters). It ingests letters from email and watched folders, preserves originals, creates normalized derivatives, extracts metadata, links references, and provides fast retrieval by date/source/topic/reference. +Revised: Integrated Gemini's se...

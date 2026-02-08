@@ -239,3 +239,54 @@ def test_search_hybrid_fusion_prefers_vector_rank_when_configured() -> None:
     assert payload["data"]["results"][0]["fusion"]["vector_rank"] == 1
     assert payload["data"]["results"][0]["fusion"]["fts_weight"] == 0.0
     app.dependency_overrides.clear()
+
+
+def test_search_supports_filters_and_date_sorting() -> None:
+    client, SessionLocal = _setup_client()
+    _, doc_fts = _seed_user_and_doc(SessionLocal)
+    doc_vector = _seed_second_doc(SessionLocal)
+
+    login = client.post(
+        "/api/v1/auth/login",
+        json={"email": "viewer@example.com", "password": "secret"},
+    )
+    assert login.status_code == 200
+
+    by_source = client.post(
+        "/api/v1/search",
+        json={
+            "query": "guidance",
+            "source_name": "national spiritual assembly",
+            "limit": 5,
+        },
+    )
+    assert by_source.status_code == 200
+    source_payload = by_source.json()
+    assert len(source_payload["data"]["results"]) == 1
+    assert source_payload["data"]["results"][0]["document_id"] == doc_vector
+
+    by_tag = client.post(
+        "/api/v1/search",
+        json={"query": "guidance", "tag": "community", "limit": 5},
+    )
+    assert by_tag.status_code == 200
+    tag_payload = by_tag.json()
+    assert len(tag_payload["data"]["results"]) == 1
+    assert tag_payload["data"]["results"][0]["document_id"] == doc_fts
+
+    date_sorted = client.post(
+        "/api/v1/search",
+        json={
+            "query": "guidance",
+            "date_from": "2026-01-01",
+            "date_to": "2026-12-31",
+            "sort_by": "date_desc",
+            "limit": 5,
+        },
+    )
+    assert date_sorted.status_code == 200
+    date_payload = date_sorted.json()
+    assert date_payload["meta"]["sort_by"] == "date_desc"
+    assert date_payload["data"]["results"][0]["document_id"] == doc_vector
+    assert date_payload["data"]["results"][1]["document_id"] == doc_fts
+    app.dependency_overrides.clear()
