@@ -1,20 +1,20 @@
 # LetterOps Snapshot Report
 
-Generated: 2026-02-07T20:31:11
+Generated: 2026-02-07T20:34:24
 Root: /Users/mschwar/Dropbox/letters
 
 ## Progress Summary
-Gist: Project: LetterOps Last Updated: 2026-02-08 02:42 (local) ========================================
+Gist: Project: LetterOps Last Updated: 2026-02-08 02:47 (local) ========================================
 
 Project: LetterOps
-Last Updated: 2026-02-08 02:42 (local)
+Last Updated: 2026-02-08 02:47 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
 Phase: 4 (Intelligence/RAG Bootstrap)
 Branch: main
-Overall Progress: 80%
+Overall Progress: 84%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -33,7 +33,7 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Add richer answer synthesis (citations + confidence/explanations).
+- [ ] Add hybrid ranking blend (vector + FTS score fusion) and evaluation script.
 
 Blocked:
 - [ ] None.
@@ -164,6 +164,18 @@ FEATURE LOG (append-only)
 - Result:
   - PASS (2026-02-08): fallback path validated and default FTS path unchanged.
 
+[2026-02-08] Phase 4: Answer synthesis + confidence scoring
+- Scope reference: Phase 4 follow-up (citation formatting + confidence)
+- What was built:
+  - Added synthesized confidence object (`score`, `label`) to `/api/v1/search` responses.
+  - Added richer citation objects with numbered references (`[1]`, `[2]`, ...) and source metadata.
+  - Updated answer text to cite top evidence refs directly.
+  - Fixed unrelated date parsing defect in extraction for named-date formats.
+- Tests added/updated:
+  - `apps/api/tests/test_search_integration.py`
+- Result:
+  - PASS (2026-02-08): `pytest` suite green with confidence + citation assertions.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -184,44 +196,38 @@ TECH DEBT / IMPROVEMENTS
 
 ========================================
 NEXT STEPS CHECKLIST (PRIORITIZED)
-========================================
-Priority 0: Phase 4 Bootstrap
-- [x] Add `/api/v1/search` natural-language retrieval endpoint.
-- [x] Return source-cited answer summary and ranked results.
-- [x] Add optional vector retrieval backend (ChromaDB).
-- [ ] Add answer confidence scoring and richer citation formatting.
-
-Priority 1: Expand Pipeline (Linking + Tagging)
-- [x] Implement link inference (date/source cues per BACKEND_STRUCTURE.md) and persist to `document_links`.
-- [x] Implement tagging heuristics (controlled vocab from `tags`/`tag_aliases`) and persist to `document_tags`.
-- [x] Integrate linking + tagging into the ingest pipeline (complete skipped step).
-Parallel l
+===============================
 ... (truncated)
 
-Keywords: 2026, phase, tests, scope, pipeline, backend, reference, result, pass, added
+Keywords: 2026, phase, tests, scope, added, reference, result, pass, pytest, built
 
 ## Git State
 Branch: main
 Status:
-## main...origin/main [ahead 3]
- M .env.example
- M apps/api/app/core/config.py
+## main...origin/main [ahead 4]
+ M DOC_AGENT.md
  M apps/api/app/routers/search_router.py
+ M apps/api/tests/conftest.py
  M apps/api/tests/test_search_integration.py
+ M apps/worker/extraction.py
+ M infra/scripts/doc_agent.py
+ M infra/scripts/generate_snapshot.py
  M progress.txt
-?? apps/api/app/services/
+?? apps/api/tests/test_ingest_search_e2e.py
+?? apps/worker/tests/test_ingest_samples.py
+Reminder: Branch is ahead of remote by 4 commit(s). Run git push.
 Recent commits:
+1c2f193 Add optional Chroma vector retrieval with FTS fallback
 01feed0 Begin Phase 4 with authenticated FTS search endpoint
 fb0845f Patch jose warning handling and add snapshot pytest summary
 c880c5e Verify ingest pipeline after dependency install
 b52603c Expand pipeline linking/tagging and add auth guards
-c26d497 Document commit-after-major-task rule
 Diff summary:
 (no diffs)
 
 ## Pytest Summary
 Status: PASS
-Summary: 13 passed, 1 warning in 2.67s
+Summary: 15 passed, 1 warning in 3.38s
 
 ## canonical-docs-v2.md Excerpt
 Gist: # PRD.md (Revised v2) ## 1) Product Overview LetterOps is a local-first document intelligence app for letter-heavy knowledge workflows (starting with Bahá’í letters). It ingests letters from email and watched folders, preserves originals, creates normalized derivatives, extracts metadata, links references, and provides fast retrieval by date/source/topic/reference. +Revised: Integrated Gemini's se...
@@ -465,11 +471,11 @@ CREATE TABLE users (
 )
 
 Recent pipeline_runs:
-id, status, started_at
-d2e448bb-ed2f-495a-bab7-49f919006097, success, 2026-02-08T02:19:33.244788+00:00
-2e4ab680-716a-4348-ad02-13c306f115a8, success, 2026-02-08T02:04:29.065117+00:00
-4b15772a-bdf3-4a42-a855-7e4a5e4ad652, success, 2026-02-08T02:04:25.299691+00:00
-ce9ca3a5-70d3-498b-8bb4-c0f40a89787a, success, 2026-02-08T02:04:19.596460+00:00
+id, status, started_at, ended_at, error_summary, document_id, ingestion_event_id
+d2e448bb-ed2f-495a-bab7-49f919006097, success, 2026-02-08T02:19:33.244788+00:00, 2026-02-08T02:19:33.297953+00:00, None, 01KGXGR50BFDNE42KFGXW1NC0V, 0b5fd573-5a41-43c9-bb3e-eb882cb7329c
+2e4ab680-716a-4348-ad02-13c306f115a8, success, 2026-02-08T02:04:29.065117+00:00, 2026-02-08T02:04:29.093258+00:00, None, 01KGXFWJ0H8W9BBE7F85VHCS27, 16fa2189-94ff-423f-90c6-b0e403e14c98
+4b15772a-bdf3-4a42-a855-7e4a5e4ad652, success, 2026-02-08T02:04:25.299691+00:00, 2026-02-08T02:04:25.328602+00:00, None, 01KGXFWEAVAMB3GTY3A59D4ZKM, f79e5258-d1f2-43b2-9dbb-8081f3c1f4a0
+ce9ca3a5-70d3-498b-8bb4-c0f40a89787a, success, 2026-02-08T02:04:19.596460+00:00, 2026-02-08T02:04:19.619509+00:00, None, 01KGXFW8RHMZ99RP4ZBGGCCX2V, eb0da9a6-ee4a-46db-80ed-aa1c2edcc6ed
 
 ## Repo Structure
 /Users/mschwar/Dropbox/letters

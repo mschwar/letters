@@ -112,7 +112,12 @@ def test_search_returns_ranked_results_and_answer() -> None:
     payload = response.json()
     assert payload["data"]["results"]
     assert payload["data"]["results"][0]["document_id"] == document_id
-    assert document_id in payload["data"]["answer"]
+    assert payload["data"]["confidence"]["label"] in {"low", "medium", "high"}
+    assert 0.0 <= payload["data"]["confidence"]["score"] <= 1.0
+    assert payload["data"]["citations"]
+    assert payload["data"]["citations"][0]["document_id"] == document_id
+    assert payload["data"]["citations"][0]["ref"] == "[1]"
+    assert "[1]" in payload["data"]["answer"]
     assert payload["meta"]["retrieval_mode"] == "fts"
     app.dependency_overrides.clear()
 
@@ -144,6 +149,8 @@ def test_search_vector_enabled_falls_back_to_fts_when_unavailable() -> None:
     assert response.status_code == 200
     payload = response.json()
     assert payload["data"]["results"][0]["document_id"] == document_id
+    assert payload["data"]["citations"][0]["document_id"] == document_id
+    assert payload["data"]["confidence"]["label"] in {"low", "medium", "high"}
     assert payload["meta"]["retrieval_mode"] == "fts"
     assert payload["meta"]["vector_fallback_reason"] == "vector backend unavailable"
     app.dependency_overrides.clear()

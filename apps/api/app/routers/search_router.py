@@ -114,6 +114,58 @@ def _query_vector(db: Session, query: str, limit: int) -> list[dict]:
     return results
 
 
+def _confidence_from_results(results: list[dict]) -> tuple[float, str]:
+    if not results:
+        return 0.0, "low"
+
+    top_score = float(results[0].get("score") or 0.0)
+    second_score = float(results[1].get("score") or 0.0) if len(results) > 1 else 0.0
+    separation = max(top_score - second_score, 0.0)
+
+    base = min(top_score / 4.0, 1.0)
+    bonus = 0.15 if separation >= 0.2 else 0.05 if separation >= 0.1 else 0.0
+    score = min(base + bonus, 1.0)
+
+    if score >= 0.75:
+        label = "high"
+    elif score >= 0.45:
+        label = "medium"
+    else:
+        label = "low"
+    return round(score, 3), label
+
+
+def _build_citations(results: list[dict], max_items: int = 3) -> list[dict]:
+    citations: list[dict] = []
+    for idx, item in enumerate(results[:max_items], start=1):
+        citations.append(
+            {
+                "ref": f"[{idx}]",
+                "document_id": item["document_id"],
+                "title": item["title"],
+                "source_name": item["source_name"],
+                "document_date": item["document_date"],
+                "snippet": item["snippet"],
+                "score": item["score"],
+            }
+        )
+    return citations
+
+
+def _build_answer(results: list[dict], citations: list[dict], confidence_label: str) -> str:
+    if not results:
+        return "No matching documents found."
+
+    refs = " ".join(citation["ref"] for citation in citations)
+    count = len(results)
+    noun = "document" if count == 1 else "documents"
+    return (
+        f"Found {count} relevant {noun}. "
+        f"Confidence: {confidence_label}. "
+        f"Top evidence: {refs}"
+    )
+
+
 @router.post("")
 def search_documents(
     payload: SearchRequest,
@@ -150,12 +202,9 @@ def search_documents(
             ) from exc
         raise
 
-    if results:
-        top = results[:3]
-        citations = ", ".join(item["document_id"] for item in top)
-        answer = f"Found {len(results)} relevant documents. Top sources: {citations}."
-    else:
-        answer = "No matching documents found."
+    confidence_score, confidence_label = _confidence_from_results(results)
+    citations = _build_citations(results)
+    answer = _build_answer(results, citations, confidence_label)
 
     meta = {"retrieval_mode": retrieval_mode, "request_user_id": user.id}
     if vector_fallback_reason:
@@ -165,6 +214,8 @@ def search_documents(
         data={
             "query": payload.query,
             "answer": answer,
+            "confidence": {"score": confidence_score, "label": confidence_label},
+            "citations": citations,
             "results": results,
         },
         meta=meta,

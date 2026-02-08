@@ -1,12 +1,12 @@
 Project: LetterOps
-Last Updated: 2026-02-08 02:42 (local)
+Last Updated: 2026-02-08 02:47 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
 Phase: 4 (Intelligence/RAG Bootstrap)
 Branch: main
-Overall Progress: 80%
+Overall Progress: 84%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -25,7 +25,7 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Add richer answer synthesis (citations + confidence/explanations).
+- [ ] Add hybrid ranking blend (vector + FTS score fusion) and evaluation script.
 
 Blocked:
 - [ ] None.
@@ -156,6 +156,18 @@ FEATURE LOG (append-only)
 - Result:
   - PASS (2026-02-08): fallback path validated and default FTS path unchanged.
 
+[2026-02-08] Phase 4: Answer synthesis + confidence scoring
+- Scope reference: Phase 4 follow-up (citation formatting + confidence)
+- What was built:
+  - Added synthesized confidence object (`score`, `label`) to `/api/v1/search` responses.
+  - Added richer citation objects with numbered references (`[1]`, `[2]`, ...) and source metadata.
+  - Updated answer text to cite top evidence refs directly.
+  - Fixed unrelated date parsing defect in extraction for named-date formats.
+- Tests added/updated:
+  - `apps/api/tests/test_search_integration.py`
+- Result:
+  - PASS (2026-02-08): `pytest` suite green with confidence + citation assertions.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -181,7 +193,7 @@ Priority 0: Phase 4 Bootstrap
 - [x] Add `/api/v1/search` natural-language retrieval endpoint.
 - [x] Return source-cited answer summary and ranked results.
 - [x] Add optional vector retrieval backend (ChromaDB).
-- [ ] Add answer confidence scoring and richer citation formatting.
+- [x] Add answer confidence scoring and richer citation formatting.
 
 Priority 1: Expand Pipeline (Linking + Tagging)
 - [x] Implement link inference (date/source cues per BACKEND_STRUCTURE.md) and persist to `document_links`.

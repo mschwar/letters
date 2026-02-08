@@ -6,6 +6,7 @@ import argparse
 import ast
 import datetime as dt
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -33,6 +34,14 @@ DOC_DESCRIPTIONS = {
 }
 
 TYPE_NAMES = {"String", "Text", "Integer", "Float", "Boolean", "DateTime"}
+DOC_AGENT_DEFAULT_KEYS = {
+    "DOC_AGENT_AUTOCOMMIT",
+    "DOC_AGENT_COMMIT_MSG",
+    "DOC_AGENT_SUMMARY_CMD",
+}
+DOC_AGENT_CONFIG_RE = re.compile(
+    r"(DOC_AGENT_[A-Z_]+)=('([^']*)'|\"([^\"]*)\"|([^\\s`]+))"
+)
 
 
 class DocAgentError(RuntimeError):
@@ -207,6 +216,7 @@ Doc agent runs post-commit to keep docs aligned with code changes.
 - Optionally auto-commits doc updates
 
 ## Configuration
+- Defaults are read from this file when the environment variable is unset.
 - `DOC_AGENT_AUTOCOMMIT=1` to auto-commit
 - `DOC_AGENT_COMMIT_MSG="Auto-doc: ..."`
 - `DOC_AGENT_SUMMARY_CMD="..."` to generate summaries (stdin diff)
@@ -514,6 +524,25 @@ def git_commit(message: str) -> None:
     )
 
 
+def load_doc_agent_defaults() -> None:
+    path = ROOT_DIR / "DOC_AGENT.md"
+    if not path.exists():
+        return
+    try:
+        content = read_text(path)
+    except OSError:
+        return
+    for match in DOC_AGENT_CONFIG_RE.finditer(content):
+        key = match.group(1)
+        if key not in DOC_AGENT_DEFAULT_KEYS:
+            continue
+        if os.getenv(key):
+            continue
+        value = match.group(3) or match.group(4) or match.group(5) or ""
+        if value:
+            os.environ[key] = value
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Doc agent for LetterOps")
     parser.add_argument("--mode", choices=["post-commit", "manual"], default="manual")
@@ -523,6 +552,8 @@ def main() -> int:
 
     if os.getenv("DOC_AGENT_SKIP") == "1":
         return 0
+
+    load_doc_agent_defaults()
 
     if not git_available():
         print("Doc agent: git not available", file=sys.stderr)

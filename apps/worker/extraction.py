@@ -57,19 +57,19 @@ def extract_text(path: Path) -> str:
 
 
 def _find_date(text: str) -> tuple[str | None, float]:
-    for pattern in DATE_PATTERNS:
-        match = pattern.search(text)
-        if not match:
-            continue
-        if len(match.groups()) == 3 and pattern.pattern.startswith("("):
-            year, month, day = match.groups()
-            return f"{year}-{month}-{day}", 0.9
-        month_name, day, year = match.groups()
+    iso_match = DATE_PATTERNS[0].search(text)
+    if iso_match:
+        year, month, day = iso_match.groups()
+        return f"{year}-{month}-{day}", 0.9
+
+    named_match = DATE_PATTERNS[1].search(text)
+    if named_match:
+        month_name, day, year = named_match.groups()
         try:
             parsed = datetime.strptime(f"{month_name} {day} {year}", "%B %d %Y")
             return parsed.strftime("%Y-%m-%d"), 0.7
         except ValueError:
-            continue
+            pass
     return None, 0.0
 
 

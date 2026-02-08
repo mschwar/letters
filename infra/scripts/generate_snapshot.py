@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import shutil
 import sqlite3
 import subprocess
@@ -210,6 +211,30 @@ def build_tree(root: Path, depth: int, warnings: SnapshotWarnings) -> str:
     return "\n".join(lines)
 
 
+def parse_git_ahead_behind(status: str) -> tuple[Optional[int], Optional[int]]:
+    if not status:
+        return None, None
+    first_line = status.splitlines()[0]
+    match = re.search(r"\[([^\]]+)\]", first_line)
+    if not match:
+        return None, None
+    ahead: Optional[int] = None
+    behind: Optional[int] = None
+    for part in match.group(1).split(","):
+        chunk = part.strip()
+        if chunk.startswith("ahead "):
+            try:
+                ahead = int(chunk.split()[1])
+            except (IndexError, ValueError):
+                ahead = None
+        elif chunk.startswith("behind "):
+            try:
+                behind = int(chunk.split()[1])
+            except (IndexError, ValueError):
+                behind = None
+    return ahead, behind
+
+
 def get_git_state(root: Path, warnings: SnapshotWarnings, log_count: int) -> dict[str, str]:
     state: dict[str, str] = {}
     state["branch"] = run_cmd(["git", "-C", str(root), "branch", "--show-current"], root, warnings)
@@ -224,6 +249,13 @@ def get_git_state(root: Path, warnings: SnapshotWarnings, log_count: int) -> dic
         root,
         warnings,
     )
+    ahead, behind = parse_git_ahead_behind(state.get("status", ""))
+    if ahead is not None:
+        state["ahead_count"] = str(ahead)
+    if behind is not None:
+        state["behind_count"] = str(behind)
+    if ahead and ahead > 0:
+        state["push_reminder"] = f"Branch is ahead of remote by {ahead} commit(s). Run git push."
     return state
 
 
@@ -296,12 +328,38 @@ def get_db_snapshot(db_path: Path, warnings: SnapshotWarnings, limit_runs: int) 
             column_names = [row[1] for row in columns]
             preferred = [
                 name
-                for name in ["id", "run_id", "status", "started_at", "completed_at", "created_at"]
+                for name in [
+                    "id",
+                    "run_id",
+                    "status",
+                    "started_at",
+                    "ended_at",
+                    "completed_at",
+                    "created_at",
+                    "error_summary",
+                    "document_id",
+                    "ingestion_event_id",
+                ]
                 if name in column_names
             ]
             selected = preferred or column_names
             if selected:
-                query = f"SELECT {', '.join(selected)} FROM pipeline_runs ORDER BY rowid DESC LIMIT ?"
+                if "ended_at" in column_names and "started_at" in column_names:
+                    order_expr = "COALESCE(ended_at, started_at)"
+                elif "ended_at" in column_names:
+                    order_expr = "ended_at"
+                elif "completed_at" in column_names:
+                    order_expr = "completed_at"
+                elif "started_at" in column_names:
+                    order_expr = "started_at"
+                elif "created_at" in column_names:
+                    order_expr = "created_at"
+                else:
+                    order_expr = "rowid"
+                query = (
+                    f"SELECT {', '.join(selected)} FROM pipeline_runs "
+                    f"ORDER BY {order_expr} DESC LIMIT ?"
+                )
                 rows = cursor.execute(query, (limit_runs,)).fetchall()
                 snapshot["recent_pipeline_runs"] = {
                     "columns": selected,
@@ -354,6 +412,9 @@ def format_markdown(report: dict[str, object]) -> str:
         if status:
             lines.append("Status:")
             lines.append(status)
+        reminder = git_state.get("push_reminder", "")
+        if reminder:
+            lines.append(f"Reminder: {reminder}")
         commits = git_state.get("recent_commits", "")
         if commits:
             lines.append("Recent commits:")
@@ -411,12 +472,20 @@ def format_markdown(report: dict[str, object]) -> str:
                 lines.append("Schema:")
                 lines.append("\n".join(schema))
             runs = db_snapshot.get("recent_pipeline_runs", {})
-            if isinstance(runs, dict) and runs.get("columns"):
+            if isinstance(runs, dict):
                 lines.append("")
                 lines.append("Recent pipeline_runs:")
-                lines.append(", ".join(runs.get("columns", [])))
-                for row in runs.get("rows", []):
-                    lines.append(", ".join(str(value) for value in row))
+                columns = runs.get("columns", [])
+                rows = runs.get("rows", [])
+                if columns:
+                    lines.append(", ".join(columns))
+                    if rows:
+                        for row in rows:
+                            lines.append(", ".join(str(value) for value in row))
+                    else:
+                        lines.append("(none)")
+                else:
+                    lines.append("(unavailable)")
             lines.append("")
 
     tree = report.get("tree")
