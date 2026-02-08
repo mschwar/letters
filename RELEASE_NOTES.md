@@ -1,6 +1,6 @@
 # Release Notes
 
-## v1.0.1 (Unreleased)
+## v1.0.1 (2026-02-08)
 
 Post-`v1.0.0` stabilization and frontend productionization updates on `main`.
 
@@ -22,7 +22,7 @@ Post-`v1.0.0` stabilization and frontend productionization updates on `main`.
 ### Verification
 - Backend tests: `17 passed`.
 - Web checks: `npm run build`, `npm run lint`, `npm run typecheck` passing locally.
-- E2E tests authored and discoverable (`3 tests`); full browser execution in this sandbox is network-limited, but CI runs install + execution on runner.
+- E2E tests expanded and discoverable (`7 tests` across core flows); full browser execution in this sandbox is network-limited, but CI runs install + execution on runner.
 
 ## v1.0.0 (2026-02-08)
 
