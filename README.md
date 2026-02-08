@@ -20,3 +20,13 @@ Local-first document intelligence system for managing Bahá’í letters. See `c
 2. Set env vars in `.env` (see `.env.example` if present).
 3. Run migrations using Alembic.
 4. Start the API with `uvicorn app.main:app --reload` from `apps/api`.
+
+## UHJ Scraping Utility
+- Script: `infra/scripts/scrape_uhj_messages.py`
+- Purpose: scrape UHJ messages index and save each message as markdown with frontmatter + content hash.
+- Dry run example:
+  - `.venv/bin/python infra/scripts/scrape_uhj_messages.py --dry-run --max-items 10`
+- Pull real files:
+  - `make scrape-uhj`
+- Output path default:
+  - `data/samples/uhj_messages_md`

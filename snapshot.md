@@ -1,13 +1,13 @@
 # LetterOps Snapshot Report
 
-Generated: 2026-02-07T21:30:07
+Generated: 2026-02-07T21:33:32
 Root: /Users/mschwar/Dropbox/letters
 
 ## Progress Summary
-Gist: Project: LetterOps Last Updated: 2026-02-07 21:29 (local) ========================================
+Gist: Project: LetterOps Last Updated: 2026-02-07 21:33 (local) ========================================
 
 Project: LetterOps
-Last Updated: 2026-02-07 21:29 (local)
+Last Updated: 2026-02-07 21:33 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
@@ -189,30 +189,28 @@ Keywords: 2026, phase, tests, added, scope, result, reference, built, pass, pyte
 ## Git State
 Branch: main
 Status:
-## main...origin/main [ahead 1]
- M apps/api/app/routers/search_router.py
- M apps/api/app/schemas/search.py
- M apps/api/tests/test_search_integration.py
- M apps/web/app.js
- M apps/web/index.html
- M apps/web/styles.css
+## main...origin/main [ahead 2]
+ M Makefile
+ M README.md
  M data/vectors/04af47cf-0ecd-47d5-ae40-e009417991c0/length.bin
  M data/vectors/chroma.sqlite3
  M progress.txt
 ?? data/backups/
-Reminder: Branch is ahead of remote by 1 commit(s). Run git push.
+?? data/samples/uhj_messages_md/
+?? infra/scripts/scrape_uhj_messages.py
+Reminder: Branch is ahead of remote by 2 commit(s). Run git push.
 Recent commits:
+bf63a07 Add search filters and sorting to API and web UI
 0baf951 Start Phase 5 with web search UX shell
 bd71603 Add v1.0.0 release notes
 f299a54 Close release checklist with backup/security gates
 e0a3f96 Reduce search tail latency with retriever cache and warm-up
-53d2f6d Add distractor-aware judged gate and reduce vector false positives
 Diff summary:
 (no diffs)
 
 ## Pytest Summary
 Status: PASS
-Summary: 17 passed, 1 warning in 4.65s
+Summary: 17 passed, 1 warning in 3.93s
 
 ## canonical-docs-v2.md Excerpt
 Gist: # PRD.md (Revised v2) ## 1) Product Overview LetterOps is a local-first document intelligence app for letter-heavy knowledge workflows (starting with Bahá’í letters). It ingests letters from email and watched folders, preserves originals, creates normalized derivatives, extracts metadata, links references, and provides fast retrieval by date/source/topic/reference. +Revised: Integrated Gemini's se...
@@ -268,7 +266,14 @@ Local-first document intelligence system for managing Bahá’í letters. See `c
 3. Run migrations using Alembic.
 4. Start the API with `uvicorn app.main:app --reload` from `apps/api`.
 
-Keywords: appsweb, shell, phase, local, see, web, appsapi, backend, migrations, run
+## UHJ Scraping Utility
+- Script: `infra/scripts/scrape_uhj_messages.py`
+- Purpose: scrape UHJ messages index and save each message as markdown with frontmatter + content hash.
+- Dry run example:
+  - `.venv/bin/python inf
+... (truncated)
+
+Keywords: appsweb, shell, phase, run, uhj, local, see, web, appsapi, backend
 
 ## DB Snapshot
 Path: /Users/mschwar/Dropbox/letters/data/db.sqlite

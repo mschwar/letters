@@ -1,5 +1,5 @@
 Project: LetterOps
-Last Updated: 2026-02-07 21:29 (local)
+Last Updated: 2026-02-07 21:33 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
@@ -283,6 +283,19 @@ FEATURE LOG (append-only)
 - Result:
   - PASS (2026-02-08): `apps/api/tests/test_search_integration.py` all tests passing including new filter/sort test.
 
+[2026-02-08] Phase 5: Automated UHJ scraping utility
+- Scope reference: Phase 5 data tooling (comprehensive/repeatable corpus pull)
+- What was built:
+  - Added `infra/scripts/scrape_uhj_messages.py` using `requests` + `BeautifulSoup`.
+  - Implemented index parsing, per-message fetch, markdown frontmatter output, and content-hash dedupe.
+  - Added thread-safe rate limiting, dry-run mode, max-items bounds, and overwrite support.
+  - Added cleanup to strip page UI artifacts from extracted text.
+  - Added `make scrape-uhj` target and README usage docs.
+- Result:
+  - PASS (2026-02-08): live dry-run succeeded for 10 entries with 0 errors.
+  - PASS (2026-02-08): pulled 3 real markdown examples under `data/samples/uhj_messages_md`.
+  - PASS (2026-02-08): rerun on same 3 entries correctly reported duplicate skips.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -307,6 +320,7 @@ NEXT STEPS CHECKLIST (PRIORITIZED)
 Priority 0: Phase 5 UX Polish
 - [x] Create initial user-facing web shell for auth + search + evidence display.
 - [x] Add filter controls (source/date/tag) and result sorting to web UI.
+- [x] Add automated scraper utility for repeatable UHJ corpus pulls.
 - [ ] Add loading skeletons + empty/error states tuned for retrieval workflows.
 - [ ] Add frontend smoke test coverage for login/search flows.
 - [ ] Decide and migrate to formal frontend build stack (Next.js or Vite).

@@ -11,7 +11,7 @@ SEARCH_GATE_MIN_MRR ?= 0.60
 SEARCH_GATE_MAX_P95_MS ?= 250.0
 SEARCH_GATE_MIN_NO_HIT_ACCURACY ?= 0.90
 
-.PHONY: snapshot snapshot-json verify search-gate backup-roundtrip security-check release-check
+.PHONY: snapshot snapshot-json verify search-gate backup-roundtrip security-check release-check scrape-uhj
 
 snapshot:
 	@$(PYTHON) $(SNAPSHOT_SCRIPT) -o $(SNAPSHOT_OUT)
@@ -42,3 +42,6 @@ security-check:
 	@$(PYTHON) -m pip_audit --cache-dir /tmp/pip-audit-cache --ignore-vuln CVE-2024-23342
 
 release-check: verify search-gate backup-roundtrip security-check
+
+scrape-uhj:
+	@$(PYTHON) infra/scripts/scrape_uhj_messages.py --workers 4 --delay-seconds 0.8
