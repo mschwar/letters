@@ -87,6 +87,29 @@ def parse_args() -> argparse.Namespace:
         default="text",
         help="Output format.",
     )
+    parser.add_argument(
+        "--min-hit-rate-at-k",
+        type=float,
+        default=None,
+        help="Optional minimum judged hit_rate_at_k threshold for gate pass.",
+    )
+    parser.add_argument(
+        "--min-mrr",
+        type=float,
+        default=None,
+        help="Optional minimum judged MRR threshold for gate pass.",
+    )
+    parser.add_argument(
+        "--max-p95-ms",
+        type=float,
+        default=None,
+        help="Optional maximum p95 latency threshold (ms) for gate pass.",
+    )
+    parser.add_argument(
+        "--fail-on-gate",
+        action="store_true",
+        help="Exit with code 1 when gate thresholds are provided and not met.",
+    )
     return parser.parse_args()
 
 
@@ -278,6 +301,47 @@ def _score_summary(summary: dict[str, Any], target_p95_ms: float) -> float:
     return (hit_rate * 0.7) + (mrr * 0.3) - (latency_penalty * 0.2)
 
 
+def evaluate_gate(summary: dict[str, Any], args: argparse.Namespace) -> dict[str, Any] | None:
+    checks: list[dict[str, Any]] = []
+    if args.min_hit_rate_at_k is not None:
+        actual = float(summary.get("hit_rate_at_k") or 0.0)
+        checks.append(
+            {
+                "name": "min_hit_rate_at_k",
+                "expected": args.min_hit_rate_at_k,
+                "actual": actual,
+                "passed": actual >= args.min_hit_rate_at_k,
+            }
+        )
+    if args.min_mrr is not None:
+        actual = float(summary.get("mrr") or 0.0)
+        checks.append(
+            {
+                "name": "min_mrr",
+                "expected": args.min_mrr,
+                "actual": actual,
+                "passed": actual >= args.min_mrr,
+            }
+        )
+    if args.max_p95_ms is not None:
+        actual = float(summary.get("p95_latency_ms") or 0.0)
+        checks.append(
+            {
+                "name": "max_p95_ms",
+                "expected": args.max_p95_ms,
+                "actual": actual,
+                "passed": actual <= args.max_p95_ms,
+            }
+        )
+    if not checks:
+        return None
+    return {
+        "enabled": True,
+        "passed": all(bool(check["passed"]) for check in checks),
+        "checks": checks,
+    }
+
+
 def run_calibration(args: argparse.Namespace, entries: list[dict[str, Any]]) -> dict[str, Any]:
     fts_weights = _parse_float_list(args.fts_weight_values)
     vector_weights = _parse_float_list(args.vector_weight_values)
@@ -338,12 +402,29 @@ def main() -> None:
 
     totals = summarize(records)
     payload = {"summary": totals, "records": records}
+    gate = evaluate_gate(totals, args)
+    if gate is not None:
+        payload["gate"] = gate
     if args.calibrate:
         payload["calibration"] = run_calibration(args, entries)
+
+    exit_code = 0
+    if args.fail_on_gate and gate is not None and not gate["passed"]:
+        exit_code = 1
+
     if args.format == "json":
         print(json.dumps(payload, indent=2))
     else:
         print(format_text(records, totals))
+        if gate is not None:
+            print("Gate:", "PASS" if gate["passed"] else "FAIL")
+            for check in gate["checks"]:
+                print(
+                    f"- {check['name']}: actual={check['actual']} expected={check['expected']} "
+                    f"=> {'PASS' if check['passed'] else 'FAIL'}"
+                )
+    if exit_code:
+        raise SystemExit(exit_code)
 
 
 if __name__ == "__main__":

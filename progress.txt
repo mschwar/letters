@@ -1,12 +1,12 @@
 Project: LetterOps
-Last Updated: 2026-02-08 03:18 (local)
+Last Updated: 2026-02-08 03:22 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
 Phase: 4 (Intelligence/RAG Bootstrap)
 Branch: main
-Overall Progress: 96%
+Overall Progress: 98%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -25,8 +25,8 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Add release gate checks (automated fail if judged-set hit_rate_at_k or latency thresholds regress).
 - [ ] Expand judged set with harder semantic paraphrases and cross-topic distractors.
+- [ ] Investigate and reduce tail-latency outlier seen in judged search evaluation.
 
 Blocked:
 - [ ] None.
@@ -215,6 +215,15 @@ FEATURE LOG (append-only)
   - Best expanded-set trial: `fts_weight=0.2`, `vector_weight=0.2`, `rrf_k=10` with `hit_rate_at_k=0.7`, `mrr=0.65`, `p95_latency_ms=91.788`.
   - Default fusion settings updated to `0.2/0.2/10`.
 
+[2026-02-08] Phase 4: Automated search quality gate
+- Scope reference: Next step (release gate checks)
+- What was built:
+  - Added threshold gate options to `infra/scripts/evaluate_search.py` (`--min-hit-rate-at-k`, `--min-mrr`, `--max-p95-ms`, `--fail-on-gate`).
+  - Added `make search-gate` target with vector-enabled judged-set enforcement.
+  - Defined initial gate thresholds in `Makefile`: hit_rate_at_k >= 0.65, mrr >= 0.60, p95 <= 250ms.
+- Result:
+  - PASS (2026-02-08): `make search-gate` succeeds on current corpus with `hit_rate_at_k=0.7`, `mrr=0.65`, `p95_latency_ms=149.568`.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -245,6 +254,7 @@ Priority 0: Phase 4 Bootstrap
 - [x] Calibrate fusion weights using judged query set; capture latency + quality metrics.
 - [x] Enable vector backend (`chromadb`) and rerun judged calibration with true hybrid/vector retrieval.
 - [x] Expand judged set and stabilize default fusion settings from larger benchmark.
+- [x] Add release gate checks (automated fail on judged-set quality/latency regressions).
 
 Priority 1: Expand Pipeline (Linking + Tagging)
 - [x] Implement link inference (date/source cues per BACKEND_STRUCTURE.md) and persist to `document_links`.
