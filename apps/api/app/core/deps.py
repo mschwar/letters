@@ -10,12 +10,12 @@ from app.core.security import decode_token
 from app.db.models import User
 
 
-AccessTokenCookie = Annotated[str | None, Cookie(default=None, alias="access_token")]
+AccessTokenCookie = Annotated[str | None, Cookie(alias="access_token")]
 
 
 def get_current_user(
     db: Annotated[Session, Depends(get_db)],
-    access_token: AccessTokenCookie,
+    access_token: AccessTokenCookie = None,
 ) -> User:
     if not access_token:
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Not authenticated")
