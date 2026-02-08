@@ -8,6 +8,7 @@ Operational rules (keep in sync with canonical-docs-v2.md).
 - Deterministic file naming and schema versioning.
 - Type safety; avoid Any.
 - Files are the source of truth.
+- Commit changes after every major task.
 
 ## Cross-References
 <!-- DOC-AGENT:START xrefs -->

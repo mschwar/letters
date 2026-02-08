@@ -153,7 +153,7 @@ Users can file letters chronologically, but struggle to:
 
 # PERSISTANT.md (Revised v2)
 
-[Kept GPT's rules; added Gemini's operational rules: +Type safety (no any), +Data integrity (files as truth). Revised forbidden: +No cloud LLMs.]
+[Kept GPT's rules; added Gemini's operational rules: +Type safety (no any), +Data integrity (files as truth), +Commit changes after every major task. Revised forbidden: +No cloud LLMs.]
 
 ---
 
