@@ -1,5 +1,29 @@
 # Release Notes
 
+## v1.0.1 (Unreleased)
+
+Post-`v1.0.0` stabilization and frontend productionization updates on `main`.
+
+### Highlights
+- Migrated `apps/web` from static shell to Next.js App Router with production build/start flow.
+- Added full phase routes:
+  - `/dashboard` (auth + retrieval controls + answer/citations/results)
+  - `/review` (confidence and citation-quality checks)
+  - `/graph` (query-to-citation/result relationship view)
+- Added richer global UI shell/theme and cross-route search-state persistence.
+- Removed legacy static web files (`index.html`, `app.js`, `styles.css`).
+- Upgraded frontend to patched Next.js (`16.1.6`) and added lint/typecheck/build validation.
+- Added Playwright E2E coverage for dashboard/review/graph route flows.
+- Added GitHub Actions CI workflow:
+  - backend pytest
+  - web build/lint/typecheck
+  - Playwright browser install + E2E run
+
+### Verification
+- Backend tests: `17 passed`.
+- Web checks: `npm run build`, `npm run lint`, `npm run typecheck` passing locally.
+- E2E tests authored and discoverable (`3 tests`); full browser execution in this sandbox is network-limited, but CI runs install + execution on runner.
+
 ## v1.0.0 (2026-02-08)
 
 Initial baseline release of LetterOps as a local-first document intelligence system for letter archives.
