@@ -8,6 +8,7 @@ SEARCH_GATE_LIMIT ?= 5
 SEARCH_GATE_MIN_HIT_RATE ?= 0.65
 SEARCH_GATE_MIN_MRR ?= 0.60
 SEARCH_GATE_MAX_P95_MS ?= 250.0
+SEARCH_GATE_MIN_NO_HIT_ACCURACY ?= 0.90
 
 .PHONY: snapshot snapshot-json verify search-gate
 
@@ -29,4 +30,5 @@ search-gate:
 		--min-hit-rate-at-k $(SEARCH_GATE_MIN_HIT_RATE) \
 		--min-mrr $(SEARCH_GATE_MIN_MRR) \
 		--max-p95-ms $(SEARCH_GATE_MAX_P95_MS) \
+		--min-no-hit-accuracy $(SEARCH_GATE_MIN_NO_HIT_ACCURACY) \
 		--fail-on-gate

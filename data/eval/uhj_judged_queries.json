@@ -118,5 +118,37 @@
     "expected_archive_suffixes": [
       "19631218_001.pdf"
     ]
+  },
+  {
+    "query": "quantum error correction on superconducting qubits",
+    "expect_no_hit": true
+  },
+  {
+    "query": "recipe for sourdough hydration percentages",
+    "expect_no_hit": true
+  },
+  {
+    "query": "nfl playoff wildcard standings and spread picks",
+    "expect_no_hit": true
+  },
+  {
+    "query": "javascript async await promise concurrency patterns",
+    "expect_no_hit": true
+  },
+  {
+    "query": "diagnosis and treatment guidelines for appendicitis",
+    "expect_no_hit": true
+  },
+  {
+    "query": "mars rover telemetry and orbital insertion data",
+    "expect_no_hit": true
+  },
+  {
+    "query": "best practices for postgres index vacuum tuning",
+    "expect_no_hit": true
+  },
+  {
+    "query": "global crude oil futures market technical analysis",
+    "expect_no_hit": true
   }
 ]

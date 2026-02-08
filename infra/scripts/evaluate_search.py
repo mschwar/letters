@@ -106,6 +106,12 @@ def parse_args() -> argparse.Namespace:
         help="Optional maximum p95 latency threshold (ms) for gate pass.",
     )
     parser.add_argument(
+        "--min-no-hit-accuracy",
+        type=float,
+        default=None,
+        help="Optional minimum accuracy for queries marked expect_no_hit.",
+    )
+    parser.add_argument(
         "--fail-on-gate",
         action="store_true",
         help="Exit with code 1 when gate thresholds are provided and not met.",
@@ -191,8 +197,15 @@ def evaluate_one(db, entry: dict[str, Any], limit: int) -> dict:
     if expected_suffixes:
         rank = _first_match_rank(record["top_archive_paths"], expected_suffixes)
         record["expected_archive_suffixes"] = expected_suffixes
+        record["expectation_type"] = "expected_match"
         record["hit_at_k"] = rank is not None
         record["mrr"] = round(1.0 / rank, 3) if rank else 0.0
+    elif bool(entry.get("expect_no_hit")):
+        record["expectation_type"] = "expect_no_hit"
+        no_hit = len(record["top_document_ids"]) == 0
+        record["hit_at_k"] = no_hit
+        record["mrr"] = 1.0 if no_hit else 0.0
+        record["expect_no_hit"] = True
 
     if fallback_reason:
         record["vector_fallback_reason"] = fallback_reason
@@ -205,8 +218,14 @@ def summarize(records: list[dict]) -> dict:
     p95_ms = _percentile(latencies, 95.0) if latencies else 0.0
     hybrid_count = sum(1 for row in records if row.get("retrieval_mode") == "hybrid")
     judged = [row for row in records if "hit_at_k" in row]
+    no_hit_rows = [row for row in records if row.get("expectation_type") == "expect_no_hit"]
     hit_rate = statistics.mean([1.0 if row.get("hit_at_k") else 0.0 for row in judged]) if judged else None
     mrr = statistics.mean([float(row.get("mrr", 0.0)) for row in judged]) if judged else None
+    no_hit_accuracy = (
+        statistics.mean([1.0 if row.get("hit_at_k") else 0.0 for row in no_hit_rows])
+        if no_hit_rows
+        else None
+    )
     return {
         "queries": len(records),
         "avg_latency_ms": round(avg_ms, 3),
@@ -215,6 +234,8 @@ def summarize(records: list[dict]) -> dict:
         "judged_queries": len(judged),
         "hit_rate_at_k": round(hit_rate, 3) if hit_rate is not None else None,
         "mrr": round(mrr, 3) if mrr is not None else None,
+        "no_hit_queries": len(no_hit_rows),
+        "no_hit_accuracy": round(no_hit_accuracy, 3) if no_hit_accuracy is not None else None,
     }
 
 
@@ -238,7 +259,8 @@ def format_text(records: list[dict], totals: dict) -> str:
     lines.append(
         f"Queries={totals['queries']} avg_latency_ms={totals['avg_latency_ms']} "
         f"p95_latency_ms={totals['p95_latency_ms']} hybrid_count={totals['hybrid_count']} "
-        f"judged={totals.get('judged_queries', 0)} hit_rate_at_k={totals.get('hit_rate_at_k')} mrr={totals.get('mrr')}"
+        f"judged={totals.get('judged_queries', 0)} hit_rate_at_k={totals.get('hit_rate_at_k')} "
+        f"mrr={totals.get('mrr')} no_hit_accuracy={totals.get('no_hit_accuracy')}"
     )
     lines.append("")
     lines.append("query | mode | latency_ms | fts/vector | confidence | top_ids")
@@ -331,6 +353,16 @@ def evaluate_gate(summary: dict[str, Any], args: argparse.Namespace) -> dict[str
                 "expected": args.max_p95_ms,
                 "actual": actual,
                 "passed": actual <= args.max_p95_ms,
+            }
+        )
+    if args.min_no_hit_accuracy is not None:
+        actual = float(summary.get("no_hit_accuracy") or 0.0)
+        checks.append(
+            {
+                "name": "min_no_hit_accuracy",
+                "expected": args.min_no_hit_accuracy,
+                "actual": actual,
+                "passed": actual >= args.min_no_hit_accuracy,
             }
         )
     if not checks:

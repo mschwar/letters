@@ -19,6 +19,35 @@ from app.services.vector_search import VectorSearchUnavailable, create_vector_re
 
 router = APIRouter(prefix="/search", tags=["search"])
 
+_TOKEN_STOPWORDS = {
+    "the",
+    "and",
+    "for",
+    "with",
+    "that",
+    "this",
+    "from",
+    "into",
+    "about",
+    "message",
+    "regarding",
+    "world",
+    "bahai",
+    "bahais",
+    "house",
+    "justice",
+    "of",
+    "to",
+}
+
+
+def _token_set(text: str) -> set[str]:
+    return {
+        token
+        for token in re.findall(r"[a-z0-9]{3,}", text.lower())
+        if token not in _TOKEN_STOPWORDS
+    }
+
 
 def _build_fts_query(raw_query: str) -> str:
     tokens = re.findall(r"[A-Za-z0-9]{2,}", raw_query.lower())
@@ -100,11 +129,18 @@ def _query_vector(db: Session, query: str, limit: int) -> list[dict]:
     )
     hits = retriever.search(query=query, limit=limit)
     docs = _query_docs_by_ids(db, [hit.document_id for hit in hits])
+    query_tokens = _token_set(query)
 
     results: list[dict] = []
     for hit in hits:
         doc = docs.get(hit.document_id)
         if not doc:
+            continue
+        candidate_text = " ".join(
+            part for part in [doc.get("title", ""), doc.get("summary", ""), hit.snippet] if part
+        )
+        # Guard against vector-only false positives by requiring lexical overlap.
+        if query_tokens and not query_tokens.intersection(_token_set(candidate_text)):
             continue
         results.append(
             {

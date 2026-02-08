@@ -1,12 +1,12 @@
 Project: LetterOps
-Last Updated: 2026-02-08 03:22 (local)
+Last Updated: 2026-02-08 03:27 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
 Phase: 4 (Intelligence/RAG Bootstrap)
 Branch: main
-Overall Progress: 98%
+Overall Progress: 99%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -25,7 +25,6 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Expand judged set with harder semantic paraphrases and cross-topic distractors.
 - [ ] Investigate and reduce tail-latency outlier seen in judged search evaluation.
 
 Blocked:
@@ -224,6 +223,17 @@ FEATURE LOG (append-only)
 - Result:
   - PASS (2026-02-08): `make search-gate` succeeds on current corpus with `hit_rate_at_k=0.7`, `mrr=0.65`, `p95_latency_ms=149.568`.
 
+[2026-02-08] Phase 4: Harder judged set + distractor gating
+- Scope reference: Next step (harder paraphrases + cross-topic distractors)
+- What was built:
+  - Added 8 cross-domain distractor queries (`expect_no_hit`) to `data/eval/uhj_judged_queries.json`.
+  - Added lexical overlap guard in vector retrieval to reduce vector-only false positives.
+  - Extended evaluator to score no-hit expectations and expose `no_hit_accuracy`.
+  - Extended gate thresholds with `--min-no-hit-accuracy` and enforced it in `make search-gate`.
+- Result:
+  - PASS (2026-02-08): gate now checks relevance + latency + no-hit behavior.
+  - Current gate metrics: `hit_rate_at_k=0.821`, `mrr=0.804`, `p95_latency_ms=83.342`, `no_hit_accuracy=1.0`.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -255,6 +265,7 @@ Priority 0: Phase 4 Bootstrap
 - [x] Enable vector backend (`chromadb`) and rerun judged calibration with true hybrid/vector retrieval.
 - [x] Expand judged set and stabilize default fusion settings from larger benchmark.
 - [x] Add release gate checks (automated fail on judged-set quality/latency regressions).
+- [x] Expand judged set with harder semantic paraphrases and cross-topic distractors.
 
 Priority 1: Expand Pipeline (Linking + Tagging)
 - [x] Implement link inference (date/source cues per BACKEND_STRUCTURE.md) and persist to `document_links`.
