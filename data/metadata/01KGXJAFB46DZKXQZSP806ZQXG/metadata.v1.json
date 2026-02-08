@@ -1,0 +1,13 @@
+{
+  "audience": null,
+  "canonical_title": null,
+  "confidence_by_field": {
+    "document_date": 0.0,
+    "source_name": 0.6,
+    "summary_one_sentence": 0.4
+  },
+  "document_date": null,
+  "document_type": null,
+  "source_name": "Universal House of Justice",
+  "summary_one_sentence": "THE UNIVERSAL HOUSE OF JUSTICE"
+}
