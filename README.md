@@ -11,8 +11,8 @@ Local-first document intelligence system for managing Bahá’í letters. See `c
 - `data/db.sqlite`: versioned SQLite database
 
 ## Web UX Shell (Phase 5)
-- Current Phase 5 UI is a lightweight shell at `apps/web` for login + search + citations.
-- Run with `python3 -m http.server 3000 --directory apps/web` and open `http://127.0.0.1:3000`.
+- Phase 5 UI is a Next.js App Router app at `apps/web` with routes for dashboard/review/graph.
+- Run with `npm install && npm run dev` from `apps/web`, then open `http://127.0.0.1:3000`.
 - API base defaults to `http://127.0.0.1:8000/api/v1`.
 
 ## Quick Start (Backend)

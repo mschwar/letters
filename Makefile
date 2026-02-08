@@ -11,7 +11,7 @@ SEARCH_GATE_MIN_MRR ?= 0.60
 SEARCH_GATE_MAX_P95_MS ?= 250.0
 SEARCH_GATE_MIN_NO_HIT_ACCURACY ?= 0.90
 
-.PHONY: snapshot snapshot-json verify search-gate backup-roundtrip security-check release-check scrape-uhj
+.PHONY: snapshot snapshot-json verify search-gate backup-roundtrip security-check release-check scrape-uhj web-install web-dev web-build web-start web-e2e web-e2e-install
 
 snapshot:
 	@$(PYTHON) $(SNAPSHOT_SCRIPT) -o $(SNAPSHOT_OUT)
@@ -45,3 +45,21 @@ release-check: verify search-gate backup-roundtrip security-check
 
 scrape-uhj:
 	@$(PYTHON) infra/scripts/scrape_uhj_messages.py --workers 4 --delay-seconds 0.8
+
+web-install:
+	@cd apps/web && npm install
+
+web-dev:
+	@cd apps/web && npm run dev
+
+web-build:
+	@cd apps/web && npm run build
+
+web-start:
+	@cd apps/web && npm run start
+
+web-e2e:
+	@cd apps/web && PLAYWRIGHT_BROWSERS_PATH=./.playwright-browsers npm run test:e2e
+
+web-e2e-install:
+	@cd apps/web && PLAYWRIGHT_BROWSERS_PATH=./.playwright-browsers npx playwright install chromium

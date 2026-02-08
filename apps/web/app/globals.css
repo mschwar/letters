@@ -1,0 +1,276 @@
+:root {
+  --bg: #f7f3eb;
+  --ink: #102a43;
+  --ink-muted: #486581;
+  --accent: #0d9488;
+  --accent-2: #f59e0b;
+  --line: #d9e2ec;
+  --panel: #fffdf8;
+  --ok: #137752;
+  --warn: #b54708;
+  --bad: #8a2a2b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background:
+    radial-gradient(circle at 10% 5%, #f5ecd8 0, transparent 30%),
+    radial-gradient(circle at 90% 10%, #d4f4ef 0, transparent 24%),
+    var(--bg);
+  color: var(--ink);
+  font-family: "IBM Plex Sans", "Avenir Next", "Segoe UI", sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+.shell-root {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+
+.hero {
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, #fff6df, #f7fbff);
+  border-radius: 18px;
+  padding: 1.25rem 1.4rem;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.74rem;
+}
+
+h1 {
+  margin: 0.3rem 0 0.55rem;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+}
+
+.lede {
+  margin: 0;
+  color: var(--ink-muted);
+}
+
+.nav-row {
+  margin: 1rem 0 1.2rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.nav-chip {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.42rem 0.85rem;
+  text-decoration: none;
+  background: #fff;
+  color: var(--ink-muted);
+}
+
+.nav-chip.active {
+  border-color: var(--accent);
+  color: #073b36;
+  background: #ddfaf6;
+}
+
+.page-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.page-grid.single {
+  grid-template-columns: 1fr;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1rem;
+  background: var(--panel);
+}
+
+.stack {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.stack-tight {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+label {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.94rem;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid #b8c7d6;
+  background: #fff;
+  border-radius: 10px;
+  padding: 0.55rem 0.7rem;
+  color: var(--ink);
+}
+
+button {
+  border: 1px solid #0a766d;
+  background: linear-gradient(180deg, #0ea79a, #0b8a7f);
+  color: #ecfdfb;
+  border-radius: 10px;
+  padding: 0.55rem 0.8rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.split-two {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.status {
+  color: var(--ink-muted);
+}
+
+.chip-row {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.chip {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+  font-size: 0.83rem;
+  background: #f8fbff;
+}
+
+.chip.high {
+  border-color: #85d8b4;
+  color: var(--ok);
+  background: #effcf6;
+}
+
+.chip.medium {
+  border-color: #f8d18f;
+  color: var(--warn);
+  background: #fff8eb;
+}
+
+.chip.low {
+  border-color: #efb4b6;
+  color: var(--bad);
+  background: #fff3f3;
+}
+
+.card-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.card {
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 12px;
+  padding: 0.75rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.meta {
+  color: var(--ink-muted);
+  font-size: 0.88rem;
+}
+
+.mono {
+  font-family: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+  font-size: 0.82rem;
+}
+
+.graph {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background:
+    linear-gradient(0deg, rgba(255, 252, 247, 0.95), rgba(255, 252, 247, 0.95)),
+    repeating-linear-gradient(0deg, transparent, transparent 39px, #eaf0f6 40px),
+    repeating-linear-gradient(90deg, transparent, transparent 39px, #eaf0f6 40px);
+}
+
+.graph-edge {
+  stroke: #7a8ca4;
+  stroke-width: 1.8;
+}
+
+.graph-node {
+  stroke-width: 2.2;
+}
+
+.graph-node.query {
+  fill: #0d9488;
+  stroke: #0a766d;
+}
+
+.graph-node.citation {
+  fill: #fbbf24;
+  stroke: #d88400;
+}
+
+.graph-node.result {
+  fill: #2f80ed;
+  stroke: #1e5cad;
+}
+
+.graph-label {
+  font-size: 11px;
+  fill: var(--ink);
+}
+
+@media (max-width: 820px) {
+  .split-two {
+    grid-template-columns: 1fr;
+  }
+
+  .shell-root {
+    padding: 1rem 0.7rem 2rem;
+  }
+}

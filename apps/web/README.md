@@ -1,23 +1,57 @@
 # apps/web
 
-Phase 5 frontend shell for LetterOps search UX.
+Next.js App Router frontend for LetterOps Phase 5.
 
-## Run locally
+## Routes
 
-From repo root:
+- `/dashboard`: sign-in + search execution + ranked evidence.
+- `/review`: quality checks for confidence/citation completeness.
+- `/graph`: query/citation/result relationship graph.
+
+## Local development
+
+From `apps/web`:
 
 ```bash
-python3 -m http.server 3000 --directory apps/web
+npm install
+npm run dev
 ```
 
-Open `http://127.0.0.1:3000` and point API base to your running backend, usually:
+Open `http://127.0.0.1:3000`.
 
-- `http://127.0.0.1:8000/api/v1`
+## Build and run
 
-## Current scope
+From `apps/web`:
 
-- Login via `/auth/login` (cookie session).
-- Search via `/search` with `query` + `limit`.
-- Render answer summary, confidence score/label, citations, and ranked hits.
+```bash
+npm run build
+npm run start
+```
 
-This is intentionally lightweight so UX iteration can proceed before a full Next.js setup.
+## E2E tests (Playwright)
+
+From `apps/web`:
+
+```bash
+npm run test:e2e
+```
+
+If browser binaries are not installed yet:
+
+```bash
+PLAYWRIGHT_BROWSERS_PATH=./.playwright-browsers npx playwright install chromium
+```
+
+## Environment
+
+- `NEXT_PUBLIC_API_BASE` (optional)
+- Default: `http://127.0.0.1:8000/api/v1`
+
+## Deploy
+
+Vercel or any Node host that supports Next.js standalone server:
+
+```bash
+npm run build
+npm run start
+```

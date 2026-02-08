@@ -3,10 +3,11 @@
 Status: canonical summary + auto-generated dependency list.
 
 ## Runtime & Toolchain (Manual)
-- Python 3.12.x
+- Python 3.12.6
 - FastAPI + Uvicorn
 - SQLite 3.46.x
 - Git 2.46.x
+- Playwright (web E2E)
 - Optional: ChromaDB, Ollama
 
 ## Python Dependencies (Auto)
