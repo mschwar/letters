@@ -78,3 +78,21 @@ export async function search(request: SearchRequest): Promise<SearchResponse> {
   });
   return asJson<SearchResponse>(response);
 }
+
+export async function searchServer(
+  request: SearchRequest,
+  cookieHeader: string
+): Promise<SearchResponse> {
+  const headers: Record<string, string> = { "Content-Type": "application/json" };
+  if (cookieHeader) {
+    headers.cookie = cookieHeader;
+  }
+
+  const response = await fetch(`${apiBase()}/search`, {
+    method: "POST",
+    headers,
+    cache: "no-store",
+    body: JSON.stringify(request)
+  });
+  return asJson<SearchResponse>(response);
+}

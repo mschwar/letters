@@ -4,9 +4,15 @@ Next.js App Router frontend for LetterOps Phase 5.
 
 ## Routes
 
-- `/dashboard`: sign-in + search execution + ranked evidence.
+- `/dashboard`: sign-in + search execution + ranked evidence (SSR when query params are present).
 - `/review`: quality checks for confidence/citation completeness.
 - `/graph`: query/citation/result relationship graph.
+
+## Search SSR behavior
+
+- Dashboard search state is URL-driven (`/dashboard?q=...&limit=...&sort=...`).
+- When `q` is present, the page performs server-side search and renders results on first load.
+- Request cookies are forwarded to the API for authenticated SSR retrieval.
 
 ## Local development
 
@@ -26,6 +32,12 @@ From `apps/web`:
 ```bash
 npm run build
 npm run start
+```
+
+CI build mode:
+
+```bash
+npm run build:ci
 ```
 
 ## E2E tests (Playwright)
@@ -49,9 +61,18 @@ PLAYWRIGHT_BROWSERS_PATH=./.playwright-browsers npx playwright install chromium
 
 ## Deploy
 
-Vercel or any Node host that supports Next.js standalone server:
+Local production server:
 
 ```bash
+npm ci
 npm run build
 npm run start
 ```
+
+Vercel:
+
+```bash
+npm run deploy:vercel
+```
+
+`apps/web/vercel.json` defines install/build commands for hosted deployments.

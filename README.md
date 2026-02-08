@@ -12,6 +12,7 @@ Local-first document intelligence system for managing Bahá’í letters. See `c
 
 ## Web UX Shell (Phase 5)
 - Phase 5 UI is a Next.js App Router app at `apps/web` with routes for dashboard/review/graph.
+- Dashboard supports server-rendered search results from URL query params.
 - Run with `npm install && npm run dev` from `apps/web`, then open `http://127.0.0.1:3000`.
 - API base defaults to `http://127.0.0.1:8000/api/v1`.
 

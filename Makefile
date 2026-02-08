@@ -11,7 +11,7 @@ SEARCH_GATE_MIN_MRR ?= 0.60
 SEARCH_GATE_MAX_P95_MS ?= 250.0
 SEARCH_GATE_MIN_NO_HIT_ACCURACY ?= 0.90
 
-.PHONY: snapshot snapshot-json verify search-gate backup-roundtrip security-check release-check scrape-uhj web-install web-dev web-build web-start web-e2e web-e2e-install
+.PHONY: snapshot snapshot-json verify search-gate backup-roundtrip security-check release-check scrape-uhj web-install web-dev web-build web-build-ci web-start web-e2e web-e2e-install web-deploy-vercel
 
 snapshot:
 	@$(PYTHON) $(SNAPSHOT_SCRIPT) -o $(SNAPSHOT_OUT)
@@ -55,6 +55,9 @@ web-dev:
 web-build:
 	@cd apps/web && npm run build
 
+web-build-ci:
+	@cd apps/web && npm run build:ci
+
 web-start:
 	@cd apps/web && npm run start
 
@@ -63,3 +66,6 @@ web-e2e:
 
 web-e2e-install:
 	@cd apps/web && PLAYWRIGHT_BROWSERS_PATH=./.playwright-browsers npx playwright install chromium
+
+web-deploy-vercel:
+	@cd apps/web && npm run deploy:vercel
