@@ -1,29 +1,30 @@
 Project: LetterOps
-Last Updated: 2026-02-07 18:36 (local)
+Last Updated: 2026-02-07 19:07 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
-Phase: 1 (Backend Foundation)
+Phase: 2 (File & Pipeline Core)
 Branch: main
-Overall Progress: 20%
+Overall Progress: 30%
 
 Done:
 - [x] Canonical docs reviewed and merged.
 - [x] Phase 0: Initialize repo structure and baseline files.
 - [x] Phase 1: Backend foundation (FastAPI bootstrap, schema + migrations, auth scaffold, seeding hooks).
+- [x] Phase 2: Storage + ingestion core (hashing, ULID, original archiving, ingestion event/run tracking).
 
 In Progress:
 - [ ] None.
 
 Next:
-- [ ] Phase 2: File & Pipeline Core.
-- [ ] Implement ingestion script.
 - [ ] Run Alembic migrations to initialize `data/db.sqlite`.
-- [ ] Test Git-versioned DB workflow.
+- [ ] Seed default owner + taxonomy.
+- [ ] Expand pipeline steps (extract/convert/index/link).
+- [ ] Add role-based guards and integration tests.
 
 Blocked:
-- [ ] None.
+- [ ] Dependency installation blocked (no network access to fetch pinned packages).
 
 ========================================
 FEATURE LOG (append-only)
@@ -49,6 +50,26 @@ FEATURE LOG (append-only)
   - Run `alembic upgrade head` and seed defaults.
   - Add role-based guards and integration tests.
 
+[2026-02-07] Feature: Phase 2 File & Pipeline Core (baseline)
+- Scope reference: IMPLEMENTATION_PLAN.md Phase 2; BACKEND_STRUCTURE.md storage rules
+- What was built:
+  - Worker config + storage service (deterministic paths, immutable originals).
+  - SHA-256 hashing utility.
+  - ULID generator (Crockford base32).
+  - Ingestion repository helpers (events, runs, steps).
+  - CLI ingest flow: hash -> dedupe -> archive.
+- Tests added/updated:
+  - `apps/worker/tests/test_hashing.py`
+  - `apps/worker/tests/test_ulid.py`
+- Result:
+  - NOT RUN (dependencies not installed in this environment).
+- Known gaps:
+  - Migrations not executed; ingestion will fail until DB initialized.
+  - Pipeline steps beyond archive are stubbed.
+- Follow-up tasks:
+  - Run migrations + seed defaults.
+  - Extend pipeline steps and add integration tests.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -65,7 +86,7 @@ Reliability notes:
 ========================================
 TECH DEBT / IMPROVEMENTS
 ========================================
-- [ ] Add API integration tests with migrations applied.
+- [ ] Add API + worker integration tests after dependencies install.
 
 ========================================
 RELEASE CHECKLIST (v1)

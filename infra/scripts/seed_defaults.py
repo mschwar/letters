@@ -1,9 +1,16 @@
 from __future__ import annotations
 
-from app.core.config import settings
-from app.core.logging import configure_logging, get_logger
-from app.core.database import SessionLocal
-from app.db.seed import seed_defaults
+import sys
+from pathlib import Path
+
+ROOT_DIR = Path(__file__).resolve().parents[2]
+API_DIR = ROOT_DIR / "apps" / "api"
+sys.path.append(str(API_DIR))
+
+from app.core.config import settings  # noqa: E402
+from app.core.logging import configure_logging, get_logger  # noqa: E402
+from app.core.database import SessionLocal  # noqa: E402
+from app.db.seed import seed_defaults  # noqa: E402
 
 
 configure_logging()
