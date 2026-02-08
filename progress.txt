@@ -1,12 +1,12 @@
 Project: LetterOps
-Last Updated: 2026-02-07 19:26 (local)
+Last Updated: 2026-02-07 19:24 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
 Phase: 2 (File & Pipeline Core)
 Branch: main
-Overall Progress: 35%
+Overall Progress: 37%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -17,6 +17,8 @@ Done:
 - [x] DB migrations applied (0001_initial).
 - [x] Seed defaults executed (tags).
 - [x] Unit tests (API + worker) passing.
+- [x] Startup migrated to FastAPI lifespan handler.
+- [x] pytest-asyncio default loop scope set (warning silenced).
 
 In Progress:
 - [ ] None.
@@ -24,8 +26,7 @@ In Progress:
 Next:
 - [ ] Expand pipeline steps (extract/convert/index/link).
 - [ ] Add role-based guards and integration tests.
-- [ ] Add pytest-asyncio default loop scope config to silence warning.
-- [ ] Migrate FastAPI startup to lifespan handler (deprecation warning).
+- [ ] Address jose `datetime.utcnow` deprecation (library-side).
 
 Blocked:
 - [ ] None.

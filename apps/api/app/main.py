@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from contextlib import asynccontextmanager
 from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
@@ -19,14 +20,8 @@ from app.routers.health_router import router as health_router
 configure_logging()
 logger = get_logger()
 
-app = FastAPI(title="LetterOps API", version="0.1.0")
-
-app.include_router(health_router)
-app.include_router(auth_router, prefix="/api/v1")
-
-
-@app.on_event("startup")
-def on_startup() -> None:
+@asynccontextmanager
+async def lifespan(app: FastAPI):  # noqa: ARG001
     logger.info("api_startup", env=settings.env, database_url=settings.database_url)
     if settings.database_url.startswith("sqlite"):
         db_path = settings.database_url.replace("sqlite:///", "")
@@ -38,6 +33,13 @@ def on_startup() -> None:
         with SessionLocal() as db:
             result = seed_defaults(db, settings)
             logger.info("seed_defaults", **result)
+    yield
+
+
+app = FastAPI(title="LetterOps API", version="0.1.0", lifespan=lifespan)
+
+app.include_router(health_router)
+app.include_router(auth_router, prefix="/api/v1")
 
 
 @app.exception_handler(HTTPException)
