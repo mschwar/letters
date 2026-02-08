@@ -1,10 +1,10 @@
 Project: LetterOps
-Last Updated: 2026-02-07 21:14 (local)
+Last Updated: 2026-02-07 21:26 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
-Phase: 4 (Intelligence/RAG Bootstrap)
+Phase: 5 (UX Polish + Release)
 Branch: main
 Overall Progress: 100%
 
@@ -25,7 +25,7 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Cut and publish a release tag for this baseline.
+- [ ] Wire `apps/web` into a formal JS toolchain (Next.js or Vite) for production builds.
 
 Blocked:
 - [ ] None.
@@ -261,6 +261,17 @@ FEATURE LOG (append-only)
 - Result:
   - PASS (2026-02-08): `make release-check` passes end-to-end (tests, search gate, backup roundtrip, security check).
 
+[2026-02-08] Phase 5 kickoff: web UX shell for search + citations
+- Scope reference: Phase 5 (UX polish + release)
+- What was built:
+  - Added new `apps/web` frontend shell with responsive layout and styled UI theme.
+  - Added API session panel for `/api/v1/auth/login` cookie-based authentication.
+  - Added search panel for `/api/v1/search` with configurable `query` + `limit`.
+  - Added answer rendering with confidence chip, retrieval mode chip, citations list, and ranked result cards.
+  - Added local run instructions in `apps/web/README.md`.
+- Result:
+  - PASS (manual): phase 5 UI foundation is in-repo and ready for iterative polish and build-system migration.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -282,7 +293,14 @@ TECH DEBT / IMPROVEMENTS
 ========================================
 NEXT STEPS CHECKLIST (PRIORITIZED)
 ========================================
-Priority 0: Phase 4 Bootstrap
+Priority 0: Phase 5 UX Polish
+- [x] Create initial user-facing web shell for auth + search + evidence display.
+- [ ] Add filter controls (source/date/tag) and result sorting to web UI.
+- [ ] Add loading skeletons + empty/error states tuned for retrieval workflows.
+- [ ] Add frontend smoke test coverage for login/search flows.
+- [ ] Decide and migrate to formal frontend build stack (Next.js or Vite).
+
+Priority 1: Phase 4 Bootstrap
 - [x] Add `/api/v1/search` natural-language retrieval endpoint.
 - [x] Return source-cited answer summary and ranked results.
 - [x] Add optional vector retrieval backend (ChromaDB).
@@ -295,18 +313,18 @@ Priority 0: Phase 4 Bootstrap
 - [x] Expand judged set with harder semantic paraphrases and cross-topic distractors.
 - [x] Investigate and reduce tail-latency outlier seen in judged search evaluation.
 
-Priority 1: Expand Pipeline (Linking + Tagging)
+Priority 2: Expand Pipeline (Linking + Tagging)
 - [x] Implement link inference (date/source cues per BACKEND_STRUCTURE.md) and persist to `document_links`.
 - [x] Implement tagging heuristics (controlled vocab from `tags`/`tag_aliases`) and persist to `document_tags`.
 - [x] Integrate linking + tagging into the ingest pipeline (complete skipped step).
 Parallel lanes: linking vs tagging.
 
-Priority 2: Phase 1 Follow-Ups
+Priority 3: Phase 1 Follow-Ups
 - [x] Implement role-based guards (FastAPI dependencies).
 - [x] Add auth integration tests.
 Parallel lanes: guards vs tests.
 
-Priority 3: Verify with Data
+Priority 4: Verify with Data
 - [x] Run sample ingest (e.g., Bahá’í letter PDF) to populate DB.
 - [x] Validate current FTS/indexing, tags, links, and pipeline run records.
 Parallel lanes: ingest vs validation/perf checks.

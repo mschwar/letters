@@ -1,18 +1,18 @@
 # LetterOps Snapshot Report
 
-Generated: 2026-02-07T21:15:19
+Generated: 2026-02-07T21:26:50
 Root: /Users/mschwar/Dropbox/letters
 
 ## Progress Summary
-Gist: Project: LetterOps Last Updated: 2026-02-07 21:14 (local) ========================================
+Gist: Project: LetterOps Last Updated: 2026-02-07 21:26 (local) ========================================
 
 Project: LetterOps
-Last Updated: 2026-02-07 21:14 (local)
+Last Updated: 2026-02-07 21:26 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
-Phase: 4 (Intelligence/RAG Bootstrap)
+Phase: 5 (UX Polish + Release)
 Branch: main
 Overall Progress: 100%
 
@@ -33,7 +33,7 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Cut and publish a release tag for this baseline.
+- [ ] Wire `apps/web` into a formal JS toolchain (Next.js or Vite) for production builds.
 
 Blocked:
 - [ ] None.
@@ -181,7 +181,7 @@ FEATURE LOG (append-only)
 - What was built:
   - Implemented hybrid retrieval mode in `/api/v1/search` using weighted reciprocal-rank fusion (RRF) over vector + FTS result lists.
   - Added fusion tunables in config (`LETTEROPS_SEARCH_FUSION_*`) and metadata counters (`result_counts`) in search responses.
-  - Added `infra/scripts/evaluate_search.py` to benchmark retrieval mode, confidence, top IDs, and latency across a quer
+  - Added `infra/scripts/evaluate_search.py` to benchmark retrieval mode, confidence, top ID
 ... (truncated)
 
 Keywords: 2026, phase, tests, added, scope, result, reference, built, pass, pytest
@@ -189,28 +189,26 @@ Keywords: 2026, phase, tests, added, scope, result, reference, built, pass, pyte
 ## Git State
 Branch: main
 Status:
-## main...origin/main [ahead 13]
- M Makefile
+## main...origin/main
+ M README.md
  M data/vectors/04af47cf-0ecd-47d5-ae40-e009417991c0/length.bin
  M data/vectors/chroma.sqlite3
  M progress.txt
- M requirements.lock
  M snapshot.md
+?? apps/web/
 ?? data/backups/
-?? infra/scripts/backup_restore.py
-Reminder: Branch is ahead of remote by 13 commit(s). Run git push.
 Recent commits:
+bd71603 Add v1.0.0 release notes
+f299a54 Close release checklist with backup/security gates
 e0a3f96 Reduce search tail latency with retriever cache and warm-up
 53d2f6d Add distractor-aware judged gate and reduce vector false positives
 0350043 Add automated search quality gate and Make target
-028b5d3 Expand judged set and stabilize fusion defaults
-4563dc2 Enable chroma vectors and rerun hybrid calibration
 Diff summary:
 (no diffs)
 
 ## Pytest Summary
 Status: PASS
-Summary: 16 passed, 1 warning in 3.56s
+Summary: 16 passed, 1 warning in 4.19s
 
 ## canonical-docs-v2.md Excerpt
 Gist: # PRD.md (Revised v2) ## 1) Product Overview LetterOps is a local-first document intelligence app for letter-heavy knowledge workflows (starting with Bahá’í letters). It ingests letters from email and watched folders, preserves originals, creates normalized derivatives, extracts metadata, links references, and provides fast retrieval by date/source/topic/reference. +Revised: Integrated Gemini's se...
@@ -248,12 +246,17 @@ Gist: # LetterOps Local-first document intelligence system for managing Bahá’
 Local-first document intelligence system for managing Bahá’í letters. See `canonical-docs-v2.md` for the authoritative PRD, flows, tech stack, and operating rules.
 
 ## Monorepo Layout
-- `apps/web`: Next.js UI
+- `apps/web`: web UI shell (Phase 5)
 - `apps/api`: FastAPI backend
 - `apps/worker`: local ingestion worker
 - `packages/shared`: shared schemas/types
 - `infra`: migrations, scripts, backup tooling
 - `data/db.sqlite`: versioned SQLite database
+
+## Web UX Shell (Phase 5)
+- Current Phase 5 UI is a lightweight shell at `apps/web` for login + search + citations.
+- Run with `python3 -m http.server 3000 --directory apps/web` and open `http://127.0.0.1:3000`.
+- API base defaults to `http://127.0.0.1:8000/api/v1`.
 
 ## Quick Start (Backend)
 1. Create a virtualenv and install dependencies from `apps/api/requirements.txt`.
@@ -261,7 +264,7 @@ Local-first document intelligence system for managing Bahá’í letters. See `c
 3. Run migrations using Alembic.
 4. Start the API with `uvicorn app.main:app --reload` from `apps/api`.
 
-Keywords: local, see, appsapi, backend, migrations, start, env, letterops, first, document
+Keywords: appsweb, shell, phase, local, see, web, appsapi, backend, migrations, run
 
 ## DB Snapshot
 Path: /Users/mschwar/Dropbox/letters/data/db.sqlite
@@ -471,11 +474,13 @@ a086452d-3df8-4c40-8848-1c7867d086dd, success, 2026-02-08T02:47:02.901166+00:00,
 ├── Makefile
 ├── PERSISTANT.md
 ├── README.md
+├── RELEASE_NOTES.md
 ├── TECH_STACK.md
 ├── apps
 │   ├── __init__.py
 │   ├── __pycache__
 │   ├── api
+│   ├── web
 │   └── worker
 ├── archive
 │   ├── GPT-5.2.md
@@ -503,4 +508,4 @@ a086452d-3df8-4c40-8848-1c7867d086dd, success, 2026-02-08T02:47:02.901166+00:00,
 ├── requirements.lock
 └── snapshot.md
 
-21 directories, 19 files
+22 directories, 20 files
