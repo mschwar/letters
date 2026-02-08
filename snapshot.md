@@ -1,13 +1,13 @@
 # LetterOps Snapshot Report
 
-Generated: 2026-02-07T21:08:14
+Generated: 2026-02-07T21:15:19
 Root: /Users/mschwar/Dropbox/letters
 
 ## Progress Summary
-Gist: Project: LetterOps Last Updated: 2026-02-08 03:31 (local) ========================================
+Gist: Project: LetterOps Last Updated: 2026-02-07 21:14 (local) ========================================
 
 Project: LetterOps
-Last Updated: 2026-02-08 03:31 (local)
+Last Updated: 2026-02-07 21:14 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
@@ -33,7 +33,7 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Validate release checklist items (backup/restore, docs, security review).
+- [ ] Cut and publish a release tag for this baseline.
 
 Blocked:
 - [ ] None.
@@ -181,7 +181,7 @@ FEATURE LOG (append-only)
 - What was built:
   - Implemented hybrid retrieval mode in `/api/v1/search` using weighted reciprocal-rank fusion (RRF) over vector + FTS result lists.
   - Added fusion tunables in config (`LETTEROPS_SEARCH_FUSION_*`) and metadata counters (`result_counts`) in search responses.
-  - Added `infra/scripts/evaluate_search.py` to benchmark retrieval mode, confidence, top IDs,
+  - Added `infra/scripts/evaluate_search.py` to benchmark retrieval mode, confidence, top IDs, and latency across a quer
 ... (truncated)
 
 Keywords: 2026, phase, tests, added, scope, result, reference, built, pass, pytest
@@ -189,26 +189,28 @@ Keywords: 2026, phase, tests, added, scope, result, reference, built, pass, pyte
 ## Git State
 Branch: main
 Status:
-## main...origin/main [ahead 12]
- M apps/api/app/main.py
- M apps/api/app/services/vector_search.py
+## main...origin/main [ahead 13]
+ M Makefile
  M data/vectors/04af47cf-0ecd-47d5-ae40-e009417991c0/length.bin
  M data/vectors/chroma.sqlite3
- M infra/scripts/evaluate_search.py
  M progress.txt
-Reminder: Branch is ahead of remote by 12 commit(s). Run git push.
+ M requirements.lock
+ M snapshot.md
+?? data/backups/
+?? infra/scripts/backup_restore.py
+Reminder: Branch is ahead of remote by 13 commit(s). Run git push.
 Recent commits:
+e0a3f96 Reduce search tail latency with retriever cache and warm-up
 53d2f6d Add distractor-aware judged gate and reduce vector false positives
 0350043 Add automated search quality gate and Make target
 028b5d3 Expand judged set and stabilize fusion defaults
 4563dc2 Enable chroma vectors and rerun hybrid calibration
-4768893 Add judged-query calibration workflow for search fusion
 Diff summary:
 (no diffs)
 
 ## Pytest Summary
 Status: PASS
-Summary: 16 passed, 1 warning in 3.52s
+Summary: 16 passed, 1 warning in 3.56s
 
 ## canonical-docs-v2.md Excerpt
 Gist: # PRD.md (Revised v2) ## 1) Product Overview LetterOps is a local-first document intelligence app for letter-heavy knowledge workflows (starting with Bahá’í letters). It ingests letters from email and watched folders, preserves originals, creates normalized derivatives, extracts metadata, links references, and provides fast retrieval by date/source/topic/reference. +Revised: Integrated Gemini's se...
@@ -482,6 +484,7 @@ a086452d-3df8-4c40-8848-1c7867d086dd, success, 2026-02-08T02:47:02.901166+00:00,
 ├── canonical-docs-v2.md
 ├── data
 │   ├── archive
+│   ├── backups
 │   ├── db.sqlite
 │   ├── eval
 │   ├── metadata
@@ -500,4 +503,4 @@ a086452d-3df8-4c40-8848-1c7867d086dd, success, 2026-02-08T02:47:02.901166+00:00,
 ├── requirements.lock
 └── snapshot.md
 
-20 directories, 19 files
+21 directories, 19 files

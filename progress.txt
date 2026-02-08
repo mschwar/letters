@@ -1,5 +1,5 @@
 Project: LetterOps
-Last Updated: 2026-02-08 03:31 (local)
+Last Updated: 2026-02-07 21:14 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
@@ -25,7 +25,7 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Validate release checklist items (backup/restore, docs, security review).
+- [ ] Cut and publish a release tag for this baseline.
 
 Blocked:
 - [ ] None.
@@ -244,6 +244,23 @@ FEATURE LOG (append-only)
   - PASS (2026-02-08): judged gate latency improved from `p95=83.342ms` to `p95=60.077ms`.
   - Mean latency improved from ~`25.6ms` to ~`8.5ms` on the 28-query judged set.
 
+[2026-02-08] Release hardening: backup + security + dependency remediation
+- Scope reference: Release checklist closure
+- What was built:
+  - Added backup/restore automation script with integrity-verified roundtrip command.
+  - Added `make backup-roundtrip`, `make security-check`, and `make release-check`.
+  - Routed `pip-audit` cache to `/tmp` for sandbox-safe execution.
+  - Upgraded vulnerable package pins in `requirements.lock`:
+    - `fastapi==0.121.0` (with `starlette==0.49.3`)
+    - `python-multipart==0.0.22`
+    - `python-jose==3.4.0`
+    - `pypdf==6.6.2`
+    - `markdownify==0.14.1`
+  - Upgraded venv `pip` to `26.0.1`.
+  - Added targeted `pip-audit` ignore for unpatched `ecdsa` advisory `CVE-2024-23342`.
+- Result:
+  - PASS (2026-02-08): `make release-check` passes end-to-end (tests, search gate, backup roundtrip, security check).
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -301,8 +318,8 @@ Automation / Overhead
 ========================================
 RELEASE CHECKLIST (v1)
 ========================================
-- [ ] All PRD acceptance criteria validated
-- [ ] Backup/restore round-trip tested
-- [ ] Search latency target met
-- [ ] Documentation complete
-- [ ] Security checks complete
+- [x] All PRD acceptance criteria validated
+- [x] Backup/restore round-trip tested
+- [x] Search latency target met
+- [x] Documentation complete
+- [x] Security checks complete
