@@ -58,12 +58,12 @@ class Settings:
             ),
             vector_collection=os.getenv("LETTEROPS_VECTOR_COLLECTION", "documents"),
             search_fusion_fts_weight=float(
-                os.getenv("LETTEROPS_SEARCH_FUSION_FTS_WEIGHT", "0.45")
+                os.getenv("LETTEROPS_SEARCH_FUSION_FTS_WEIGHT", "0.2")
             ),
             search_fusion_vector_weight=float(
-                os.getenv("LETTEROPS_SEARCH_FUSION_VECTOR_WEIGHT", "0.55")
+                os.getenv("LETTEROPS_SEARCH_FUSION_VECTOR_WEIGHT", "0.2")
             ),
-            search_fusion_rrf_k=int(os.getenv("LETTEROPS_SEARCH_FUSION_RRF_K", "20")),
+            search_fusion_rrf_k=int(os.getenv("LETTEROPS_SEARCH_FUSION_RRF_K", "10")),
         )
 
 

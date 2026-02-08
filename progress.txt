@@ -1,12 +1,12 @@
 Project: LetterOps
-Last Updated: 2026-02-08 03:13 (local)
+Last Updated: 2026-02-08 03:18 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
 Phase: 4 (Intelligence/RAG Bootstrap)
 Branch: main
-Overall Progress: 94%
+Overall Progress: 96%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -25,8 +25,8 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Expand judged query set beyond 5 samples and re-run calibration to reduce overfitting.
-- [ ] Finalize default fusion settings from larger judged benchmark and update release thresholds.
+- [ ] Add release gate checks (automated fail if judged-set hit_rate_at_k or latency thresholds regress).
+- [ ] Expand judged set with harder semantic paraphrases and cross-topic distractors.
 
 Blocked:
 - [ ] None.
@@ -204,6 +204,17 @@ FEATURE LOG (append-only)
   - Baseline vector-enabled summary: `hit_rate_at_k=0.6`, `mrr=0.5`, `p95_latency_ms=311.682`.
   - Best calibration trial: `fts_weight=0.2`, `vector_weight=0.2`, `rrf_k=10` with `hit_rate_at_k=0.8`, `mrr=0.7`, `p95_latency_ms=73.614`.
 
+[2026-02-08] Phase 4: Expanded judged calibration + default stabilization
+- Scope reference: Next step continuation (stabilize defaults on larger judged set)
+- What was built:
+  - Expanded judged query set from 5 to 20 in `data/eval/uhj_judged_queries.json`.
+  - Re-ran vector-enabled evaluation and full calibration grid.
+  - Applied calibrated defaults to app config and `.env.example`.
+- Result:
+  - Expanded-set baseline: `hit_rate_at_k=0.65`, `mrr=0.6`, `p95_latency_ms=151.173`.
+  - Best expanded-set trial: `fts_weight=0.2`, `vector_weight=0.2`, `rrf_k=10` with `hit_rate_at_k=0.7`, `mrr=0.65`, `p95_latency_ms=91.788`.
+  - Default fusion settings updated to `0.2/0.2/10`.
+
 ========================================
 PIPELINE HEALTH
 ========================================
@@ -233,6 +244,7 @@ Priority 0: Phase 4 Bootstrap
 - [x] Add hybrid ranking blend (vector + FTS score fusion) and evaluation script.
 - [x] Calibrate fusion weights using judged query set; capture latency + quality metrics.
 - [x] Enable vector backend (`chromadb`) and rerun judged calibration with true hybrid/vector retrieval.
+- [x] Expand judged set and stabilize default fusion settings from larger benchmark.
 
 Priority 1: Expand Pipeline (Linking + Tagging)
 - [x] Implement link inference (date/source cues per BACKEND_STRUCTURE.md) and persist to `document_links`.

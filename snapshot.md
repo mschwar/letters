@@ -1,20 +1,20 @@
 # LetterOps Snapshot Report
 
-Generated: 2026-02-07T20:56:39
+Generated: 2026-02-07T21:01:30
 Root: /Users/mschwar/Dropbox/letters
 
 ## Progress Summary
-Gist: Project: LetterOps Last Updated: 2026-02-08 03:13 (local) ========================================
+Gist: Project: LetterOps Last Updated: 2026-02-08 03:18 (local) ========================================
 
 Project: LetterOps
-Last Updated: 2026-02-08 03:13 (local)
+Last Updated: 2026-02-08 03:18 (local)
 
 ========================================
 CURRENT STATUS SNAPSHOT
 ========================================
 Phase: 4 (Intelligence/RAG Bootstrap)
 Branch: main
-Overall Progress: 94%
+Overall Progress: 96%
 
 Done:
 - [x] Canonical docs reviewed and merged.
@@ -33,8 +33,8 @@ In Progress:
 - [ ] None.
 
 Next:
-- [ ] Expand judged query set beyond 5 samples and re-run calibration to reduce overfitting.
-- [ ] Finalize default fusion settings from larger judged benchmark and update release thresholds.
+- [ ] Add release gate checks (automated fail if judged-set hit_rate_at_k or latency thresholds regress).
+- [ ] Expand judged set with harder semantic paraphrases and cross-topic distractors.
 
 Blocked:
 - [ ] None.
@@ -189,25 +189,27 @@ Keywords: 2026, phase, tests, scope, result, added, reference, built, pass, pyte
 ## Git State
 Branch: main
 Status:
-## main...origin/main [ahead 8]
- M apps/api/app/services/vector_search.py
+## main...origin/main [ahead 9]
+ M .env.example
+ M apps/api/app/core/config.py
+ M data/eval/uhj_judged_queries.json
+ M data/vectors/04af47cf-0ecd-47d5-ae40-e009417991c0/length.bin
+ M data/vectors/chroma.sqlite3
  M progress.txt
- M requirements.lock
-?? data/vectors/
-?? infra/scripts/backfill_vectors.py
-Reminder: Branch is ahead of remote by 8 commit(s). Run git push.
+ M snapshot.md
+Reminder: Branch is ahead of remote by 9 commit(s). Run git push.
 Recent commits:
+4563dc2 Enable chroma vectors and rerun hybrid calibration
 4768893 Add judged-query calibration workflow for search fusion
 620c213 Add real UHJ sample corpus and ingest artifacts
 9a7f60e Add hybrid retrieval fusion and search evaluation script
 aa87c22 Improve search synthesis and include current workspace updates
-1c2f193 Add optional Chroma vector retrieval with FTS fallback
 Diff summary:
 (no diffs)
 
 ## Pytest Summary
 Status: PASS
-Summary: 16 passed, 1 warning in 3.74s
+Summary: 16 passed, 1 warning in 3.65s
 
 ## canonical-docs-v2.md Excerpt
 Gist: # PRD.md (Revised v2) ## 1) Product Overview LetterOps is a local-first document intelligence app for letter-heavy knowledge workflows (starting with Bahá’í letters). It ingests letters from email and watched folders, preserves originals, creates normalized derivatives, extracts metadata, links references, and provides fast retrieval by date/source/topic/reference. +Revised: Integrated Gemini's se...

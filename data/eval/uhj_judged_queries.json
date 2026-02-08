@@ -6,7 +6,43 @@
     ]
   },
   {
+    "query": "october 1985 promise world peace statement",
+    "expected_archive_suffixes": [
+      "19851001_001.pdf"
+    ]
+  },
+  {
+    "query": "message to the peoples of the world on peace",
+    "expected_archive_suffixes": [
+      "19851001_001.pdf"
+    ]
+  },
+  {
+    "query": "world peace universal house of justice 1985",
+    "expected_archive_suffixes": [
+      "19851001_001.pdf"
+    ]
+  },
+  {
     "query": "world religious leaders invitation interfaith",
+    "expected_archive_suffixes": [
+      "20020401_001.pdf"
+    ]
+  },
+  {
+    "query": "april 2002 letter to religious leaders",
+    "expected_archive_suffixes": [
+      "20020401_001.pdf"
+    ]
+  },
+  {
+    "query": "invitation to leaders of world religions",
+    "expected_archive_suffixes": [
+      "20020401_001.pdf"
+    ]
+  },
+  {
+    "query": "interfaith activity reexamine issues house of justice",
     "expected_archive_suffixes": [
       "20020401_001.pdf"
     ]
@@ -18,7 +54,43 @@
     ]
   },
   {
+    "query": "28 november 2023 formative age reflections",
+    "expected_archive_suffixes": [
+      "20231128_001.pdf"
+    ]
+  },
+  {
+    "query": "message on the first century of the formative age",
+    "expected_archive_suffixes": [
+      "20231128_001.pdf"
+    ]
+  },
+  {
+    "query": "formative age century bahais of the world",
+    "expected_archive_suffixes": [
+      "20231128_001.pdf"
+    ]
+  },
+  {
     "query": "family life and marriage bahais of the world",
+    "expected_archive_suffixes": [
+      "20250319_001.pdf"
+    ]
+  },
+  {
+    "query": "19 march 2025 family life marriage message",
+    "expected_archive_suffixes": [
+      "20250319_001.pdf"
+    ]
+  },
+  {
+    "query": "guidance regarding family life and marriage",
+    "expected_archive_suffixes": [
+      "20250319_001.pdf"
+    ]
+  },
+  {
+    "query": "bahais of the world marriage guidance 2025",
     "expected_archive_suffixes": [
       "20250319_001.pdf"
     ]
@@ -28,6 +100,23 @@
     "expected_archive_suffixes": [
       "19631218_001.pdf"
     ]
+  },
+  {
+    "query": "18 december 1963 message on bahai funds",
+    "expected_archive_suffixes": [
+      "19631218_001.pdf"
+    ]
+  },
+  {
+    "query": "to the bahais of east and west funds",
+    "expected_archive_suffixes": [
+      "19631218_001.pdf"
+    ]
+  },
+  {
+    "query": "universal house of justice funds east west",
+    "expected_archive_suffixes": [
+      "19631218_001.pdf"
+    ]
   }
 ]
-
