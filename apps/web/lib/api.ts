@@ -53,7 +53,8 @@ function apiBase(): string {
 async function asJson<T>(resp: Response): Promise<T> {
   const body = await resp.json().catch(() => ({}));
   if (!resp.ok) {
-    const detail = (body as { detail?: string }).detail ?? `HTTP ${resp.status}`;
+    const envelope = body as { error?: { message?: string }; detail?: string };
+    const detail = envelope.error?.message ?? envelope.detail ?? `HTTP ${resp.status}`;
     throw new Error(detail);
   }
   return body as T;

@@ -36,8 +36,8 @@ function toParams(form: DashboardFormState): string {
 }
 
 export function DashboardClient({ initialForm, initialResult, initialStatus }: DashboardClientProps) {
-  const [email, setEmail] = useState("owner@local.test");
-  const [password, setPassword] = useState("ChangeMeNow!");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [authStatus, setAuthStatus] = useState("Not authenticated.");
   const [authBusy, setAuthBusy] = useState(false);
   const [searchStatus, setSearchStatus] = useState(initialStatus);
@@ -99,11 +99,11 @@ export function DashboardClient({ initialForm, initialResult, initialStatus }: D
         <form className="stack" onSubmit={onLogin}>
           <label>
             Email
-            <input value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email" />
           </label>
           <label>
             Password
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="password" />
           </label>
           <button disabled={authBusy || searchBusy} type="submit">Sign In</button>
         </form>
